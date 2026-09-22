@@ -153,17 +153,21 @@ main {
   margin-inline: auto;
 }
 
-/* Doors */
-.doors__grid {
+/* Doors — map, not list */
+.doors__map {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
+  max-width: 32rem;
+  margin-inline: auto;
+  text-align: left;
 }
 
 .door {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: var(--space-xs) var(--space-sm);
+  align-items: baseline;
   padding: var(--space-sm) var(--space-md);
   border: 1px solid var(--gold-dim);
   border-radius: 2px;
@@ -172,34 +176,38 @@ main {
   text-decoration: none;
   transition:
     border-color var(--transition),
-    background var(--transition),
-    transform var(--transition);
+    background var(--transition);
 }
 
 .door:hover,
 .door:focus-visible {
   border-color: var(--gold);
   background: var(--ink-muted);
-  transform: translateX(4px);
   outline: none;
 }
 
 .door__name {
   font-family: var(--font-serif);
-  font-size: 1.375rem;
+  font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: 0.06em;
+  color: var(--gold-warm);
 }
 
-.door__arrow {
+.door__desc {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.door:hover .door__name,
+.door:focus-visible .door__name {
   color: var(--gold);
-  font-size: 1.125rem;
-  transition: transform var(--transition);
 }
 
-.door:hover .door__arrow,
-.door:focus-visible .door__arrow {
-  transform: translateX(4px);
+.door:hover .door__desc,
+.door:focus-visible .door__desc {
+  color: var(--text);
 }
 
 /* Contact */
@@ -268,33 +276,6 @@ main {
   font-style: italic;
   color: var(--text-muted);
   letter-spacing: 0.04em;
-}
-
-/* Wider screens */
-@media (min-width: 480px) {
-  .doors__grid {
-    flex-direction: row;
-    gap: var(--space-sm);
-  }
-
-  .door {
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    gap: var(--space-xs);
-    padding: var(--space-md) var(--space-sm);
-    text-align: center;
-  }
-
-  .door:hover,
-  .door:focus-visible {
-    transform: translateY(-2px);
-  }
-
-  .door:hover .door__arrow,
-  .door:focus-visible .door__arrow {
-    transform: translateY(2px);
-  }
 }
 
 @media (min-width: 768px) {
