@@ -321,3 +321,27 @@ main {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Event register button (overrides Luma embed default look) */
+.event__cta { margin-top: var(--space-sm); }
+.event a.event__btn {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  border: 1px solid var(--gold-dim);
+  border-radius: 12px;
+  background: var(--ink-soft);
+  color: var(--gold-warm);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: none;
+  transition: border-color var(--transition), background var(--transition);
+}
+.event a.event__btn:hover,
+.event a.event__btn:focus-visible {
+  border-color: var(--gold);
+  background: var(--ink-muted);
+  color: var(--gold);
+  box-shadow: none;
+}
