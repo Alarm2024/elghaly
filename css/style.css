@@ -1,14 +1,14 @@
-/* Wyndham Heaven — ink + warm gold */
+/* Wyndham Heaven — ink + midnight teal */
 
 :root {
-  --ink: #0c0c10;
-  --ink-soft: #14141c;
-  --ink-muted: #1e1e28;
-  --gold: #c9a962;
-  --gold-warm: #d4b06a;
-  --gold-dim: rgba(201, 169, 98, 0.35);
-  --text: #e8e4dc;
-  --text-muted: #9a958a;
+  --ink: #0b1214;
+  --ink-soft: #121a19;
+  --ink-muted: #1a2423;
+  --accent: #2ee6c7;
+  --accent-warm: #6fe0c4;
+  --accent-dim: rgba(46, 230, 199, 0.28);
+  --text: #e8fbf6;
+  --text-muted: #9ab3ad;
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Outfit", system-ui, sans-serif;
   --space-xs: 0.5rem;
@@ -40,8 +40,8 @@ body {
   align-items: center;
   background: var(--ink);
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 169, 98, 0.08), transparent),
-    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(201, 169, 98, 0.04), transparent);
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(46, 230, 199, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(46, 230, 199, 0.04), transparent);
   color: var(--text);
   font-family: var(--font-sans);
   font-weight: 400;
@@ -58,7 +58,7 @@ body {
   text-align: center;
   font-size: 1rem;
   letter-spacing: 0.35em;
-  color: var(--gold-dim);
+  color: var(--accent-dim);
   user-select: none;
 }
 
@@ -85,8 +85,13 @@ body {
   font-weight: 600;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--accent);
   margin-bottom: var(--space-md);
+}
+
+.hero__brand a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .hero__title {
@@ -105,6 +110,39 @@ body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
+}
+
+.hero__cta {
+  margin-top: var(--space-md);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  background: transparent;
+  color: var(--accent);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 /* Main sections */
@@ -127,7 +165,7 @@ main {
   font-weight: 600;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--accent);
   margin-bottom: var(--space-sm);
 }
 
@@ -142,7 +180,7 @@ main {
 
 .who__line--accent {
   font-style: italic;
-  color: var(--gold-warm);
+  color: var(--accent-warm);
   margin-top: var(--space-xs);
 }
 
@@ -171,7 +209,7 @@ main {
   gap: 0.35rem var(--space-sm);
   align-items: baseline;
   padding: 1.1rem 1.25rem;
-  border: 1px solid var(--gold-dim);
+  border: 1px solid var(--accent-dim);
   border-radius: 12px;
   background: var(--ink-soft);
   color: var(--text);
@@ -183,7 +221,7 @@ main {
 
 .door:hover,
 .door:focus-visible {
-  border-color: var(--gold);
+  border-color: var(--accent);
   background: var(--ink-muted);
   outline: none;
 }
@@ -194,7 +232,11 @@ main {
   line-height: 1.1;
   font-weight: 600;
   letter-spacing: 0.06em;
-  color: var(--gold-warm);
+  color: var(--accent-warm);
+}
+
+.doors__intro {
+  margin-bottom: var(--space-md);
 }
 
 .door__desc {
@@ -203,9 +245,23 @@ main {
   color: var(--text-muted);
 }
 
+.door__row {
+  display: block;
+}
+
+.door__row + .door__row {
+  margin-top: 0.2rem;
+}
+
+.door__row b {
+  font-weight: 500;
+  color: var(--accent-warm);
+  margin-right: 0.35rem;
+}
+
 .door:hover .door__name,
 .door:focus-visible .door__name {
-  color: var(--gold);
+  color: var(--accent);
 }
 
 .door:hover .door__desc,
@@ -231,7 +287,7 @@ main {
 
 .contact__list a:hover,
 .contact__list a:focus-visible {
-  color: var(--gold);
+  color: var(--accent);
   outline: none;
 }
 
@@ -260,8 +316,8 @@ main {
 
 .socials__list a:hover,
 .socials__list a:focus-visible {
-  color: var(--gold);
-  border-bottom-color: var(--gold-dim);
+  color: var(--accent);
+  border-bottom-color: var(--accent-dim);
   outline: none;
 }
 
@@ -281,6 +337,20 @@ main {
   letter-spacing: 0.04em;
 }
 
+.footer a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-dim);
+  text-underline-offset: 3px;
+  transition: color var(--transition), text-decoration-color var(--transition);
+}
+
+.footer a:hover,
+.footer a:focus-visible {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
 /* Phones: a door's name sits above its line instead of squeezing beside it. */
 @media (max-width: 440px) {
   .door {
@@ -296,7 +366,7 @@ main {
 .door:focus-visible,
 .contact__list a:focus-visible,
 .socials__list a:focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -327,10 +397,10 @@ main {
 .event a.event__btn {
   display: inline-block;
   padding: 0.7rem 1.5rem;
-  border: 1px solid var(--gold-dim);
+  border: 1px solid var(--accent-dim);
   border-radius: 12px;
   background: var(--ink-soft);
-  color: var(--gold-warm);
+  color: var(--accent-warm);
   font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 500;
@@ -340,8 +410,8 @@ main {
 }
 .event a.event__btn:hover,
 .event a.event__btn:focus-visible {
-  border-color: var(--gold);
+  border-color: var(--accent);
   background: var(--ink-muted);
-  color: var(--gold);
+  color: var(--accent);
   box-shadow: none;
 }
