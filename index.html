@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="We set up Linux servers, build Telegram bots, and make tools for Solana. elghaly · Wyndham Heaven — we build what you dream.">
+  <meta name="description" content="We set up Linux servers, build Telegram bots, and make tools for Solana.">
   <meta name="theme-color" content="#0b1214">
   <title>elghaly — Linux servers, Telegram bots, Solana tools</title>
   <link rel="canonical" href="https://elghaly.dev/">
@@ -27,14 +27,547 @@
   <meta name="twitter:image" content="https://elghaly.dev/og.png">
 
   <!-- Google tag (gtag.js) — elghaly.dev GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V3TR7JC91B"></script>
   <script>
+    // gtag.js (~180 KB) loads on the first scroll, tap, key or mouse move,
+    // not with the page. Calls made before then wait in dataLayer.
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-V3TR7JC91B');
+    (function () {
+      var events = ['scroll', 'pointerdown', 'keydown', 'touchstart', 'mousemove'];
+      function load() {
+        events.forEach(function (e) { window.removeEventListener(e, load, true); });
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-V3TR7JC91B';
+        document.head.appendChild(s);
+      }
+      events.forEach(function (e) { window.addEventListener(e, load, { capture: true, once: true, passive: true }); });
+    })();
   </script>
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <!-- inline:css/style.css — edit css/style.css, then: python3 tools/site-kit/sitekit.py inline index.html css/style.css -->
+  <style>
+/* Wyndham Heaven — ink + midnight teal */
+
+/* Fonts are served from /fonts (SIL OFL 1.1, see fonts/OFL-*.txt), the latin subset,
+   so no third-party request sits on the critical path. */
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/cormorant-garamond-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/cormorant-garamond-latin-400-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/outfit-latin-300-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/outfit-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/outfit-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+:root {
+  --ink: #0b1214;
+  --ink-soft: #121a19;
+  --ink-muted: #1a2423;
+  --accent: #2ee6c7;
+  --accent-warm: #6fe0c4;
+  --accent-dim: rgba(46, 230, 199, 0.28);
+  --text: #e8fbf6;
+  --text-muted: #9ab3ad;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 3.5rem;
+  --space-xl: 5rem;
+  --max-width: 40rem;
+  --transition: 0.25s ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--ink);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(46, 230, 199, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(46, 230, 199, 0.04), transparent);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* themes.js fills #topbar after first paint; hold its 56px so the hero
+   does not jump down when the theme button arrives. */
+.topbar {
+  min-height: 56px;
+}
+
+/* Signs */
+.signs {
+  width: 100%;
+  max-width: calc(var(--max-width) + var(--space-md) * 2);
+  padding: var(--space-sm) var(--space-md);
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 0.35em;
+  /* Colour emoji draw in their own colours; this sets the text colour
+     around them, which axe measures (accent-dim was 1.97:1 on ink). */
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.signs--top {
+  padding-top: var(--space-md);
+}
+
+.signs--bottom {
+  padding-bottom: var(--space-xs);
+  margin-top: auto;
+}
+
+/* Hero */
+.hero {
+  width: 100%;
+  max-width: calc(var(--max-width) + var(--space-md) * 2);
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+  text-align: center;
+}
+
+.hero__brand {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-md);
+}
+
+.hero__brand a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 10vw, 4.25rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: var(--space-sm);
+}
+
+/* Home page: the h1 says what we do; the tagline sits under it. */
+.hero__title--lead {
+  font-size: clamp(1.85rem, 6.2vw, 2.9rem);
+  font-style: normal;
+  line-height: 1.15;
+  max-width: 22ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero__tagline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 4.6vw, 1.85rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--accent);
+  margin-bottom: var(--space-sm);
+}
+
+.hero__tag {
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hero__cta {
+  margin-top: var(--space-md);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  background: transparent;
+  color: var(--accent);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--accent);
+}
+
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background: var(--accent-dim);
+  color: var(--text);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Main sections */
+main {
+  width: 100%;
+  max-width: calc(var(--max-width) + var(--space-md) * 2);
+  padding: 0 var(--space-md) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.section {
+  text-align: center;
+}
+
+.section__label {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-sm);
+}
+
+/* Who */
+.who__line {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 6vw, 2.1rem);
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.who__line--accent {
+  font-style: italic;
+  color: var(--accent-warm);
+  margin-top: var(--space-xs);
+}
+
+/* Build */
+.build__text {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 32rem;
+  margin-inline: auto;
+}
+
+/* Doors — map, not list */
+.doors__map {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 36rem;
+  margin-inline: auto;
+  text-align: left;
+}
+
+.door {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 0.35rem var(--space-sm);
+  align-items: baseline;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--accent-dim);
+  border-radius: 12px;
+  background: var(--ink-soft);
+  color: var(--text);
+  text-decoration: none;
+  transition:
+    border-color var(--transition),
+    background var(--transition);
+}
+
+.door:hover,
+.door:focus-visible {
+  border-color: var(--accent);
+  background: var(--ink-muted);
+  outline: none;
+}
+
+.door__name {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--accent-warm);
+}
+
+.doors__intro {
+  margin-bottom: var(--space-md);
+}
+
+.door__desc {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.door__row {
+  display: block;
+}
+
+.door__row + .door__row {
+  margin-top: 0.2rem;
+}
+
+.door__row b {
+  font-weight: 500;
+  color: var(--accent-warm);
+  margin-right: 0.35rem;
+}
+
+.door:hover .door__name,
+.door:focus-visible .door__name {
+  color: var(--accent);
+}
+
+.door:hover .door__desc,
+.door:focus-visible .door__desc {
+  color: var(--text);
+}
+
+/* Contact */
+.contact__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.contact__list a {
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-dim);
+  text-underline-offset: 3px;
+  letter-spacing: 0.02em;
+  transition: color var(--transition);
+}
+
+.contact__list a:hover,
+.contact__list a:focus-visible {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+  outline: none;
+}
+
+.contact__mail {
+  margin-top: var(--space-sm);
+}
+
+/* Socials */
+.socials__list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm) var(--space-md);
+}
+
+.socials__list a {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition:
+    color var(--transition),
+    border-color var(--transition);
+}
+
+.socials__list a:hover,
+.socials__list a:focus-visible {
+  color: var(--accent);
+  border-bottom-color: var(--accent-dim);
+  outline: none;
+}
+
+/* Footer */
+.footer {
+  width: 100%;
+  max-width: calc(var(--max-width) + var(--space-md) * 2);
+  padding: var(--space-sm) var(--space-md) var(--space-lg);
+  text-align: center;
+}
+
+.footer p {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.footer a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-dim);
+  text-underline-offset: 3px;
+  transition: color var(--transition), text-decoration-color var(--transition);
+}
+
+.footer a:hover,
+.footer a:focus-visible {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+/* Phones: a door's name sits above its line instead of squeezing beside it. */
+@media (max-width: 440px) {
+  .door {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  main {
+    padding-inline: var(--space-sm);
+  }
+}
+
+.door:focus-visible,
+.contact__list a:focus-visible,
+.socials__list a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding-top: var(--space-xl);
+  }
+
+  main {
+    gap: var(--space-xl);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Event register button (overrides Luma embed default look) */
+.event__cta { margin-top: var(--space-sm); }
+.event a.event__btn {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  border: 1px solid var(--accent-dim);
+  border-radius: 12px;
+  background: var(--ink-soft);
+  color: var(--accent-warm);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: none;
+  transition: border-color var(--transition), background var(--transition);
+}
+.event a.event__btn:hover,
+.event a.event__btn:focus-visible {
+  border-color: var(--accent);
+  background: var(--ink-muted);
+  color: var(--accent);
+  box-shadow: none;
+}
+  </style>
+  <!-- /inline:css/style.css -->
   <link rel="preload" href="/fonts/cormorant-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/outfit-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <script type="application/ld+json">
@@ -62,8 +595,8 @@
 
   <header class="hero">
     <p class="hero__brand">elghaly</p>
-    <h1 class="hero__title">we build what you dream</h1>
-    <p class="hero__sub">Linux servers · Telegram bots · Solana tools</p>
+    <h1 class="hero__title hero__title--lead">We set up Linux servers, build Telegram bots, and make tools for Solana</h1>
+    <p class="hero__tagline">we build what you dream</p>
     <p class="hero__tag">Wyndham Heaven · Software · Business</p>
     <p class="hero__cta">
       <a class="btn btn--primary" href="https://www.fiverr.com/s/9d96bzj" target="_blank" rel="noopener noreferrer">Hire us</a>
@@ -126,7 +659,6 @@
 
     <section class="section doors" aria-labelledby="doors-heading">
       <h2 id="doors-heading" class="section__label">Doors</h2>
-      <p class="build__text doors__intro">We set up Linux servers, build Telegram bots, and make tools for Solana.</p>
       <div class="doors__map">
         <a class="door" href="https://35.elghaly.dev/" rel="noopener noreferrer">
           <span class="door__name">35</span>
