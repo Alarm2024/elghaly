@@ -261,10 +261,15 @@ def size_images(root, page, text):
 # --------------------------------------------------------------------------- favicons, robots, sitemap
 
 
+# A favicon link is rel="icon" or rel="shortcut icon": the token `icon` on its
+# own. apple-touch-icon and mask-icon contain the letters but are not one.
+FAVICON_LINK = re.compile(r'<link[^>]+rel=["\'](?:[^"\']*\s)?icon(?:\s[^"\']*)?["\']', re.I)
+
+
 def has_icon(root, page_texts):
     if any(os.path.exists(os.path.join(root, f)) for f in ("favicon.svg", "favicon.ico", "favicon.png")):
         return True
-    return any(re.search(r'<link[^>]+rel=["\'][^"\']*icon', t, re.I) for t in page_texts)
+    return any(FAVICON_LINK.search(t) for t in page_texts)
 
 
 def favicon_svg(cfg):
@@ -303,9 +308,15 @@ def favicon_rasters(root, cfg):
         except TypeError:
             return []
     d.text((big / 2, big / 2), cfg["mono"], font=font, fill=cfg["fg"], anchor="mm")
-    im.resize((180, 180), Image.LANCZOS).save(os.path.join(root, "apple-touch-icon.png"), optimize=True)
-    im.save(os.path.join(root, "favicon.ico"), sizes=[(16, 16), (32, 32), (48, 48)])
-    return ["apple-touch-icon.png", "favicon.ico"]
+    made = []
+    touch, ico = os.path.join(root, "apple-touch-icon.png"), os.path.join(root, "favicon.ico")
+    if not os.path.exists(touch):
+        im.resize((180, 180), Image.LANCZOS).save(touch, optimize=True)
+        made.append("apple-touch-icon.png")
+    if not os.path.exists(ico):
+        im.save(ico, sizes=[(16, 16), (32, 32), (48, 48)])
+        made.append("favicon.ico")
+    return made
 
 
 def git_date(root, path):
@@ -377,7 +388,7 @@ def head_inserts(root, host, cfg, page, text):
         "og_image": og_image.group(1) if og_image else cfg.get("og_image", ""),
     }
     fields["twitter_card"] = "summary_large_image" if fields["og_image"] else "summary"
-    page_has_icon = re.search(r'<link[^>]+rel=["\'][^"\']*icon', head, re.I)
+    page_has_icon = FAVICON_LINK.search(head)
     out = []
     for tag in partial_tags():
         kind, value = tag_key(tag)
@@ -476,10 +487,14 @@ def run(root, apply):
     if has_icon(root, texts.values()):
         print("   ok favicon present")
     else:
-        print("   +  favicon.svg" + (" (+ favicon.ico, apple-touch-icon.png)" if apply else ""))
+        if not apply:
+            print("   +  favicon.svg (+ favicon.ico, apple-touch-icon.png with Pillow; existing files kept)")
         if apply:
-            write(os.path.join(root, "favicon.svg"), favicon_svg(cfg))
-            created += ["favicon.svg"] + favicon_rasters(root, cfg)
+            if not os.path.exists(os.path.join(root, "favicon.svg")):
+                write(os.path.join(root, "favicon.svg"), favicon_svg(cfg))
+                created.append("favicon.svg")
+            created += favicon_rasters(root, cfg)
+            print(f"   +  {', '.join(f for f in created if 'icon' in f) or 'favicon files already present'}")
             # Second pass now the files exist: link them from every page.
             for page in plist:
                 if is_redirect(texts[page]):
@@ -530,6 +545,9 @@ def shrink(root, max_width, quality, min_bytes):
             if before < min_bytes:
                 continue
             with Image.open(path) as im:
+                if getattr(im, "is_animated", False) or getattr(im, "n_frames", 1) > 1:
+                    print(f"   ·  {os.path.relpath(path, root)}: animated, left as is")
+                    continue
                 im.load()
                 fmt = im.format
                 out = ImageOps.exif_transpose(im)
