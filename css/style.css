@@ -157,6 +157,14 @@ body {
   margin-bottom: var(--space-sm);
 }
 
+.hero__sub {
+  font-size: clamp(1rem, 3.2vw, 1.2rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-bottom: var(--space-sm);
+}
+
 .hero__tag {
   font-size: 0.95rem;
   font-weight: 500;
@@ -167,6 +175,10 @@ body {
 
 .hero__cta {
   margin-top: var(--space-md);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
 }
 
 .btn {
@@ -191,6 +203,17 @@ body {
 .btn--primary:focus-visible {
   background: transparent;
   color: var(--accent);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--accent);
+}
+
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background: var(--accent-dim);
+  color: var(--text);
 }
 
 .btn:focus-visible {
