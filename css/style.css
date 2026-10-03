@@ -101,6 +101,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* themes.js fills #topbar after first paint; hold its 56px so the hero
+   does not jump down when the theme button arrives. */
+.topbar {
+  min-height: 56px;
+}
+
 /* Signs */
 .signs {
   width: 100%;
@@ -157,11 +163,23 @@ body {
   margin-bottom: var(--space-sm);
 }
 
-.hero__sub {
-  font-size: clamp(1rem, 3.2vw, 1.2rem);
+/* Home page: the h1 says what we do; the tagline sits under it. */
+.hero__title--lead {
+  font-size: clamp(1.85rem, 6.2vw, 2.9rem);
+  font-style: normal;
+  line-height: 1.15;
+  max-width: 22ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero__tagline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 4.6vw, 1.85rem);
+  font-style: italic;
   font-weight: 400;
-  letter-spacing: 0.02em;
-  color: var(--text);
+  line-height: 1.2;
+  color: var(--accent);
   margin-bottom: var(--space-sm);
 }
 

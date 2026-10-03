@@ -6,6 +6,8 @@
                                        robots.txt, sitemap.xml, missing <head> tags
     python3 sitekit.py shrink DIR... [--max-width 1600] [--quality 82]
                                        re-encode oversized JPEG/PNG/WebP in place
+    python3 sitekit.py inline PAGE CSS  put CSS in PAGE's <head> as a <style> block
+                                       (replaces its <link>; re-run after editing CSS)
 
 DIR is the folder a site is published from: the one holding CNAME and
 index.html. Every write is additive. An <img> that already has both width and
@@ -571,14 +573,58 @@ def shrink(root, max_width, quality, min_bytes):
     return 0
 
 
+INLINE_START = "<!-- inline:{css} — edit {css}, then: python3 tools/site-kit/sitekit.py inline {page} {css} -->"
+INLINE_END = "<!-- /inline:{css} -->"
+
+
+def inline(page, css):
+    """Replace PAGE's <link rel=stylesheet> to CSS with the file's text, or
+    refresh a block this command wrote before. The file stays the source."""
+    text, rules = read(page), read(os.path.join(os.path.dirname(page) or ".", css)).rstrip() + "\n"
+    # Moving the rules from css/ into the page changes what a relative url()
+    # or @import points at, and a "</style" in them would end the block early.
+    moved = [u for u in re.findall(r'url\(\s*["\']?([^"\')\s]+)', rules)
+             if not re.match(r"(/|data:|https?:|#)", u)]
+    if moved or "@import" in rules or "</style" in rules.lower():
+        print(f"{page}: not inlining {css}: it has relative url(), @import or </style ({', '.join(moved[:3]) or 'see file'})")
+        return 1
+    start = INLINE_START.format(css=css, page=os.path.basename(page))
+    end = INLINE_END.format(css=css)
+    block = f"{start}\n  <style>\n{rules}  </style>\n  {end}"
+    existing = re.compile(re.escape(start.split(" — ")[0]) + r".*?" + re.escape(end), re.S)
+    if existing.search(text):
+        new = existing.sub(lambda m: block, text, count=1)
+    else:
+        href = re.compile(rf'\bhref=["\']/?{re.escape(css)}(?:\?[^"\']*)?["\']')
+        tag = next((m for m in re.finditer(r"<link\b[^>]*>", text)
+                    if re.search(r'\brel=["\']?stylesheet\b', m.group(0)) and href.search(m.group(0))), None)
+        if tag is None:
+            print(f"{page}: no <link rel=stylesheet href={css}> and no inline block to refresh")
+            return 1
+        if re.search(r"\bmedia=", tag.group(0)):
+            print(f"{page}: the <link> to {css} has a media= attribute; inline it by hand")
+            return 1
+        new = text[:tag.start()] + block + text[tag.end():]
+    if new != text:
+        write(page, new)
+        print(f"   +  {page}: {css} inlined ({len(rules.encode())} bytes)")
+    else:
+        print(f"   ok {page}: inline {css} already current")
+    return 0
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("command", choices=("check", "fix", "shrink"))
+    ap.add_argument("command", choices=("check", "fix", "shrink", "inline"))
     ap.add_argument("dirs", nargs="+")
     ap.add_argument("--max-width", type=int, default=1600)
     ap.add_argument("--quality", type=int, default=82)
     ap.add_argument("--min-bytes", type=int, default=100_000)
     args = ap.parse_args(argv)
+    if args.command == "inline":
+        if len(args.dirs) != 2:
+            ap.error("inline takes PAGE CSS, e.g. inline index.html css/style.css")
+        return inline(*args.dirs)
     status = 0
     for d in args.dirs:
         if args.command == "shrink":
