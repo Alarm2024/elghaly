@@ -1,0 +1,26 @@
+<!--
+  Shared <head> partial for the elghaly.dev sites.
+
+  sitekit.py fills each {{field}} from its SITES table and inserts into a page
+  only the tags that page is missing. It never edits or removes a tag a page
+  already has, so a hand-written title or description always wins. A tag whose
+  field is empty for a site is skipped (no og:image on a site that has none).
+
+  Root page only: description, canonical, og:*, twitter:*.
+  Every page: charset, viewport, theme-color, icons.
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="{{theme_color}}">
+<meta name="description" content="{{description}}">
+<link rel="canonical" href="{{url}}">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{site_name}}">
+<meta property="og:url" content="{{url}}">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:image" content="{{og_image}}">
+<meta name="twitter:card" content="{{twitter_card}}">
