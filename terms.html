@@ -8,14 +8,29 @@
   <title>Terms · elghaly</title>
   <link rel="canonical" href="https://elghaly.dev/terms.html">
   <!-- Google tag (gtag.js) — elghaly.dev GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V3TR7JC91B"></script>
   <script>
+    // gtag.js (~180 KB) loads on the first scroll, tap, key or mouse move,
+    // not with the page. Calls made before then wait in dataLayer.
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-V3TR7JC91B');
+    (function () {
+      var events = ['scroll', 'pointerdown', 'keydown', 'touchstart', 'mousemove'];
+      function load() {
+        events.forEach(function (e) { window.removeEventListener(e, load, true); });
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-V3TR7JC91B';
+        document.head.appendChild(s);
+      }
+      events.forEach(function (e) { window.addEventListener(e, load, { capture: true, once: true, passive: true }); });
+    })();
   </script>
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body>
   <header class="hero">
