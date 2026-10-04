@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact elghaly, run by Wyndham Heaven.">
+  <meta name="description" content="Contact elghaly, LLC: email, postal address and a contact form.">
   <meta name="theme-color" content="#0b1214">
   <title>Contact · elghaly</title>
   <link rel="canonical" href="https://elghaly.dev/contact.html">
@@ -31,33 +31,71 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="css/style.css?v=8">
+  <style>
+    .policy p + p, .policy ul + p { margin-top: .75rem; }
+    .policy ul { margin: .5rem 0 0 1.2rem; color: var(--text-muted); line-height: 1.7; }
+    .policy li + li { margin-top: .35rem; }
+    .policy strong { color: var(--text); font-weight: 600; }
+    .policy a { color: var(--accent); text-underline-offset: 2px; }
+    .footer__biz { margin-top: .4rem; font-size: .85rem; }
+    .contact-form { display: grid; gap: .9rem; max-width: 34rem; margin-top: .75rem; }
+    .contact-form label { display: grid; gap: .35rem; font-size: .9rem; color: var(--text); }
+    .contact-form input, .contact-form textarea { font: inherit; color: var(--text); background: rgba(255,255,255,.04); border: 1px solid var(--accent-dim); border-radius: 10px; padding: .65rem .8rem; }
+    .contact-form textarea { min-height: 8rem; resize: vertical; }
+    .contact-form input:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .contact-form .hp { position: absolute; left: -9999px; }
+    .contact-form button { justify-self: start; }
+    .sent { color: var(--accent); }
+  </style>
 </head>
 <body>
   <header class="hero">
     <p class="hero__brand"><a href="/">elghaly</a></p>
     <h1 class="hero__title">Contact</h1>
-    <p class="hero__tag">Last updated: September 30, 2026</p>
+    <p class="hero__tag">Last updated: October 4, 2026</p>
   </header>
 
-  <main>
+  <main class="policy">
+    <section class="section">
+      <h2 class="section__label">Business</h2>
+      <p class="build__text"><strong>elghaly, LLC</strong></p>
+      <p class="build__text">Mail: 548 Market St, San Francisco, CA 94104, United States</p>
+    </section>
+
     <section class="section">
       <h2 class="section__label">Email</h2>
-      <p class="build__text">The best way to reach us is by email: <a href="mailto:wyndham35@elghaly.dev">wyndham35@elghaly.dev</a>.</p>
+      <p class="build__text">Write to <a href="mailto:wyndham35@elghaly.dev">wyndham35@elghaly.dev</a>. Order and refund questions can also go to <a href="mailto:support@elghaly.dev">support@elghaly.dev</a>.</p>
     </section>
 
     <section class="section">
-      <h2 class="section__label">Where we are</h2>
-      <p class="build__text">Based in Egypt, digital delivery worldwide.</p>
+      <h2 class="section__label">Contact form</h2>
+      <form class="contact-form" action="https://formsubmit.co/wyndham35@elghaly.dev" method="POST">
+        <input type="hidden" name="_subject" value="elghaly.dev contact form">
+        <input type="hidden" name="_next" value="https://elghaly.dev/contact.html?sent=1">
+        <input type="hidden" name="_template" value="table">
+        <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label>Your name <input type="text" name="name" autocomplete="name" required></label>
+        <label>Your email <input type="email" name="email" autocomplete="email" required></label>
+        <label>Order number (if you have one) <input type="text" name="order"></label>
+        <label>Message <textarea name="message" required></textarea></label>
+        <button class="btn btn--primary" type="submit">Send</button>
+      </form>
+      <p class="build__text sent" id="sent" hidden>Thank you, your message was sent. We reply by email.</p>
+      <p class="build__text">The form sends your message to the same inbox through FormSubmit (formsubmit.co). See the <a href="/privacy.html">privacy policy</a>.</p>
     </section>
 
     <section class="section">
-      <h2 class="section__label">Help with a purchase</h2>
-      <p class="build__text">If a download or access link does not work, email us with what you bought and what went wrong. See the <a href="/refund.html">refund policy</a> for details.</p>
+      <h2 class="section__label">Help with an order</h2>
+      <p class="build__text">Tell us what you bought, the email you used at checkout and what went wrong. Refunds are covered by the <a href="/refund.html">refund policy</a>; how and when each product arrives is on the <a href="/delivery.html">delivery page</a>.</p>
     </section>
   </main>
 
   <footer class="footer">
-    <p><a href="/">elghaly.dev</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/refund.html">Refunds</a> · <a href="/contact.html">Contact</a></p>
+    <p><a href="/">elghaly.dev</a> · <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/refund.html">Refunds</a> · <a href="/delivery.html">Delivery</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></p>
+    <p class="footer__biz">elghaly, LLC · 548 Market St, San Francisco, CA 94104, United States · <a href="mailto:wyndham35@elghaly.dev">wyndham35@elghaly.dev</a></p>
   </footer>
+  <script>
+    if (/[?&]sent=1/.test(location.search)) document.getElementById('sent').hidden = false;
+  </script>
 </body>
 </html>
