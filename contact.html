@@ -7,14 +7,46 @@
   <meta name="theme-color" content="#0b1214">
   <title>Contact · elghaly</title>
   <link rel="canonical" href="https://elghaly.dev/contact.html">
-  <!-- Google tag (gtag.js) — elghaly.dev GA4 -->
+  <!-- Google tag (gtag.js) — elghaly.dev GA4 + Consent Mode v2 (free, self-hosted) -->
   <script>
-    // gtag.js (~180 KB) loads on the first scroll, tap, key or mouse move,
-    // not with the page. Calls made before then wait in dataLayer.
+    // Consent defaults MUST run before gtag config. Denied until the visitor
+    // Accepts (or a prior choice is restored from localStorage).
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+
+    var CONSENT_KEY = 'elghaly_consent_v1';
+    var DENIED = {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied'
+    };
+    var GRANTED = {
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+      analytics_storage: 'granted'
+    };
+
+    function readConsent() {
+      try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
+    }
+
+    // Default deny + short wait so the banner can update before tags fire.
+    gtag('consent', 'default', Object.assign({ wait_for_update: 500 }, DENIED));
+
+    var saved = readConsent();
+    if (saved === 'granted') {
+      gtag('consent', 'update', GRANTED);
+    } else if (saved === 'denied') {
+      gtag('consent', 'update', DENIED);
+    }
+
     gtag('js', new Date());
     gtag('config', 'G-V3TR7JC91B');
+
+    // gtag.js (~180 KB) loads on the first scroll, tap, key or mouse move,
+    // not with the page. Calls made before then wait in dataLayer.
     (function () {
       var events = ['scroll', 'pointerdown', 'keydown', 'touchstart', 'mousemove'];
       function load() {
@@ -26,7 +58,126 @@
       }
       events.forEach(function (e) { window.addEventListener(e, load, { capture: true, once: true, passive: true }); });
     })();
+
+    // Minimal Accept / Reject banner. $0 — no CMP, no GTM.
+    (function () {
+      if (readConsent()) return;
+
+      function apply(choice) {
+        var state = choice === 'granted' ? GRANTED : DENIED;
+        gtag('consent', 'update', state);
+        try { localStorage.setItem(CONSENT_KEY, choice); } catch (e) {}
+        var el = document.getElementById('elghaly-consent');
+        if (el) el.remove();
+      }
+
+      function mount() {
+        if (document.getElementById('elghaly-consent')) return;
+        var bar = document.createElement('div');
+        bar.id = 'elghaly-consent';
+        bar.setAttribute('role', 'dialog');
+        bar.setAttribute('aria-live', 'polite');
+        bar.setAttribute('aria-label', 'Cookie consent');
+        bar.innerHTML =
+          '<div class="ec-inner">' +
+            '<p class="ec-text">We use Google Analytics cookies to understand site traffic. ' +
+            'Accept to allow analytics and ads-related storage, or Reject to keep them off. ' +
+            'See our <a href="/privacy.html">Privacy</a> and ' +
+            '<a href="https://business.safety.google/privacy/" rel="noopener noreferrer" target="_blank">Google Business Data Responsibility</a>.</p>' +
+            '<div class="ec-actions">' +
+              '<button type="button" class="ec-btn ec-btn--ghost" data-choice="denied">Reject</button>' +
+              '<button type="button" class="ec-btn ec-btn--primary" data-choice="granted">Accept</button>' +
+            '</div>' +
+          '</div>';
+        bar.addEventListener('click', function (ev) {
+          var t = ev.target;
+          if (!t || !t.getAttribute) return;
+          var c = t.getAttribute('data-choice');
+          if (c === 'granted' || c === 'denied') apply(c);
+        });
+        (document.body || document.documentElement).appendChild(bar);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', mount);
+      } else {
+        mount();
+      }
+    })();
   </script>
+  <style id="elghaly-consent-css">
+    #elghaly-consent {
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.85rem 1rem calc(0.85rem + env(safe-area-inset-bottom, 0px));
+      background: #121a19;
+      border-top: 1px solid rgba(46, 230, 199, 0.28);
+      color: #e8fbf6;
+      font-family: "Outfit", system-ui, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.35);
+    }
+    #elghaly-consent .ec-inner {
+      max-width: 40rem;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+    #elghaly-consent .ec-text {
+      flex: 1 1 16rem;
+      margin: 0;
+      color: #9ab3ad;
+    }
+    #elghaly-consent .ec-text a {
+      color: #2ee6c7;
+      text-underline-offset: 2px;
+    }
+    #elghaly-consent .ec-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+    #elghaly-consent .ec-btn {
+      appearance: none;
+      cursor: pointer;
+      padding: 0.55rem 1.15rem;
+      border-radius: 12px;
+      border: 1px solid #2ee6c7;
+      font: inherit;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+    #elghaly-consent .ec-btn--primary {
+      background: #2ee6c7;
+      color: #0b1214;
+    }
+    #elghaly-consent .ec-btn--primary:hover,
+    #elghaly-consent .ec-btn--primary:focus-visible {
+      background: transparent;
+      color: #2ee6c7;
+    }
+    #elghaly-consent .ec-btn--ghost {
+      background: transparent;
+      color: #2ee6c7;
+    }
+    #elghaly-consent .ec-btn--ghost:hover,
+    #elghaly-consent .ec-btn--ghost:focus-visible {
+      background: rgba(46, 230, 199, 0.28);
+      color: #e8fbf6;
+    }
+    #elghaly-consent .ec-btn:focus-visible {
+      outline: 2px solid #2ee6c7;
+      outline-offset: 3px;
+    }
+  </style>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
