@@ -467,6 +467,18 @@ html[lang|="zh"] .section__label {
   text-wrap: balance;
 }
 
+/* Arabic letters join, and tracking pulls them apart into separate glyphs.
+   Nothing that carries translated text keeps its letter-spacing in Arabic. */
+html[lang|="ar"] .hero__tag,
+html[lang|="ar"] .btn,
+html[lang|="ar"] .section__label,
+html[lang|="ar"] .door__name,
+html[lang|="ar"] .contact__list a,
+html[lang|="ar"] .socials__list a,
+html[lang|="ar"] .footer p {
+  letter-spacing: 0;
+}
+
 /* Phones: the two buttons stack, full width. Side by side they only just
    fit, so the web font arriving (wider than the fallback) wrapped them onto
    a second line and pushed the page down. */
