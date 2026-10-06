@@ -1,6 +1,11 @@
 (function(){
-  var KEY='house-theme';
+  // Saved only when a visitor picks a theme. The old key was written on every
+  // page load, so it held 'midnight' for everyone who had ever visited and a
+  // new default could never reach them.
+  var KEY='house-theme-picked';
+  var DEFAULT='solana';
   var THEMES={
+    solana:{ink:'#07070b',soft:'#121218',muted:'#1c1c24',accent:'#14f195',accentwarm:'#9945ff',accentdim:'rgba(153,69,255,.34)',text:'#f4f4f7',textmuted:'#a6a6b8'},
     midnight:{ink:'#0b1214',soft:'#121a19',muted:'#1a2423',accent:'#2ee6c7',accentwarm:'#6fe0c4',accentdim:'rgba(46,230,199,.28)',text:'#e8fbf6',textmuted:'#9ab3ad'},
     dawn:{ink:'#f4f1ea',soft:'#fffaf3',muted:'#ece6da',accent:'#0f766e',accentwarm:'#0f766e',accentdim:'rgba(15,118,110,.22)',text:'#1a1814',textmuted:'#5c574e'},
     nord:{ink:'#2e3440',soft:'#3b4252',muted:'#434c5e',accent:'#88c0d0',accentwarm:'#88c0d0',accentdim:'rgba(136,192,208,.28)',text:'#eceff4',textmuted:'#88c0d0'},
@@ -8,10 +13,10 @@
     dracula:{ink:'#282a36',soft:'#21222c',muted:'#343746',accent:'#50fa7b',accentwarm:'#bd93f9',accentdim:'rgba(80,250,123,.28)',text:'#f8f8f2',textmuted:'#bd93f9'},
     ocean:{ink:'#0b1c24',soft:'#12262e',muted:'#16313b',accent:'#2ec4b6',accentwarm:'#2ec4b6',accentdim:'rgba(46,196,182,.28)',text:'#d8f3ff',textmuted:'#7fadb8'}
   };
-  var LABELS={midnight:'Midnight',dawn:'Dawn',nord:'Nord',solarized:'Solarized',dracula:'Dracula',ocean:'Ocean'};
-  var ORDER=['midnight','dawn','nord','solarized','dracula','ocean'];
-  function apply(name){
-    if(!(name in THEMES)) name='midnight';
+  var LABELS={solana:'Solana',midnight:'Midnight',dawn:'Dawn',nord:'Nord',solarized:'Solarized',dracula:'Dracula',ocean:'Ocean'};
+  var ORDER=['solana','midnight','dawn','nord','solarized','dracula','ocean'];
+  function apply(name,picked){
+    if(!(name in THEMES)) name=DEFAULT;
     var t=THEMES[name];
     var r=document.documentElement;
     r.setAttribute('data-theme',name);
@@ -24,7 +29,7 @@
     r.style.setProperty('--text',t.text);
     r.style.setProperty('--text-muted',t.textmuted);
     if(document.body){document.body.style.background=t.ink;document.body.style.color=t.text;}
-    try{localStorage.setItem(KEY,name);}catch(e){}
+    if(picked){try{localStorage.setItem(KEY,name);}catch(e){}}
     document.querySelectorAll('[data-theme-item]').forEach(function(el){
       el.classList.toggle('on', el.getAttribute('data-theme-item')===name);
     });
@@ -39,11 +44,12 @@
       '.theme-wrap{position:relative;margin-left:auto}',
       '.theme-btn{display:flex;align-items:center;gap:6px;background:var(--ink-soft);color:var(--text);border:1px solid var(--accent-dim);border-radius:999px;min-height:32px;padding:6px 12px;font:600 13px Outfit,system-ui;cursor:pointer}',
       '.theme-dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}',
+      '[data-theme=solana] .theme-dot{background:linear-gradient(135deg,#9945ff,#14f195)}',
       '.theme-panel{display:none;position:absolute;right:0;top:calc(100% + 8px);min-width:200px;background:#16181d;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:10px;z-index:80}',
       '.theme-wrap.open .theme-panel{display:block}',
       '.theme-panel p{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8b93a0;margin:0 8px 8px}',
       '.theme-item{display:flex;align-items:center;gap:10px;width:100%;border:0;background:transparent;color:#e8eef2;padding:10px;border-radius:12px;font:600 14px Outfit,system-ui;cursor:pointer;text-align:left}',
-      '.theme-item.on{background:#14302c;color:#2ee6c7}',
+      '.theme-item.on{background:rgba(127,127,127,.18);color:var(--accent)}',
       '.theme-item i{width:14px;height:14px;border-radius:50%;display:block}',
       '.theme-item .ck{margin-left:auto;opacity:0}',
       '.theme-item.on .ck{opacity:1}'
@@ -53,7 +59,7 @@
     var wrap=document.createElement('div');
     wrap.className='theme-wrap';
     wrap.id='themeMenu';
-    wrap.innerHTML='<button type="button" class="theme-btn" id="themeOpen"><i class="theme-dot"></i><span id="themeCur">Midnight</span></button>';
+    wrap.innerHTML='<button type="button" class="theme-btn" id="themeOpen" aria-haspopup="true"><i class="theme-dot"></i><span id="themeCur">Solana</span></button>';
     var panel=document.createElement('div');
     panel.className='theme-panel';
     panel.innerHTML='<p>Choose theme</p>';
@@ -62,8 +68,9 @@
       b.type='button';
       b.className='theme-item';
       b.setAttribute('data-theme-item',k);
-      b.innerHTML='<i style="background:'+THEMES[k].accent+'"></i><span>'+LABELS[k]+'</span><span class="ck">✓</span>';
-      b.onclick=function(){apply(k);wrap.classList.remove('open');};
+      var dot=k==='solana'?'linear-gradient(135deg,#9945ff,#14f195)':THEMES[k].accent;
+      b.innerHTML='<i style="background:'+dot+'"></i><span>'+LABELS[k]+'</span><span class="ck">✓</span>';
+      b.onclick=function(){apply(k,true);wrap.classList.remove('open');};
       panel.appendChild(b);
     });
     wrap.appendChild(panel);
@@ -71,8 +78,8 @@
     document.getElementById('themeOpen').onclick=function(e){e.stopPropagation();wrap.classList.toggle('open');};
     document.addEventListener('click',function(){wrap.classList.remove('open');});
   }
-  var start='midnight';
-  try{start=localStorage.getItem(KEY)||'midnight';}catch(e){}
+  var start=DEFAULT;
+  try{start=localStorage.getItem(KEY)||DEFAULT;}catch(e){}
   if(document.readyState==='loading'){
     document.addEventListener('DOMContentLoaded',function(){mount();apply(start);});
   }else{mount();apply(start);}
