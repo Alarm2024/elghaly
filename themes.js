@@ -28,7 +28,7 @@
     r.style.setProperty('--accent-dim',t.accentdim);
     r.style.setProperty('--text',t.text);
     r.style.setProperty('--text-muted',t.textmuted);
-    if(document.body){document.body.style.background=t.ink;document.body.style.color=t.text;}
+    if(document.body){document.body.style.backgroundColor=t.ink;document.body.style.color=t.text;}
     if(picked){try{localStorage.setItem(KEY,name);}catch(e){}}
     document.querySelectorAll('[data-theme-item]').forEach(function(el){
       el.classList.toggle('on', el.getAttribute('data-theme-item')===name);

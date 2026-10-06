@@ -97,6 +97,9 @@
         bar.setAttribute('role', 'dialog');
         bar.setAttribute('aria-live', 'polite');
         bar.setAttribute('aria-label', 'Cookie consent');
+        // The banner is English only; keep it left-to-right on the Arabic page.
+        bar.setAttribute('lang', 'en');
+        bar.setAttribute('dir', 'ltr');
         bar.innerHTML =
           '<div class="ec-inner">' +
             '<p class="ec-text">We use Google Analytics cookies to understand site traffic. ' +
@@ -872,7 +875,7 @@ html[data-theme="solana"] .hero__brand {
     ]
   }
   </script>
-  <script src="themes.js?v=4" defer></script>
+  <script src="themes.js?v=5" defer></script>
 <style id="lic-badges-css">.lic-badges{margin:.75rem 0 0;font-size:.75rem;line-height:1.2}.lic-badges>a,.lic-badges>span{display:inline-flex;align-items:center;min-height:24px;margin:.2rem .15rem;padding:0 .6rem;border:1px solid currentColor;border-radius:999px;color:inherit;vertical-align:middle}.lic-badges>a{text-decoration:underline;text-underline-offset:2px}.lic-badges>span{text-decoration:none}</style>
 </head>
 <body>
