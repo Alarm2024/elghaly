@@ -61,14 +61,14 @@
 }
 
 :root {
-  --ink: #07070b;
-  --ink-soft: #121218;
-  --ink-muted: #1c1c24;
-  --accent: #14f195;
-  --accent-warm: #9945ff;
-  --accent-dim: rgba(153, 69, 255, 0.34);
-  --text: #f4f4f7;
-  --text-muted: #a6a6b8;
+  --ink: #000000;
+  --ink-soft: #1c1b21;
+  --ink-muted: #2a2930;
+  --accent: #ffffff;
+  --accent-warm: #a3a2ad;
+  --accent-dim: rgba(255, 255, 255, 0.12);
+  --text: #ffffff;
+  --text-muted: #a3a2ad;
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Outfit", system-ui, sans-serif;
   --space-xs: 0.5rem;
@@ -534,11 +534,15 @@ main {
   box-shadow: none;
 }
 
-/* Solana (the default theme): purple-to-green, as on solana.com. */
+/* Solana (the default theme), as on solana.com: black, dark-grey cards,
+   white titles, grey text. */
 html[data-theme="solana"] body {
+  /* Purple and green as a dim glow at the foot of the page, the way
+     solana.com lights its globe, never as text or button colour. */
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(153, 69, 255, 0.22), transparent),
-    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(20, 241, 149, 0.08), transparent);
+    radial-gradient(ellipse 140% 22% at 50% 100%, rgba(67, 10, 123, 0.55), transparent 72%),
+    radial-gradient(ellipse 55% 14% at 0% 97%, rgba(41, 85, 52, 0.38), transparent 75%),
+    radial-gradient(ellipse 55% 14% at 100% 97%, rgba(41, 85, 52, 0.3), transparent 75%);
 }
 html[data-theme="solana"] .hero__brand {
   background: linear-gradient(90deg, #a463ff, #14f195);
