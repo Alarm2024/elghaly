@@ -41,17 +41,17 @@
     var css=document.createElement('style');
     css.textContent=[
       '.topbar{width:100%;max-width:calc(40rem + 4rem);padding:12px 1rem;display:flex;align-items:center;gap:8px;flex-wrap:nowrap}',
-      '.theme-wrap{position:relative;margin-left:auto}',
+      '.theme-wrap{position:relative;margin-inline-start:auto}',
       '.theme-btn{display:flex;align-items:center;gap:6px;background:var(--ink-soft);color:var(--text);border:1px solid var(--accent-dim);border-radius:999px;min-height:32px;padding:6px 12px;font:600 13px Outfit,system-ui;cursor:pointer}',
       '.theme-dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}',
       '[data-theme=solana] .theme-dot{background:linear-gradient(135deg,#9945ff,#14f195)}',
-      '.theme-panel{display:none;position:absolute;right:0;top:calc(100% + 8px);min-width:200px;background:#16181d;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:10px;z-index:80}',
+      '.theme-panel{display:none;position:absolute;inset-inline-end:0;top:calc(100% + 8px);min-width:200px;background:#16181d;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:10px;z-index:80}',
       '.theme-wrap.open .theme-panel{display:block}',
       '.theme-panel p{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8b93a0;margin:0 8px 8px}',
-      '.theme-item{display:flex;align-items:center;gap:10px;width:100%;border:0;background:transparent;color:#e8eef2;padding:10px;border-radius:12px;font:600 14px Outfit,system-ui;cursor:pointer;text-align:left}',
+      '.theme-item{display:flex;align-items:center;gap:10px;width:100%;border:0;background:transparent;color:#e8eef2;padding:10px;border-radius:12px;font:600 14px Outfit,system-ui;cursor:pointer;text-align:start}',
       '.theme-item.on{background:rgba(127,127,127,.18);color:var(--accent)}',
       '.theme-item i{width:14px;height:14px;border-radius:50%;display:block}',
-      '.theme-item .ck{margin-left:auto;opacity:0}',
+      '.theme-item .ck{margin-inline-start:auto;opacity:0}',
       '.theme-item.on .ck{opacity:1}'
     ].join('');
     document.head.appendChild(css);
