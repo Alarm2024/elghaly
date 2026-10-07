@@ -451,6 +451,10 @@ main {
   margin-inline: auto;
 }
 
+.links-card__grid > li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
 .links-card__item {
   display: flex;
   flex-direction: column;
