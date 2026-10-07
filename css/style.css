@@ -439,6 +439,100 @@ main {
   outline: none;
 }
 
+/* Links card: the links we hand out everywhere (site, Instagram,
+   Facebook, TikTok). Dark cards with soft Solana tones: a faint
+   purple-to-green border and a gentle glow on hover, never neon.
+   Two across on wide screens, one per row on phones. */
+.links-card__grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm);
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+.links-card__grid > li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.links-card__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  min-height: 5.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  /* Inner fill (dark card + a whisper of tint), then the gradient that
+     shows only through the transparent 1px border. */
+  background:
+    linear-gradient(135deg, rgba(153, 69, 255, 0.07), rgba(20, 241, 149, 0.04)) padding-box,
+    linear-gradient(var(--ink-soft), var(--ink-soft)) padding-box,
+    linear-gradient(135deg, rgba(153, 69, 255, 0.45), rgba(0, 194, 255, 0.3), rgba(20, 241, 149, 0.4)) border-box;
+  color: var(--text);
+  text-decoration: none;
+  transition:
+    box-shadow var(--transition),
+    background var(--transition);
+}
+
+.links-card__item:hover,
+.links-card__item:focus-visible {
+  background:
+    linear-gradient(135deg, rgba(153, 69, 255, 0.1), rgba(20, 241, 149, 0.06)) padding-box,
+    linear-gradient(var(--ink-muted), var(--ink-muted)) padding-box,
+    linear-gradient(135deg, rgba(153, 69, 255, 0.7), rgba(0, 194, 255, 0.5), rgba(20, 241, 149, 0.65)) border-box;
+  box-shadow:
+    0 0 18px -6px rgba(153, 69, 255, 0.35),
+    0 0 22px -8px rgba(20, 241, 149, 0.25);
+  outline: none;
+}
+
+.links-card__item:focus-visible {
+  outline: 2px solid rgba(20, 241, 149, 0.6);
+  outline-offset: 3px;
+}
+
+.links-card__name {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  /* Pastel purple to pastel green; plain colour first for old browsers. */
+  color: #cdb4ff;
+  background: linear-gradient(90deg, #cdb4ff, #a8e6ff, #a6f2d2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.links-card__url {
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.links-card__item:hover .links-card__url,
+.links-card__item:focus-visible .links-card__url {
+  color: #c4f5e1;
+}
+
+@media (max-width: 440px) {
+  .links-card__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .links-card__item {
+    min-height: 4.75rem;
+  }
+}
+
 /* Footer */
 .footer {
   width: 100%;
