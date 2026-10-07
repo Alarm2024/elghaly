@@ -439,6 +439,80 @@ main {
   outline: none;
 }
 
+/* Links card: the four links we hand out everywhere (site, Instagram,
+   Facebook, TikTok). Same dark cards as the doors; two across on wide
+   screens, one per row on phones. */
+.links-card__grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm);
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+.links-card__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  min-height: 5.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--accent-dim);
+  border-radius: 12px;
+  background: var(--ink-soft);
+  color: var(--text);
+  text-decoration: none;
+  transition:
+    border-color var(--transition),
+    background var(--transition);
+}
+
+.links-card__item:hover,
+.links-card__item:focus-visible {
+  border-color: var(--accent);
+  background: var(--ink-muted);
+  outline: none;
+}
+
+.links-card__item:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.links-card__name {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent-warm);
+}
+
+.links-card__item:hover .links-card__name,
+.links-card__item:focus-visible .links-card__name {
+  color: var(--accent);
+}
+
+.links-card__url {
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+@media (max-width: 440px) {
+  .links-card__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .links-card__item {
+    min-height: 4.75rem;
+  }
+}
+
 /* Footer */
 .footer {
   width: 100%;

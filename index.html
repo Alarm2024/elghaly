@@ -795,6 +795,80 @@ main {
   outline: none;
 }
 
+/* Links card: the four links we hand out everywhere (site, Instagram,
+   Facebook, TikTok). Same dark cards as the doors; two across on wide
+   screens, one per row on phones. */
+.links-card__grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm);
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+.links-card__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  min-height: 5.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--accent-dim);
+  border-radius: 12px;
+  background: var(--ink-soft);
+  color: var(--text);
+  text-decoration: none;
+  transition:
+    border-color var(--transition),
+    background var(--transition);
+}
+
+.links-card__item:hover,
+.links-card__item:focus-visible {
+  border-color: var(--accent);
+  background: var(--ink-muted);
+  outline: none;
+}
+
+.links-card__item:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.links-card__name {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent-warm);
+}
+
+.links-card__item:hover .links-card__name,
+.links-card__item:focus-visible .links-card__name {
+  color: var(--accent);
+}
+
+.links-card__url {
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+@media (max-width: 440px) {
+  .links-card__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .links-card__item {
+    min-height: 4.75rem;
+  }
+}
+
 /* Footer */
 .footer {
   width: 100%;
@@ -998,6 +1072,15 @@ html[data-theme="solana"] .event a.event__btn {
   </header>
 
   <main>
+    <section class="section links-card" id="links" aria-labelledby="links-heading">
+      <h2 id="links-heading" class="section__label" data-i18n="links_h">Links</h2>
+      <ul class="links-card__grid">
+        <li><a class="links-card__item" href="https://plumb.elghaly.dev" rel="noopener noreferrer"><span class="links-card__name" data-i18n="lk_plumb">Plumb shop</span><span class="links-card__url">plumb.elghaly.dev</span></a></li>
+        <li><a class="links-card__item" href="https://quay.elghaly.dev" rel="noopener noreferrer"><span class="links-card__name" data-i18n="lk_quay">Quay shop</span><span class="links-card__url">quay.elghaly.dev</span></a></li>
+        <li><a class="links-card__item" href="https://elghaly.dev" aria-label="elghaly, official site"><span class="links-card__name">elghaly</span><span class="links-card__url">elghaly.dev</span></a></li>
+        <li><a class="links-card__item" href="https://elghaly.pro" rel="noopener noreferrer"><span class="links-card__name">Wyndham Heaven</span><span class="links-card__url">elghaly.pro</span></a></li>
+      </ul>
+    </section>
     <section class="section who" aria-labelledby="who-heading">
       <h2 id="who-heading" class="section__label" data-i18n="who_h">Who</h2>
       <p class="who__line" data-i18n="who_1">elghaly builds Linux server setups, Telegram bots and Solana developer tools.</p>
@@ -1143,6 +1226,9 @@ html[data-theme="solana"] .event a.event__btn {
     var LANGS = ["en", "ar", "ru", "zh", "de", "es"];
     var T = {
       ar: {
+        links_h: "روابطنا",
+        lk_plumb: "متجر Plumb",
+        lk_quay: "متجر Quay",
         __title: "elghaly — خوادم لينكس، بوتات تيليجرام، أدوات سولانا",
         hero_h1: "نُعِدّ خوادم لينكس، ونبني بوتات تيليجرام، ونصنع أدوات لسولانا",
         hero_tagline: "نبني ما تحلم به",
@@ -1190,6 +1276,9 @@ html[data-theme="solana"] .event a.event__btn {
         f_privacy: "الخصوصية"
       },
       ru: {
+        links_h: "Ссылки",
+        lk_plumb: "Магазин Plumb",
+        lk_quay: "Магазин Quay",
         __title: "elghaly — Linux-серверы, Telegram-боты, инструменты для Solana",
         hero_h1: "Настраиваем Linux-серверы, создаём Telegram-ботов и делаем инструменты для Solana",
         hero_tagline: "строим то, о чём вы мечтаете",
@@ -1237,6 +1326,9 @@ html[data-theme="solana"] .event a.event__btn {
         f_privacy: "Конфиденциальность"
       },
       zh: {
+        links_h: "链接",
+        lk_plumb: "Plumb 商店",
+        lk_quay: "Quay 商店",
         __title: "elghaly — Linux 服务器、Telegram 机器人、Solana 工具",
         hero_h1: "我们搭建 Linux 服务器，开发 Telegram 机器人，并为 Solana 打造工具",
         hero_tagline: "你梦想的，我们来实现",
@@ -1284,6 +1376,9 @@ html[data-theme="solana"] .event a.event__btn {
         f_privacy: "隐私"
       },
       de: {
+        links_h: "Links",
+        lk_plumb: "Plumb-Shop",
+        lk_quay: "Quay-Shop",
         __title: "elghaly — Linux-Server, Telegram-Bots, Solana-Tools",
         hero_h1: "Wir richten Linux-Server ein, bauen Telegram-Bots und entwickeln Tools für Solana",
         hero_tagline: "wir bauen, wovon du träumst",
@@ -1331,6 +1426,9 @@ html[data-theme="solana"] .event a.event__btn {
         f_privacy: "Datenschutz"
       },
       es: {
+        links_h: "Enlaces",
+        lk_plumb: "Tienda Plumb",
+        lk_quay: "Tienda Quay",
         __title: "elghaly — servidores Linux, bots de Telegram, herramientas para Solana",
         hero_h1: "Configuramos servidores Linux, creamos bots de Telegram y hacemos herramientas para Solana",
         hero_tagline: "construimos lo que sueñas",
