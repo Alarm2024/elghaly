@@ -9,6 +9,11 @@
  * goes (reserve 44px of height inline, so nothing moves when it fills in),
  * and load this file with <script src="/page-menu.js" defer></script>.
  * One copy of this file is shared by every elghaly site; edit them together.
+ *
+ * data-page-menu="menu" draws a smaller "Ask AI ⌄" button instead: one
+ * button that opens a list (Ask Claude, Ask ChatGPT, Copy page link, Open in
+ * Cursor, Copy page as Markdown), with the arrow keys, Home/End and Esc of a
+ * menu. An empty data-page-menu still draws the split button above.
  */
 (function () {
   "use strict";
@@ -435,13 +440,15 @@
 
   // ── render ──────────────────────────────────────────────────────────────
   function claudeUrl(q) { return "https://claude.ai/new?q=" + q; }
+  function chatgptUrl(q) { return "https://chatgpt.com/?q=" + q; }
+  function cursorUrl(q) { return "https://cursor.com/link/prompt?text=" + q; }
 
   // The ⌄ menu: everything except Claude, which is the button itself.
   var ITEMS = [
     { act: "copy", label: "Copy page", sub: "Markdown for AI tools" },
     { act: "md", label: "View as Markdown", sub: "Plain text" },
-    { href: function (q) { return "https://chatgpt.com/?q=" + q; }, label: "Open in ChatGPT" },
-    { href: function (q) { return "https://cursor.com/link/prompt?text=" + q; }, label: "Open in Cursor" }
+    { href: chatgptUrl, label: "Open in ChatGPT" },
+    { href: cursorUrl, label: "Open in Cursor" }
   ];
 
   function build(slot) {
@@ -543,8 +550,179 @@
     });
   }
 
+  // ── the "Ask AI ⌄" menu (data-page-menu="menu") ────────────────────────
+  // Styled like the split button's outline; added only when a page uses it.
+  var MENU_CSS =
+    ".pm-ask{position:relative;display:inline-flex}" +
+    ".pm-trig{align-items:center;gap:.5rem;padding:0 .8rem 0 1.05rem;color:inherit;" +
+    "font-family:inherit;cursor:pointer;-webkit-appearance:none;appearance:none}" +
+    ".pm-trig:hover,.pm-trig[aria-expanded=true]{background:rgba(127,127,127,.16)}" +
+    ".pm-trig:focus-visible{outline:2px solid currentColor;outline-offset:2px}" +
+    ".pm-trig[aria-expanded=true] .pm-chev{transform:rotate(180deg)}" +
+    ".pm-menu[hidden]{display:none}" +
+    // Opens upwards when there is more room above the button than below it.
+    ".pm-menu.pm-up{top:auto;bottom:calc(100% + 6px)}";
+
+  var MENU = [
+    { href: claudeUrl, label: "Ask Claude ↗" },
+    { href: chatgptUrl, label: "Ask ChatGPT ↗" },
+    { act: "link", label: "Copy page link", done: "Page link copied" },
+    { href: cursorUrl, label: "Open in Cursor ↗" },
+    { act: "copy", label: "Copy page (Markdown)", done: "Page copied as Markdown" }
+  ];
+
+  function buildMenu(slot, n) {
+    if (!document.getElementById("pm-menu-style")) {
+      var s = document.createElement("style");
+      s.id = "pm-menu-style";
+      s.textContent = MENU_CSS;
+      document.head.appendChild(s);
+    }
+    var q = encodeURIComponent(prompt());
+    var wrap = document.createElement("div");
+    wrap.className = "pm-ask";
+
+    var trig = document.createElement("button");
+    trig.type = "button";
+    trig.className = "pm pm-trig";
+    trig.id = "pm-ask-" + n;
+    trig.setAttribute("aria-haspopup", "menu");
+    trig.setAttribute("aria-expanded", "false");
+    trig.setAttribute("aria-controls", "pm-ask-menu-" + n);
+    trig.innerHTML = SPARK + "<span>Ask AI</span>" + CHEV;
+
+    var menu = document.createElement("div");
+    menu.className = "pm-panel pm-menu";
+    menu.id = "pm-ask-menu-" + n;
+    menu.setAttribute("role", "menu");
+    menu.setAttribute("aria-labelledby", trig.id);
+    menu.hidden = true;
+
+    var live = document.createElement("span");
+    live.className = "pm-sr";
+    live.setAttribute("aria-live", "polite");
+
+    // One tab stop: the button. Inside the open menu the arrow keys move.
+    var items = MENU.map(function (it) {
+      var el;
+      if (it.act) {
+        el = document.createElement("button");
+        el.type = "button";
+      } else {
+        el = document.createElement("a");
+        el.href = it.href(q);
+        el.target = "_blank";
+        el.rel = "noopener noreferrer";
+      }
+      el.setAttribute("role", "menuitem");
+      el.tabIndex = -1;
+      var label = document.createElement("span");
+      // The labels are English: on an Arabic page the ↗ stays at their end.
+      label.dir = "auto";
+      label.textContent = it.label;
+      el.appendChild(label);
+      menu.appendChild(el);
+      return el;
+    });
+
+    function isOpen() { return !menu.hidden; }
+
+    function focusItem(i) {
+      items[(i + items.length) % items.length].focus();
+    }
+
+    function open(first) {
+      if (!isOpen()) {
+        menu.style.background = panelBackground(slot);
+        menu.classList.remove("pm-up");
+        menu.hidden = false;
+        trig.setAttribute("aria-expanded", "true");
+        var r = trig.getBoundingClientRect(), need = menu.offsetHeight + 6;
+        var below = window.innerHeight - r.bottom;
+        if (below < need && r.top > below) menu.classList.add("pm-up");
+      }
+      focusItem(first);
+    }
+
+    function close(refocus) {
+      if (!isOpen()) return;
+      menu.hidden = true;
+      trig.setAttribute("aria-expanded", "false");
+      if (refocus) trig.focus();
+    }
+
+    trig.addEventListener("click", function () {
+      if (isOpen()) close(false);
+      else open(0);
+    });
+    trig.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown" || e.key === "Down") {
+        e.preventDefault();
+        open(0);
+      } else if (e.key === "ArrowUp" || e.key === "Up") {
+        e.preventDefault();
+        open(-1);
+      }
+    });
+
+    menu.addEventListener("keydown", function (e) {
+      var i = items.indexOf(document.activeElement);
+      switch (e.key) {
+        case "ArrowDown": case "Down": e.preventDefault(); focusItem(i + 1); break;
+        case "ArrowUp": case "Up": e.preventDefault(); focusItem(i < 0 ? -1 : i - 1); break;
+        case "Home": e.preventDefault(); focusItem(0); break;
+        case "End": e.preventDefault(); focusItem(-1); break;
+        case "Escape": case "Esc": e.preventDefault(); close(true); break;
+        // Tab leaves the menu: it closes, and focus moves on from the button.
+        case "Tab": close(true); break;
+        case " ": case "Spacebar":
+          // Space chooses a link item too, as in any menu.
+          if (i >= 0 && items[i].tagName === "A") {
+            e.preventDefault();
+            items[i].click();
+          }
+          break;
+      }
+    });
+
+    menu.addEventListener("click", function (e) {
+      var target = e.target.closest ? e.target.closest("a,button") : null;
+      var i = items.indexOf(target);
+      if (i < 0) return;
+      var it = MENU[i];
+      if (!it.act) {
+        // The link opens in a new tab; the menu closes behind it.
+        close(true);
+        return;
+      }
+      var label = target.firstChild;
+      copyText(it.act === "link" ? pageUrl() : toMarkdown()).then(function (ok) {
+        label.textContent = ok ? "Copied ✓" : "Copy failed";
+        live.textContent = ok ? it.done : "Copy failed";
+        setTimeout(function () {
+          label.textContent = it.label;
+          live.textContent = "";
+          close(menu.contains(document.activeElement));
+        }, 1400);
+      });
+    });
+
+    // Capture: a click that another control stops from bubbling still closes it.
+    document.addEventListener("click", function (e) {
+      if (isOpen() && !wrap.contains(e.target)) close(false);
+    }, true);
+
+    wrap.appendChild(trig);
+    wrap.appendChild(menu);
+    slot.appendChild(wrap);
+    slot.appendChild(live);
+  }
+
   addStyle();
-  for (var i = 0; i < slots.length; i++) build(slots[i]);
+  for (var i = 0; i < slots.length; i++) {
+    if (slots[i].getAttribute("data-page-menu") === "menu") buildMenu(slots[i], i);
+    else build(slots[i]);
+  }
 
   // For tests and for anyone curious: the same Markdown the menu copies.
   window.pageMenuMarkdown = toMarkdown;
