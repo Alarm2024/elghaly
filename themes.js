@@ -5,7 +5,7 @@
   var KEY='house-theme-picked';
   var DEFAULT='solana';
   var THEMES={
-    solana:{ink:'#000000',soft:'#1c1b21',muted:'#2a2930',accent:'#ffffff',accentwarm:'#a3a2ad',accentdim:'rgba(255,255,255,.12)',text:'#ffffff',textmuted:'#a3a2ad'},
+    solana:{ink:'#070d20',soft:'#111833',muted:'#1a2347',accent:'#ffffff',accentwarm:'#a3a2ad',accentdim:'rgba(255,255,255,.12)',text:'#ffffff',textmuted:'#a3a2ad'},
     midnight:{ink:'#0b1214',soft:'#121a19',muted:'#1a2423',accent:'#2ee6c7',accentwarm:'#6fe0c4',accentdim:'rgba(46,230,199,.28)',text:'#e8fbf6',textmuted:'#9ab3ad'},
     dawn:{ink:'#f4f1ea',soft:'#fffaf3',muted:'#ece6da',accent:'#0f766e',accentwarm:'#0f766e',accentdim:'rgba(15,118,110,.22)',text:'#1a1814',textmuted:'#5c574e'},
     nord:{ink:'#2e3440',soft:'#3b4252',muted:'#434c5e',accent:'#88c0d0',accentwarm:'#88c0d0',accentdim:'rgba(136,192,208,.28)',text:'#eceff4',textmuted:'#88c0d0'},
