@@ -3,7 +3,7 @@
 Every picture in `assets/art/` is a **PLACEHOLDER** for now.
 
 - They were drawn by `tools/art/placeholder_art.py` from shapes. No model made them, so there is no model licence on them.
-- They follow the same look as the prompts below: frosted glass on midnight navy, lit in pastel mint.
+- They follow the same look as the prompts below (palette 5b): near-black cards on a soft indigo-purple, with small gold lights. No green or teal.
 
 ## Replacing a placeholder with AI art
 
@@ -22,7 +22,7 @@ Every picture in `assets/art/` is a **PLACEHOLDER** for now.
 
 ## The shared style (part of every prompt below)
 
-> premium minimal 3D render, frosted glass with soft rounded edges, deep midnight navy background (#070d1f), soft pastel mint rim light (#9ff0d0) and a faint periwinkle haze, gentle studio lighting, subtle film grain, calm and quiet, lots of dark empty space, no text, no logos, no people
+> premium minimal 3D render, solid near-black objects (#0d0b1f) with softly rounded edges and a thin lavender rim light (#b9b3e6), a soft indigo-purple glow behind them (#5a4fc0 to #6a5fd0), a few small warm gold lights (#f5c542), gentle studio lighting, subtle film grain, calm and quiet, lots of empty space, no green, no teal, no text, no logos, no people
 
 ## Slots
 
@@ -49,34 +49,34 @@ So the prompt must ask for **no text**, with the subject in the centre.
 ## Prompts (copy one whole line, then add the shared style)
 
 **hero-wide** (1920×1080)
-> Wide abstract composition: three large frosted glass panels floating at slight angles on the right side, two small glass spheres catching light, the left half calm and empty for a headline, soft mint glow from the upper right, periwinkle haze lower left,
+> Wide abstract composition on a soft indigo-purple background (#5a4fc0): three near-black rounded cards like wallet cards floating at slight angles on the right side, each with one or two tiny gold lights, a few small gold specks of light in the air, the left half calm and empty for a headline, a lighter purple glow from the upper right,
 
 **hero-tall** (900×1200)
-> Tall abstract composition: two frosted glass panels floating at slight angles in the upper right, one small glass sphere, the middle and lower half calm and empty for a headline, soft mint glow from the top, periwinkle haze at the bottom,
+> Tall abstract composition on a soft indigo-purple background (#5a4fc0): two near-black rounded cards floating at slight angles in the upper right, one in the lower left, tiny gold lights on them, the middle calm and empty for a headline, a lighter purple glow from the top,
 
 **svc-servers** (1200×750)
-> Three slim frosted glass server units stacked with even gaps, centred, each with a row of tiny glowing mint status lights on the left and dark vent slots on the right, front view,
+> Three slim near-black server units stacked with even gaps, centred, each with a row of tiny glowing gold status lights on the left and dark vent slots on the right, front view, on a near-black background with a purple glow behind,
 
 **svc-bots** (1200×750)
-> One frosted glass chat bubble, centred, with a solid pastel mint paper plane shape inside it, one small glass sphere floating to the upper right,
+> One near-black chat bubble, centred, with a solid gold paper plane shape inside it, one small gold light floating to the upper right, on a near-black background with a purple glow behind,
 
 **svc-tools** (1200×750)
-> A frosted glass hexagon, centred, holding a round glass lens, a soft beam of mint light passing through the lens toward the lower right,
+> A near-black hexagon, centred, holding a round lens with a thin lavender ring and a gold light at its centre, a soft beam of gold light passing toward the lower right, on a near-black background with a purple glow behind,
 
 **plumb** (1200×750)
-> A frosted glass plumb bob hanging perfectly straight on a thin glowing mint thread from the top edge, a soft mint core inside the glass, a thin glass level line near the bottom, centred,
+> A near-black plumb bob hanging perfectly straight on a thin lavender thread from the top edge, a glowing gold core inside it, a thin dark level line near the bottom, centred, on a near-black background with a purple glow behind,
 
 **quay** (1200×750)
-> A minimal frosted glass pier stretching from the viewer toward a calm dark navy sea at night, one small mint light at the far end of the pier and its soft reflection on the water, thin horizontal light lines on the water, centred, low eye level,
+> A minimal near-black pier stretching from the viewer toward a calm dark purple sea at night, one small gold light at the far end of the pier and its soft gold reflection on the water, thin purple horizontal light lines on the water, centred, low eye level,
 
 **og-home** (1200×630)
-> Abstract: three frosted glass panels and two small glass spheres floating at slight angles, centred, soft mint glow,
+> Abstract: three near-black rounded cards with tiny gold lights floating at slight angles on a soft indigo-purple background, centred,
 
 **og-plumb** (1200×630)
-> A frosted glass plumb bob hanging straight on a thin glowing mint thread, centred,
+> A near-black plumb bob with a glowing gold core hanging straight on a thin lavender thread, purple glow behind, centred,
 
 **og-quay** (1200×630)
-> A minimal frosted glass pier leading to one small mint light over a calm dark navy sea, centred, low eye level,
+> A minimal near-black pier leading to one small gold light over a calm dark purple sea, centred, low eye level,
 
 ## From #26 (not AI-generated by us, kept as they were)
 

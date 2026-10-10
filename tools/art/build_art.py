@@ -22,10 +22,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 OUT = os.path.join(ROOT, "assets", "art")
 FONT = os.path.join(ROOT, "fonts", "outfit-latin-500-normal.woff2")
 FONT_LIGHT = os.path.join(ROOT, "fonts", "outfit-latin-400-normal.woff2")
+FONT_BOLD = os.path.join(ROOT, "fonts", "outfit-latin-700-normal.woff2")
 
-NAVY = (7, 13, 31)
+CARD = (13, 11, 31)  # #0d0b1f
 SHIFT = 280  # px the og-* picture moves right
-MINT = (159, 240, 208)
+GOLD = (245, 197, 66)  # #f5c542
+LAVENDER = (185, 179, 230)  # #b9b3e6
 
 # name: (aspect w, aspect h, widths). Widths are what the pages' srcset lists.
 SLOTS = {
@@ -74,7 +76,7 @@ def build_og(name, src):
     art = crop_to(Image.open(src).convert("RGB"), 1200, 630).resize((1200, 630), Image.LANCZOS)
     # The words take the left; slide the picture right so its subject sits
     # in the right third instead of under the title.
-    im = Image.new("RGB", (1200, 630), NAVY)
+    im = Image.new("RGB", (1200, 630), CARD)
     im.paste(art.crop((0, 0, 1200 - SHIFT, 630)), (SHIFT, 0))
     im.paste(art.crop((0, 0, SHIFT, 630)).transpose(Image.FLIP_LEFT_RIGHT), (0, 0))
     # Darken the left half so the words stay readable on any picture.
@@ -82,15 +84,15 @@ def build_og(name, src):
     d = ImageDraw.Draw(shade)
     for x in range(1200):
         d.line([(x, 0), (x, 630)], fill=int(225 * min(1.0, max(0.0, 1.25 - x / 640))))
-    im = Image.composite(Image.new("RGB", im.size, NAVY), im, shade)
+    im = Image.composite(Image.new("RGB", im.size, CARD), im, shade)
     d = ImageDraw.Draw(im)
-    d.text((80, 92), "elghaly", font=ImageFont.truetype(FONT, 46), fill=MINT)
-    f1 = ImageFont.truetype(FONT, 72 if len(big) < 12 else 58)
-    d.text((80, 250), big, font=f1, fill=(244, 247, 255))
+    d.text((80, 92), "elghaly", font=ImageFont.truetype(FONT, 46), fill=GOLD)
+    f1 = ImageFont.truetype(FONT_BOLD, 72 if len(big) < 12 else 58)
+    d.text((80, 250), big, font=f1, fill=(255, 255, 255))
     f2 = ImageFont.truetype(FONT_LIGHT, 40 if len(small) < 34 else 34)
-    d.text((80, 250 + f1.size + 22), small, font=f2, fill=(205, 214, 236))
-    d.text((80, 530), url, font=ImageFont.truetype(FONT_LIGHT, 30), fill=(169, 180, 207))
-    d.rounded_rectangle((80, 200, 176, 206), radius=3, fill=MINT)
+    d.text((80, 250 + f1.size + 22), small, font=f2, fill=LAVENDER)
+    d.text((80, 530), url, font=ImageFont.truetype(FONT_LIGHT, 30), fill=LAVENDER)
+    d.rounded_rectangle((80, 200, 176, 206), radius=3, fill=GOLD)
     out = os.path.join(OUT, name + "-1200x630.jpg")
     im.save(out, quality=84, optimize=True, progressive=True)
     print("wrote %s (1200x630)" % os.path.relpath(out, ROOT))

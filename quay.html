@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="QUAY: a second pair of eyes on your Solana bot. Monthly: QUAY Land US$149, Node Watch US$79. One-time: Fee review US$199, Score report US$49, Flex card pack US$29.">
-  <meta name="theme-color" content="#070d1f">
+  <meta name="theme-color" content="#5a4fc0">
   <title>QUAY — reviews, reports and alerts for Solana bots · elghaly</title>
   <link rel="canonical" href="https://elghaly.dev/quay">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -26,8 +26,9 @@
   <meta name="twitter:description" content="QUAY: a second pair of eyes on your Solana bot. Monthly: QUAY Land US$149, Node Watch US$79. One-time: Fee review US$199, Score report US$49, Flex card pack US$29.">
   <meta name="twitter:image" content="https://elghaly.dev/assets/art/og-quay-1200x630.jpg">
 
+  <link rel="preload" href="/fonts/outfit-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/outfit-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/outfit-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/outfit-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Google tag (gtag.js) — elghaly.dev GA4 + Consent Mode v2 (free, self-hosted) -->
   <script>
@@ -138,13 +139,15 @@
       right: 0;
       bottom: 0;
       padding: 0.85rem 1rem calc(0.85rem + env(safe-area-inset-bottom, 0px));
-      background: #121836;
-      border-top: 1px solid rgba(159, 240, 208, 0.3);
-      color: #eef3ff;
+      background: #0d0b1f;
+      border-top: 1px solid #1c1838;
+      color: #ffffff;
+      /* System font: the banner is up before the web font arrives, and
+         a font swap would re-wrap it and move its top edge. */
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
       font-size: 0.95rem;
       line-height: 1.5;
-      box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 -12px 32px rgba(16, 10, 58, 0.45);
     }
     #elghaly-consent .ec-inner {
       max-width: 40rem;
@@ -158,7 +161,7 @@
     #elghaly-consent .ec-text {
       flex: 1 1 16rem;
       margin: 0;
-      color: #aab5d0;
+      color: #b9b3e6;
     }
     #elghaly-consent .ec-text a {
       color: #ffffff;
@@ -175,37 +178,40 @@
       min-height: 44px;
       padding: 0.55rem 1.15rem;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      border: 1px solid #2e2856;
       font: inherit;
-      font-weight: 500;
+      font-weight: 600;
       transition: background 0.25s ease, color 0.25s ease;
     }
     #elghaly-consent .ec-btn--primary {
-      background: #9ff0d0;
-      border-color: #9ff0d0;
-      color: #04121a;
+      background: #f5c542;
+      border-color: #f5c542;
+      color: #1a1405;
     }
     #elghaly-consent .ec-btn--primary:hover,
     #elghaly-consent .ec-btn--primary:focus-visible {
-      background: #c4f7e2;
+      background: #ffd45e;
     }
     #elghaly-consent .ec-btn--ghost {
-      background: transparent;
+      background: #17142f;
       color: #ffffff;
     }
     #elghaly-consent .ec-btn--ghost:hover,
     #elghaly-consent .ec-btn--ghost:focus-visible {
-      background: rgba(255, 255, 255, 0.08);
+      background: #201c3e;
     }
     #elghaly-consent .ec-btn:focus-visible {
-      outline: 2px solid #9ff0d0;
+      outline: 2px solid #ffffff;
       outline-offset: 3px;
     }
   </style>
   <!-- inline:css/glass.css — edit css/glass.css, then: python3 tools/site-kit/sitekit.py inline quay.html css/glass.css -->
   <style>
-/* Midnight Glass — elghaly.dev home, /plumb and /quay.
-   Deep navy, frosted glass cards, pastel mint for the one thing to press.
+/* elghaly.dev home, /plumb and /quay: palette 5b.
+   A soft indigo-purple page, solid near-black cards, white bold headings,
+   lavender for the quieter text on cards, and gold for the one thing to
+   press on each screen. Lavender is for cards only: on the purple it is
+   3.2:1, so text on the purple is white (5:1 or more).
    Phones first: everything below is the iPhone layout, and the
    min-width queries widen it. Inlined into each page by
    tools/site-kit/sitekit.py, so this file is the one to edit. */
@@ -214,9 +220,9 @@
 @font-face {
   font-family: "Outfit";
   font-style: normal;
-  font-weight: 300;
+  font-weight: 700;
   font-display: swap;
-  src: url("/fonts/outfit-latin-300-normal.woff2") format("woff2");
+  src: url("/fonts/outfit-latin-700-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face {
@@ -257,17 +263,23 @@
 
 :root {
   color-scheme: dark;
-  --bg: #070d1f;
-  --bg-2: #0a1430;
-  --text: #eef3ff;
-  --muted: #aab5d0;
-  --mint: #9ff0d0;
-  --mint-2: #c4f7e2;
-  --mint-ink: #04121a;
-  --line: rgba(255, 255, 255, 0.12);
-  --line-hi: rgba(159, 240, 208, 0.42);
-  --glass: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.03));
+  --bg: #5a4fc0;
+  --bg-2: #6a5fd0;
+  --card: #0d0b1f;
+  --card-2: #17142f;
+  --line: #1c1838;
+  --line-2: #2e2856;
+  --text: #ffffff;
+  --muted: #b9b3e6;
+  --gold: #f5c542;
+  --gold-2: #ffd45e;
+  --gold-ink: #1a1405;
+  --pos: #7be3b0; /* mint: small positive numbers only, and sparingly */
+  --on-bg-line: rgba(255, 255, 255, 0.2);
+  --shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 18px 40px -20px rgba(16, 10, 58, 0.6);
+  --shadow-hi: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 26px 52px -22px rgba(16, 10, 58, 0.75);
   --radius: 22px;
+  --radius-sm: 20px;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   --font: "Outfit", "Cairo", system-ui, -apple-system, "Segoe UI", sans-serif;
   --max: 72rem;
@@ -295,18 +307,15 @@ body {
   overflow-x: hidden;
 }
 
-/* The page light: a fixed layer, because background-attachment: fixed is
-   ignored on iPhone. */
+/* The page colour: a fixed layer, because background-attachment: fixed
+   is ignored on iPhone. */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(60rem 36rem at 92% -8%, rgba(159, 240, 208, 0.1), transparent 62%),
-    radial-gradient(52rem 40rem at -12% 108%, rgba(124, 146, 255, 0.13), transparent 62%),
-    linear-gradient(180deg, var(--bg), var(--bg-2));
+  background: linear-gradient(180deg, var(--bg), var(--bg-2));
 }
 
 img {
@@ -316,12 +325,12 @@ img {
 }
 
 a {
-  color: var(--mint);
+  color: var(--text);
   text-underline-offset: 3px;
 }
 
 :focus-visible {
-  outline: 2px solid var(--mint);
+  outline: 2px solid var(--text);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -333,8 +342,8 @@ a {
   z-index: 100;
   padding: 0.6rem 1rem;
   border-radius: 999px;
-  background: var(--mint);
-  color: var(--mint-ink);
+  background: var(--gold);
+  color: var(--gold-ink);
   font-weight: 500;
   text-decoration: none;
 }
@@ -348,13 +357,13 @@ a {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(7, 13, 31, 0.72);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(90, 79, 192, 0.94);
+  border-bottom: 1px solid var(--on-bg-line);
 }
 
 @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
   .nav {
-    background: rgba(7, 13, 31, 0.55);
+    background: rgba(90, 79, 192, 0.78);
     -webkit-backdrop-filter: saturate(160%) blur(16px);
     backdrop-filter: saturate(160%) blur(16px);
   }
@@ -392,7 +401,7 @@ a {
 .nav__links a {
   padding: 0.5rem 0.8rem;
   border-radius: 999px;
-  color: var(--muted);
+  color: var(--text);
   font-size: 0.95rem;
   text-decoration: none;
   transition: color 0.2s, background-color 0.2s;
@@ -400,8 +409,7 @@ a {
 
 .nav__links a:hover,
 .nav__links a[aria-current="page"] {
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--card);
 }
 
 .nav__shop {
@@ -429,15 +437,14 @@ a {
   border: 1px solid transparent;
   border-radius: 999px;
   background: transparent;
-  color: var(--muted);
+  color: var(--text);
   font: 500 12px var(--font);
   cursor: pointer;
 }
 
 .lang-btn[aria-pressed="true"] {
-  color: var(--text);
   border-color: var(--line);
-  background: rgba(255, 255, 255, 0.07);
+  background: var(--card);
 }
 
 /* Phones: the wordmark and all six languages fit on one line at 360px. */
@@ -503,28 +510,43 @@ a {
   transition: transform 0.25s var(--ease), background-color 0.25s, border-color 0.25s, box-shadow 0.25s;
 }
 
+/* Gold is for the one thing to press on each screen. */
 .btn--primary {
-  background: var(--mint);
-  color: var(--mint-ink);
-  box-shadow: 0 12px 32px -12px rgba(159, 240, 208, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  background: var(--gold);
+  color: var(--gold-ink);
+  font-weight: 700;
+  box-shadow: 0 12px 26px -14px rgba(26, 20, 5, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
 .btn--primary:hover {
-  background: var(--mint-2);
+  background: var(--gold-2);
   transform: translateY(-1px);
-  box-shadow: 0 16px 40px -14px rgba(159, 240, 208, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  box-shadow: 0 16px 32px -14px rgba(26, 20, 5, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
-.btn--glass {
-  background: rgba(255, 255, 255, 0.06);
+.btn--dark {
+  background: var(--card);
   border-color: var(--line);
   color: var(--text);
+  box-shadow: 0 12px 26px -16px rgba(16, 10, 58, 0.7);
 }
 
-.btn--glass:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.24);
+.btn--dark:hover {
+  background: var(--card-2);
+  border-color: var(--line-2);
   transform: translateY(-1px);
+}
+
+/* On a card, a dark button steps up one shade so it still reads. */
+.card .btn--dark {
+  background: var(--card-2);
+  border-color: var(--line-2);
+  box-shadow: none;
+}
+
+.card .btn--dark:hover {
+  background: #201c3e;
+  border-color: #3b3470;
 }
 
 .btn--sm {
@@ -577,14 +599,19 @@ a {
   transform-origin: 70% 30%;
 }
 
-/* Fade the picture into the page so the hero has no hard bottom edge,
-   and keep the words readable over any picture. */
+/* Fade the picture out at the bottom, so the hero melts into the page
+   colour behind it with no edge, and lay a veil of the page colour over it
+   so white words stay readable over any part of the picture. */
+.hero__bg {
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+}
+
 .hero__bg::after {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(180deg, rgba(7, 13, 31, 0.25) 0%, rgba(7, 13, 31, 0.5) 55%, var(--bg) 100%);
+  background: linear-gradient(180deg, rgba(90, 79, 192, 0.2) 0%, rgba(90, 79, 192, 0.45) 60%);
 }
 
 .hero__in {
@@ -596,7 +623,7 @@ a {
   margin: 0 0 0.9rem;
   font-size: 0.95rem;
   letter-spacing: 0.35em;
-  color: var(--muted);
+  color: var(--text);
   user-select: none;
 }
 
@@ -608,7 +635,7 @@ a {
   padding: 0.4rem 0.9rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--card);
   color: var(--muted);
   font-size: 0.875rem;
 }
@@ -618,26 +645,26 @@ a {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--mint);
-  box-shadow: 0 0 10px var(--mint);
+  background: var(--gold);
+  box-shadow: 0 0 10px rgba(245, 197, 66, 0.6);
 }
 
 .hero__title {
   margin: 1rem auto 0.9rem;
   max-width: 21ch;
   font-size: clamp(2.15rem, 8vw, 4.1rem);
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.07;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   text-wrap: balance;
 }
 
 .hero__sub {
   max-width: 34rem;
   margin: 0 auto;
-  color: var(--muted);
+  color: var(--text);
   font-size: clamp(1.08rem, 3.8vw, 1.3rem);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .hero__cta {
@@ -653,14 +680,14 @@ a {
   margin: 2.5rem auto 0;
   padding: 6px;
   border: 1px solid var(--line);
-  border-radius: 26px;
-  background: var(--glass);
-  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8), 0 0 60px -30px rgba(159, 240, 208, 0.35);
+  border-radius: 24px;
+  background: var(--card);
+  box-shadow: 0 30px 70px -30px rgba(16, 10, 58, 0.8);
 }
 
 .hero__shot img {
   width: 100%;
-  border-radius: 20px;
+  border-radius: 18px;
 }
 
 .hero__ask {
@@ -670,12 +697,24 @@ a {
   margin: 1.5rem 0 0;
 }
 
-/* page-menu.js draws a see-through button; over the hero picture it
-   needs a frosted fill of its own. */
+/* page-menu.js draws a see-through button; here it is a near-black
+   secondary button like the others. Its panel takes the colour of the
+   page behind it from a script, hence the !important. */
 .hero__ask .pm {
-  background: rgba(7, 13, 31, 0.72);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  border-color: var(--line);
+  background: var(--card);
+  color: var(--text);
+  box-shadow: 0 12px 26px -16px rgba(16, 10, 58, 0.7);
+}
+
+.hero__ask .pm-more {
+  border-inline-start-color: var(--line-2);
+}
+
+.hero__ask .pm-panel {
+  border-color: var(--line);
+  background: var(--card) !important;
+  color: var(--text);
 }
 
 @media (min-width: 560px) {
@@ -705,7 +744,7 @@ a {
 .phero__title {
   margin: 0.9rem 0 0.75rem;
   font-size: clamp(2.6rem, 11vw, 4.5rem);
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1;
   letter-spacing: -0.03em;
 }
@@ -713,9 +752,9 @@ a {
 .phero__sub {
   margin: 0;
   max-width: 34rem;
-  color: var(--muted);
+  color: var(--text);
   font-size: clamp(1.1rem, 3.9vw, 1.3rem);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .phero__cta {
@@ -731,7 +770,8 @@ a {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   aspect-ratio: 16 / 10;
-  background: var(--bg-2);
+  background: var(--card);
+  box-shadow: var(--shadow-hi);
 }
 
 .phero__art img {
@@ -767,7 +807,7 @@ a {
 
 .kicker {
   margin: 0 0 0.4rem;
-  color: var(--mint);
+  color: var(--text);
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -777,7 +817,7 @@ a {
 .section__title {
   margin: 0;
   font-size: clamp(1.65rem, 5.6vw, 2.5rem);
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
   text-wrap: balance;
@@ -785,6 +825,12 @@ a {
 
 .section__lead {
   margin: 0.75rem 0 0;
+  color: var(--text);
+}
+
+/* On a card the quieter words are lavender. */
+.card .kicker,
+.card .section__lead {
   color: var(--muted);
 }
 
@@ -818,24 +864,17 @@ a {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--glass);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 48px -30px rgba(0, 0, 0, 0.75);
+  background: var(--card);
+  box-shadow: var(--shadow);
   color: var(--text);
   text-decoration: none;
   transition: transform 0.4s var(--ease), border-color 0.4s, box-shadow 0.4s;
 }
 
-@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .card {
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    backdrop-filter: blur(14px) saturate(140%);
-  }
-}
-
 a.card:hover {
   transform: translateY(-3px);
-  border-color: var(--line-hi);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 32px 64px -32px rgba(0, 0, 0, 0.85), 0 0 40px -20px rgba(159, 240, 208, 0.35);
+  border-color: var(--line-2);
+  box-shadow: var(--shadow-hi);
 }
 
 a.card:focus-visible {
@@ -846,8 +885,8 @@ a.card:focus-visible {
   display: block;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: var(--bg-2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
 }
 
 .card__media img {
@@ -872,7 +911,7 @@ a.card:hover .card__media img {
 .card__title {
   margin: 0;
   font-size: 1.3rem;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: -0.01em;
 }
 
@@ -899,7 +938,7 @@ a.card:hover .card__media img {
 .card__more {
   margin-top: auto;
   padding-top: 0.6rem;
-  color: var(--mint);
+  color: var(--text);
   font-weight: 500;
 }
 
@@ -928,9 +967,9 @@ a.card:hover .card__media img {
   justify-content: center;
   min-height: 52px;
   padding: 0 1.6rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-2);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--card-2);
   color: var(--text);
   font: 500 1.0625rem/1.1 var(--font);
   text-decoration: none;
@@ -938,8 +977,8 @@ a.card:hover .card__media img {
 }
 
 .event a.event__btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.24);
+  background: #201c3e;
+  border-color: #3b3470;
 }
 
 /* Links: a picture or a letter, the name, and the address. */
@@ -955,7 +994,7 @@ a.card:hover .card__media img {
   align-items: center;
   gap: 0.9rem;
   padding: 0.75rem;
-  border-radius: 18px;
+  border-radius: var(--radius-sm);
 }
 
 .link__thumb {
@@ -964,17 +1003,17 @@ a.card:hover .card__media img {
   height: 52px;
   border-radius: 14px;
   object-fit: cover;
-  background: var(--bg-2);
+  background: var(--card-2);
 }
 
+/* A letter on a small tile of the page purple: white on #5a4fc0 is 6.3:1. */
 .link__thumb--letter {
   display: grid;
   place-items: center;
-  border: 1px solid var(--line);
-  background: linear-gradient(135deg, rgba(159, 240, 208, 0.22), rgba(124, 146, 255, 0.18));
+  background: linear-gradient(160deg, var(--bg-2), var(--bg));
   color: var(--text);
   font-size: 1.35rem;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .link__text {
@@ -1052,7 +1091,7 @@ a.card:hover .card__media img {
 
 .plans caption {
   padding: 0 0 0.75rem;
-  color: var(--muted);
+  color: var(--text);
   font-size: 0.95rem;
   text-align: start;
 }
@@ -1065,7 +1104,7 @@ a.card:hover .card__media img {
 }
 
 .plans thead th {
-  color: var(--muted);
+  color: var(--text);
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -1074,7 +1113,7 @@ a.card:hover .card__media img {
 
 .plans tbody th {
   font-size: 1.15rem;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .plans td {
@@ -1084,7 +1123,7 @@ a.card:hover .card__media img {
 .price {
   color: var(--text);
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -1095,7 +1134,7 @@ a.card:hover .card__media img {
 }
 
 .plans tbody tr {
-  background: var(--glass);
+  background: var(--card);
 }
 
 @media (max-width: 699px) {
@@ -1119,6 +1158,7 @@ a.card:hover .card__media img {
     margin-bottom: 0.75rem;
     border: 1px solid var(--line);
     border-radius: var(--radius);
+    box-shadow: var(--shadow);
   }
 
   .plans caption {
@@ -1177,7 +1217,7 @@ a.card:hover .card__media img {
 
 .note {
   margin: 1rem 0 0;
-  color: var(--muted);
+  color: var(--text);
   font-size: 0.98rem;
 }
 
@@ -1195,8 +1235,9 @@ a.card:hover .card__media img {
   position: relative;
   padding: 1rem 1.1rem 1rem 3rem;
   border: 1px solid var(--line);
-  border-radius: 18px;
-  background: var(--glass);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  box-shadow: var(--shadow);
 }
 
 .ticks li::before {
@@ -1206,8 +1247,8 @@ a.card:hover .card__media img {
   top: 1.35rem;
   width: 14px;
   height: 8px;
-  border-left: 2px solid var(--mint);
-  border-bottom: 2px solid var(--mint);
+  border-left: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
   transform: rotate(-45deg);
 }
 
@@ -1227,8 +1268,9 @@ a.card:hover .card__media img {
   align-items: start;
   padding: 1rem 1.1rem;
   border: 1px solid var(--line);
-  border-radius: 18px;
-  background: var(--glass);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  box-shadow: var(--shadow);
 }
 
 .steps li::before {
@@ -1238,9 +1280,9 @@ a.card:hover .card__media img {
   width: 2.4rem;
   height: 2.4rem;
   border-radius: 50%;
-  background: rgba(159, 240, 208, 0.14);
-  color: var(--mint);
-  font-weight: 500;
+  background: rgba(245, 197, 66, 0.14);
+  color: var(--gold);
+  font-weight: 700;
 }
 
 .steps b {
@@ -1263,7 +1305,7 @@ a.card:hover .card__media img {
    where the product lives; the store is only where you pay. */
 .store {
   margin: 1rem 0 0;
-  color: var(--muted);
+  color: var(--text);
   font-size: 0.95rem;
 }
 
@@ -1275,6 +1317,7 @@ a.card:hover .card__media img {
   padding: 0 0.9rem;
   border: 1px solid var(--line);
   border-radius: 999px;
+  background: var(--card);
   color: var(--text);
   text-decoration: none;
 }
@@ -1286,7 +1329,8 @@ a.card:hover .card__media img {
 }
 
 .store a:hover {
-  border-color: rgba(255, 255, 255, 0.28);
+  background: var(--card-2);
+  border-color: var(--line-2);
 }
 
 /* What it is: the lead paragraphs, then four small facts. */
@@ -1320,8 +1364,9 @@ a.card:hover .card__media img {
 
 .faq details {
   border: 1px solid var(--line);
-  border-radius: 18px;
-  background: var(--glass);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  box-shadow: var(--shadow);
 }
 
 .faq summary {
@@ -1343,7 +1388,7 @@ a.card:hover .card__media img {
 .faq summary::after {
   content: "+";
   flex: none;
-  color: var(--mint);
+  color: var(--muted);
   font-size: 1.4rem;
   line-height: 1;
   transition: transform 0.25s var(--ease);
@@ -1362,7 +1407,7 @@ a.card:hover .card__media img {
 .risk {
   margin: 0;
   max-width: 46rem;
-  color: var(--muted);
+  color: var(--text);
 }
 
 /* ── footer ──────────────────────────────────────────────────────────── */
@@ -1370,8 +1415,8 @@ a.card:hover .card__media img {
   max-width: var(--max);
   margin: 0 auto;
   padding: 2.5rem var(--gutter) 3rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  color: var(--muted);
+  border-top: 1px solid var(--on-bg-line);
+  color: var(--text);
   font-size: 0.95rem;
   text-align: center;
 }
@@ -1381,13 +1426,13 @@ a.card:hover .card__media img {
 }
 
 .footer a {
-  color: var(--muted);
+  color: var(--text);
   text-decoration: underline;
-  text-decoration-color: rgba(255, 255, 255, 0.25);
+  text-decoration-color: rgba(255, 255, 255, 0.45);
 }
 
 .footer a:hover {
-  color: var(--text);
+  text-decoration-color: var(--text);
 }
 
 .footer__nav a {
@@ -1761,7 +1806,7 @@ html[lang|="ar"] .btn {
         <p class="phero__sub">A second pair of eyes on your Solana bot's fees, tips and setup, read from public data.</p>
         <p class="phero__cta">
           <a class="btn btn--primary" href="#plans">See plans and prices<span class="btn__arrow" aria-hidden="true">→</span></a>
-          <a class="btn btn--glass" href="mailto:support@elghaly.dev">Email us</a>
+          <a class="btn btn--dark" href="mailto:support@elghaly.dev">Email us</a>
         </p>
       </div>
       <figure class="phero__art">
