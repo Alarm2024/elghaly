@@ -1041,6 +1041,49 @@ a.card:hover .card__media img {
   text-align: right;
 }
 
+/* The two shops: small square tiles under the links, secondary on
+   purpose. No shadow, a smaller label, and lavender text on the card. */
+.shop-tiles {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shop-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 6.5rem;
+  aspect-ratio: 1 / 1;
+  padding: 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: border-color 0.25s, color 0.25s;
+}
+
+.shop-tile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.shop-tile:hover {
+  border-color: var(--line-2);
+  color: var(--text);
+}
+
 /* About + contact panel. */
 .panel {
   display: grid;

@@ -1052,6 +1052,49 @@ a.card:hover .card__media img {
   text-align: right;
 }
 
+/* The two shops: small square tiles under the links, secondary on
+   purpose. No shadow, a smaller label, and lavender text on the card. */
+.shop-tiles {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shop-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 6.5rem;
+  aspect-ratio: 1 / 1;
+  padding: 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: border-color 0.25s, color 0.25s;
+}
+
+.shop-tile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.shop-tile:hover {
+  border-color: var(--line-2);
+  color: var(--text);
+}
+
 /* About + contact panel. */
 .panel {
   display: grid;
@@ -1787,11 +1830,15 @@ html[lang|="ar"] .btn {
       <ul class="links grid grid--2">
         <li><a class="card link reveal" href="https://35.elghaly.dev" rel="noopener noreferrer"><img class="link__thumb" src="/assets/35-card-192.webp?v=5b" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name">35</span><span class="link__url">35.elghaly.dev</span></span></a></li>
         <li><a class="card link reveal" href="https://iris-35.elghaly.dev" rel="noopener noreferrer"><span class="link__thumb link__thumb--letter" aria-hidden="true">I</span><span class="link__text"><span class="link__name">Iris</span><span class="link__url">iris-35.elghaly.dev</span></span></a></li>
-        <li><a class="card link reveal" href="/plumb"><img class="link__thumb" src="/assets/plumb-card-192.webp?v=5b" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name">Plumb</span><span class="link__url">elghaly.dev/plumb</span></span></a></li>
-        <li><a class="card link reveal" href="/quay"><img class="link__thumb" src="/assets/quay-card-192.webp?v=5b" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name">QUAY</span><span class="link__url">elghaly.dev/quay</span></span></a></li>
+        <li><a class="card link reveal" href="https://plumb.elghaly.dev" rel="noopener noreferrer"><img class="link__thumb" src="/assets/plumb-card-192.webp?v=5b" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name">Plumb</span><span class="link__url">plumb.elghaly.dev</span></span></a></li>
+        <li><a class="card link reveal" href="https://quay.elghaly.dev" rel="noopener noreferrer"><img class="link__thumb" src="/assets/quay-card-192.webp?v=5b" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name">QUAY</span><span class="link__url">quay.elghaly.dev</span></span></a></li>
         <li><a class="card link reveal" href="https://stale.elghaly.dev" rel="noopener noreferrer"><span class="link__thumb link__thumb--letter" aria-hidden="true">S</span><span class="link__text"><span class="link__name">Stale</span><span class="link__url">stale.elghaly.dev</span></span></a></li>
         <li><a class="card link reveal" href="https://glance.elghaly.dev" rel="noopener noreferrer"><span class="link__thumb link__thumb--letter" aria-hidden="true">G</span><span class="link__text"><span class="link__name">Glance</span><span class="link__url">glance.elghaly.dev</span></span></a></li>
         <li><a class="card link reveal" href="https://elghaly.pro" rel="noopener noreferrer"><img class="link__thumb" src="/assets/elghaly-lock-192.webp?v=5b" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name">Wyndham Heaven</span><span class="link__url">elghaly.pro</span></span></a></li>
+      </ul>
+      <ul class="shop-tiles">
+        <li><a class="shop-tile" href="https://plumb-shop.elghaly.dev/" rel="noopener noreferrer"><img src="/assets/plumb-card-192.webp?v=5b" width="40" height="40" alt="" loading="lazy" decoding="async"><span data-i18n="shop_plumb">Plumb shop</span></a></li>
+        <li><a class="shop-tile" href="https://quay-shop.elghaly.dev/" rel="noopener noreferrer"><img src="/assets/quay-card-192.webp?v=5b" width="40" height="40" alt="" loading="lazy" decoding="async"><span data-i18n="shop_quay">Quay shop</span></a></li>
       </ul>
     </section>
 
@@ -1917,6 +1964,8 @@ html[lang|="ar"] .btn {
         quay_p: "تريد عيناً ثانية على رسوم بوتك على سولانا وإكرامياته وإعداده.",
         quay_price: "مدفوع. بدفعة واحدة: مراجعة رسوم مكتوبة بـ 199 دولاراً، وخيارات أخرى من 29 دولاراً. شهرياً: QUAY Land بـ 149 دولاراً، وNode Watch بـ 79 دولاراً.",
         links_h: "روابطنا",
+        shop_plumb: "متجر Plumb",
+        shop_quay: "متجر Quay",
         ev_k: "عبر الإنترنت · مجاناً",
         ev_h: "جولة تعريفية عبر الإنترنت: ابنِ بأمان أكبر على سولانا",
         ev_t: "السبت 10 أكتوبر 2026 · 16:00–17:00 بتوقيت UTC · عبر الإنترنت · مجاناً",
@@ -1971,6 +2020,8 @@ html[lang|="ar"] .btn {
         quay_p: "Вам нужен второй взгляд на комиссии, чаевые и настройку вашего бота на Solana.",
         quay_price: "Платно. Разово: письменный разбор комиссий — $199, другие варианты от $29. Ежемесячно: QUAY Land — $149, Node Watch — $79.",
         links_h: "Ссылки",
+        shop_plumb: "Магазин Plumb",
+        shop_quay: "Магазин Quay",
         ev_k: "Онлайн · бесплатно",
         ev_h: "Онлайн-разбор: строим безопаснее на Solana",
         ev_t: "Сб, 10 окт. 2026 · 16:00–17:00 UTC · онлайн · бесплатно",
@@ -2025,6 +2076,8 @@ html[lang|="ar"] .btn {
         quay_p: "你想请人再帮你看一遍 Solana 机器人的手续费、小费和配置。",
         quay_price: "付费。一次性：书面手续费审查 $199，其他选项 $29 起。按月：QUAY Land $149，Node Watch $79。",
         links_h: "链接",
+        shop_plumb: "Plumb 商店",
+        shop_quay: "Quay 商店",
         ev_k: "线上 · 免费",
         ev_h: "在线讲解：在 Solana 上更安全地构建",
         ev_t: "2026 年 10 月 10 日（周六）· 16:00–17:00 UTC · 线上 · 免费",
@@ -2079,6 +2132,8 @@ html[lang|="ar"] .btn {
         quay_p: "Du willst ein zweites Paar Augen auf die Gebühren, Tips und das Setup deines Solana-Bots.",
         quay_price: "Kostenpflichtig. Einmalig: eine schriftliche Gebührenprüfung kostet 199 $, andere Optionen ab 29 $. Monatlich: QUAY Land 149 $, Node Watch 79 $.",
         links_h: "Links",
+        shop_plumb: "Plumb-Shop",
+        shop_quay: "Quay-Shop",
         ev_k: "Online · kostenlos",
         ev_h: "Online-Walk-through: Sicherer bauen auf Solana",
         ev_t: "Sa, 10. Okt. 2026 · 16:00–17:00 UTC · online · kostenlos",
@@ -2133,6 +2188,8 @@ html[lang|="ar"] .btn {
         quay_p: "Quieres una segunda mirada a las comisiones, propinas y configuración de tu bot de Solana.",
         quay_price: "De pago. Pago único: una revisión de comisiones por escrito cuesta 199 $; otras opciones desde 29 $. Mensual: QUAY Land 149 $, Node Watch 79 $.",
         links_h: "Enlaces",
+        shop_plumb: "Tienda Plumb",
+        shop_quay: "Tienda Quay",
         ev_k: "En línea · gratis",
         ev_h: "Recorrido en línea: construye con más seguridad en Solana",
         ev_t: "Sáb 10 oct 2026 · 16:00–17:00 UTC · en línea · gratis",
