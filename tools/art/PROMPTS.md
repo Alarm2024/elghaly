@@ -31,7 +31,6 @@ Every picture in `assets/art/` is a **PLACEHOLDER** for now.
 | `hero-wide` | Home hero background, screens wider than 700px | 16:9, 1920×1080 | `hero-wide-1280/1920.avif/.webp` | placeholder |
 | `hero-tall` | Home hero background, phones | 3:4, 900×1200 | `hero-tall-600/900.avif/.webp` | placeholder |
 | `svc-servers` | Home, "Linux servers" card | 16:10, 1200×750 | `svc-servers-400/800.*` | placeholder |
-| `svc-bots` | Home, "Telegram bots" card | 16:10, 1200×750 | `svc-bots-400/800.*` | placeholder |
 | `svc-tools` | Home, "Solana tools" card | 16:10, 1200×750 | `svc-tools-400/800.*` | placeholder |
 | `plumb` | Home Plumb card, /plumb hero | 16:10, 1200×750 | `plumb-400/800/1200.*` | placeholder |
 | `quay` | Home QUAY card, /quay hero | 16:10, 1200×750 | `quay-400/800/1200.*` | placeholder |

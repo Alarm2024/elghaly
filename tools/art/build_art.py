@@ -34,7 +34,6 @@ SLOTS = {
     "hero-wide": (16, 9, [1280, 1920]),
     "hero-tall": (3, 4, [600, 900]),
     "svc-servers": (16, 10, [400, 800]),
-    "svc-bots": (16, 10, [400, 800]),
     "svc-tools": (16, 10, [400, 800]),
     "plumb": (16, 10, [400, 800, 1200]),
     "quay": (16, 10, [400, 800, 1200]),
@@ -42,7 +41,7 @@ SLOTS = {
 
 # Link-preview cards: title on two lines at most, no claims.
 OG = {
-    "og-home": ("Linux servers, Telegram bots", "and tools for Solana", "elghaly.dev"),
+    "og-home": ("Linux servers", "and tools for Solana", "elghaly.dev"),
     "og-plumb": ("Plumb", "Solana bot software on your own server", "elghaly.dev/plumb"),
     "og-quay": ("QUAY", "A second pair of eyes on your Solana bot", "elghaly.dev/quay"),
 }
