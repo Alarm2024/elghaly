@@ -61,14 +61,14 @@
 }
 
 :root {
-  --ink: #000000;
-  --ink-soft: #1c1b21;
-  --ink-muted: #2a2930;
-  --accent: #ffffff;
-  --accent-warm: #a3a2ad;
-  --accent-dim: rgba(255, 255, 255, 0.12);
-  --text: #ffffff;
-  --text-muted: #a3a2ad;
+  --ink: #070d1f;
+  --ink-soft: #111833;
+  --ink-muted: #1a2347;
+  --accent: #9ff0d0;
+  --accent-warm: #aab5d0;
+  --accent-dim: rgba(159, 240, 208, 0.18);
+  --text: #eef3ff;
+  --text-muted: #aab5d0;
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Outfit", system-ui, sans-serif;
   --space-xs: 0.5rem;
@@ -100,8 +100,8 @@ body {
   align-items: center;
   background: var(--ink);
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(46, 230, 199, 0.08), transparent),
-    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(46, 230, 199, 0.04), transparent);
+    radial-gradient(ellipse 80% 50% at 85% -20%, rgba(159, 240, 208, 0.1), transparent),
+    radial-gradient(ellipse 70% 50% at -10% 105%, rgba(124, 146, 255, 0.12), transparent);
   color: var(--text);
   font-family: var(--font-sans);
   font-weight: 400;
@@ -161,7 +161,7 @@ body {
   direction: ltr;
   unicode-bidi: isolate;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--text);
   margin-bottom: var(--space-md);
 }
 
@@ -631,15 +631,14 @@ main {
 /* Solana (the default theme), as on solana.com: black, dark-grey cards,
    white titles, grey text. */
 html[data-theme="solana"] body {
-  /* Purple and green as a dim glow at the foot of the page, the way
-     solana.com lights its globe, never as text or button colour. */
+  /* Midnight Glass, as on the home page: a soft mint light from the top
+     right and a periwinkle haze at the bottom left, never as text colour. */
   background-image:
-    radial-gradient(ellipse 140% 22% at 50% 100%, rgba(67, 10, 123, 0.55), transparent 72%),
-    radial-gradient(ellipse 55% 14% at 0% 97%, rgba(41, 85, 52, 0.38), transparent 75%),
-    radial-gradient(ellipse 55% 14% at 100% 97%, rgba(41, 85, 52, 0.3), transparent 75%);
+    radial-gradient(ellipse 80% 45% at 92% -8%, rgba(159, 240, 208, 0.1), transparent 62%),
+    radial-gradient(ellipse 80% 50% at -12% 108%, rgba(124, 146, 255, 0.13), transparent 62%);
 }
 html[data-theme="solana"] .hero__brand {
-  background: linear-gradient(90deg, #a463ff, #14f195);
+  background: linear-gradient(90deg, #eef3ff, #9ff0d0);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
