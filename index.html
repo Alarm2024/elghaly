@@ -1053,14 +1053,42 @@ a.card:hover .card__media img {
 }
 
 /* The two shops: small square tiles under the links, secondary on
-   purpose. No shadow, a smaller label, and lavender text on the card. */
+   purpose: a small heading, no shadow, a smaller lavender label on the
+   card, and one short white line under each tile (white on the purple
+   is 5:1 or more). */
+.shops {
+  margin-top: 1.75rem;
+  text-align: center;
+}
+
+.shops__title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
 .shop-tiles {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 10.5rem));
   justify-content: center;
-  gap: 0.75rem;
-  margin: 1.5rem 0 0;
+  gap: 0.75rem 1rem;
+  margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.shop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.shop__note {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.8rem;
+  line-height: 1.35;
 }
 
 .shop-tile {
@@ -1836,10 +1864,19 @@ html[lang|="ar"] .btn {
         <li><a class="card link reveal" href="https://glance.elghaly.dev" rel="noopener noreferrer"><span class="link__thumb link__thumb--letter" aria-hidden="true">G</span><span class="link__text"><span class="link__name">Glance</span><span class="link__url">glance.elghaly.dev</span></span></a></li>
         <li><a class="card link reveal" href="https://elghaly.pro" rel="noopener noreferrer"><img class="link__thumb" src="/assets/elghaly-lock-192.webp?v=5b" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name">Wyndham Heaven</span><span class="link__url">elghaly.pro</span></span></a></li>
       </ul>
-      <ul class="shop-tiles">
-        <li><a class="shop-tile" href="https://plumb-shop.elghaly.dev/" rel="noopener noreferrer"><img src="/assets/plumb-card-192.webp?v=5b" width="40" height="40" alt="" loading="lazy" decoding="async"><span data-i18n="shop_plumb">Plumb shop</span></a></li>
-        <li><a class="shop-tile" href="https://quay-shop.elghaly.dev/" rel="noopener noreferrer"><img src="/assets/quay-card-192.webp?v=5b" width="40" height="40" alt="" loading="lazy" decoding="async"><span data-i18n="shop_quay">Quay shop</span></a></li>
-      </ul>
+      <div class="shops">
+        <h3 class="shops__title" data-i18n="shop_h">Ready to buy? Checkout here</h3>
+        <ul class="shop-tiles">
+          <li class="shop">
+            <a class="shop-tile" href="https://plumb-shop.elghaly.dev/" rel="noopener noreferrer" aria-describedby="shop-plumb-note"><img src="/assets/plumb-card-192.webp?v=5b" width="40" height="40" alt="" loading="lazy" decoding="async"><span data-i18n="shop_plumb">Plumb shop</span></a>
+            <p class="shop__note" id="shop-plumb-note" data-i18n="shop_plumb_note">Buy a Plumb seat: secure checkout, instant digital delivery.</p>
+          </li>
+          <li class="shop">
+            <a class="shop-tile" href="https://quay-shop.elghaly.dev/" rel="noopener noreferrer" aria-describedby="shop-quay-note"><img src="/assets/quay-card-192.webp?v=5b" width="40" height="40" alt="" loading="lazy" decoding="async"><span data-i18n="shop_quay">Quay shop</span></a>
+            <p class="shop__note" id="shop-quay-note" data-i18n="shop_quay_note">Buy Quay monthly: secure checkout, instant digital delivery.</p>
+          </li>
+        </ul>
+      </div>
     </section>
 
     <section class="section event" id="event" aria-labelledby="event-heading" data-hide-after="2026-10-11T00:00:00+03:00">
@@ -1966,6 +2003,9 @@ html[lang|="ar"] .btn {
         links_h: "روابطنا",
         shop_plumb: "متجر Plumb",
         shop_quay: "متجر Quay",
+        shop_h: "جاهز للشراء؟ ادفع من هنا",
+        shop_plumb_note: "اشترِ مقعد Plumb: دفع آمن وتسليم رقمي فوري.",
+        shop_quay_note: "اشترك في Quay شهريًا: دفع آمن وتسليم رقمي فوري.",
         ev_k: "عبر الإنترنت · مجاناً",
         ev_h: "جولة تعريفية عبر الإنترنت: ابنِ بأمان أكبر على سولانا",
         ev_t: "السبت 10 أكتوبر 2026 · 16:00–17:00 بتوقيت UTC · عبر الإنترنت · مجاناً",
@@ -2022,6 +2062,9 @@ html[lang|="ar"] .btn {
         links_h: "Ссылки",
         shop_plumb: "Магазин Plumb",
         shop_quay: "Магазин Quay",
+        shop_h: "Готовы купить? Оформите заказ здесь",
+        shop_plumb_note: "Купите место Plumb: безопасная оплата, мгновенная цифровая доставка.",
+        shop_quay_note: "Quay помесячно: безопасная оплата, мгновенная цифровая доставка.",
         ev_k: "Онлайн · бесплатно",
         ev_h: "Онлайн-разбор: строим безопаснее на Solana",
         ev_t: "Сб, 10 окт. 2026 · 16:00–17:00 UTC · онлайн · бесплатно",
@@ -2078,6 +2121,9 @@ html[lang|="ar"] .btn {
         links_h: "链接",
         shop_plumb: "Plumb 商店",
         shop_quay: "Quay 商店",
+        shop_h: "准备购买？在这里结账",
+        shop_plumb_note: "购买 Plumb 席位：安全结账，即时数字交付。",
+        shop_quay_note: "按月购买 Quay：安全结账，即时数字交付。",
         ev_k: "线上 · 免费",
         ev_h: "在线讲解：在 Solana 上更安全地构建",
         ev_t: "2026 年 10 月 10 日（周六）· 16:00–17:00 UTC · 线上 · 免费",
@@ -2134,6 +2180,9 @@ html[lang|="ar"] .btn {
         links_h: "Links",
         shop_plumb: "Plumb-Shop",
         shop_quay: "Quay-Shop",
+        shop_h: "Bereit zum Kauf? Hier zur Kasse",
+        shop_plumb_note: "Kaufe einen Plumb-Platz: sichere Kasse, sofortige digitale Lieferung.",
+        shop_quay_note: "Quay monatlich kaufen: sichere Kasse, sofortige digitale Lieferung.",
         ev_k: "Online · kostenlos",
         ev_h: "Online-Walk-through: Sicherer bauen auf Solana",
         ev_t: "Sa, 10. Okt. 2026 · 16:00–17:00 UTC · online · kostenlos",
@@ -2190,6 +2239,9 @@ html[lang|="ar"] .btn {
         links_h: "Enlaces",
         shop_plumb: "Tienda Plumb",
         shop_quay: "Tienda Quay",
+        shop_h: "¿Listo para comprar? Paga aquí",
+        shop_plumb_note: "Compra un puesto de Plumb: pago seguro, entrega digital inmediata.",
+        shop_quay_note: "Compra Quay mensual: pago seguro, entrega digital inmediata.",
         ev_k: "En línea · gratis",
         ev_h: "Recorrido en línea: construye con más seguridad en Solana",
         ev_t: "Sáb 10 oct 2026 · 16:00–17:00 UTC · en línea · gratis",
