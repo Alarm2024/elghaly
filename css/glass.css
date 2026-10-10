@@ -1053,25 +1053,110 @@ a.card:hover .card__media img {
   }
 }
 
-/* The one main button, and the risk line under it. */
-.buy {
-  display: grid;
-  justify-items: center;
-  gap: 0.9rem;
-  padding: 2rem 1.35rem;
-  text-align: center;
+/* The store: one small, plain link under the plan table. Our page is
+   where the product lives; the store is only where you pay. */
+.store {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
-.buy .btn {
-  width: 100%;
-  max-width: 22rem;
+.store a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-inline-start: 0.25rem;
+  padding: 0 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.store a::after {
+  content: "\2197";
+  margin-inline-start: 0.4rem;
+  color: var(--muted);
+}
+
+.store a:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* What it is: the lead paragraphs, then four small facts. */
+.section__body {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.section__body .section__lead {
+  margin: 0;
+}
+
+@media (min-width: 960px) {
+  .grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 640px) and (max-width: 959px) {
+  .grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* FAQ: native details/summary, so it works with no script. */
+.faq {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.faq details {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--glass);
+}
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 52px;
+  padding: 0.8rem 1.1rem;
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  flex: none;
+  color: var(--mint);
+  font-size: 1.4rem;
+  line-height: 1;
+  transition: transform 0.25s var(--ease);
+}
+
+.faq details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq details p {
+  margin: 0;
+  padding: 0 1.1rem 1.1rem;
+  color: var(--muted);
 }
 
 .risk {
   margin: 0;
-  max-width: 40rem;
+  max-width: 46rem;
   color: var(--muted);
-  font-size: 0.95rem;
 }
 
 /* ── footer ──────────────────────────────────────────────────────────── */

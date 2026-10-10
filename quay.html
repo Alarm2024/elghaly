@@ -141,8 +141,6 @@
       background: #121836;
       border-top: 1px solid rgba(159, 240, 208, 0.3);
       color: #eef3ff;
-      /* System font: the banner is up before the web font arrives, and
-         a font swap would re-wrap it and move its top edge. */
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
       font-size: 0.95rem;
       line-height: 1.5;
@@ -1261,25 +1259,110 @@ a.card:hover .card__media img {
   }
 }
 
-/* The one main button, and the risk line under it. */
-.buy {
-  display: grid;
-  justify-items: center;
-  gap: 0.9rem;
-  padding: 2rem 1.35rem;
-  text-align: center;
+/* The store: one small, plain link under the plan table. Our page is
+   where the product lives; the store is only where you pay. */
+.store {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
-.buy .btn {
-  width: 100%;
-  max-width: 22rem;
+.store a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-inline-start: 0.25rem;
+  padding: 0 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.store a::after {
+  content: "\2197";
+  margin-inline-start: 0.4rem;
+  color: var(--muted);
+}
+
+.store a:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* What it is: the lead paragraphs, then four small facts. */
+.section__body {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.section__body .section__lead {
+  margin: 0;
+}
+
+@media (min-width: 960px) {
+  .grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 640px) and (max-width: 959px) {
+  .grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* FAQ: native details/summary, so it works with no script. */
+.faq {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.faq details {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--glass);
+}
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 52px;
+  padding: 0.8rem 1.1rem;
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  flex: none;
+  color: var(--mint);
+  font-size: 1.4rem;
+  line-height: 1;
+  transition: transform 0.25s var(--ease);
+}
+
+.faq details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq details p {
+  margin: 0;
+  padding: 0 1.1rem 1.1rem;
+  color: var(--muted);
 }
 
 .risk {
   margin: 0;
-  max-width: 40rem;
+  max-width: 46rem;
   color: var(--muted);
-  font-size: 0.95rem;
 }
 
 /* ── footer ──────────────────────────────────────────────────────────── */
@@ -1476,6 +1559,8 @@ html[lang|="ar"] .btn {
       },
       {
         "@type": "Product",
+        "@id": "https://elghaly.dev/quay#plan-quay-land",
+        "url": "https://elghaly.dev/quay#plan-quay-land",
         "name": "QUAY Land",
         "description": "A written report every week for one bot, by email: landed vs failed, and where tips are wasted. Billed per month; does not renew automatically.",
         "image": "https://elghaly.dev/assets/art/og-quay-1200x630.jpg",
@@ -1503,6 +1588,8 @@ html[lang|="ar"] .btn {
       },
       {
         "@type": "Product",
+        "@id": "https://elghaly.dev/quay#plan-node-watch",
+        "url": "https://elghaly.dev/quay#plan-node-watch",
         "name": "Node Watch",
         "description": "An alert message when an RPC or gRPC feed you name goes quiet. Billed per month; does not renew automatically.",
         "image": "https://elghaly.dev/assets/art/og-quay-1200x630.jpg",
@@ -1530,6 +1617,8 @@ html[lang|="ar"] .btn {
       },
       {
         "@type": "Product",
+        "@id": "https://elghaly.dev/quay#plan-fee-review",
+        "url": "https://elghaly.dev/quay#plan-fee-review",
         "name": "Fee review",
         "description": "One written page: your priority-fee and tip settings, read against what your public transactions paid and landed at.",
         "image": "https://elghaly.dev/assets/art/og-quay-1200x630.jpg",
@@ -1550,6 +1639,8 @@ html[lang|="ar"] .btn {
       },
       {
         "@type": "Product",
+        "@id": "https://elghaly.dev/quay#plan-score-report",
+        "url": "https://elghaly.dev/quay#plan-score-report",
         "name": "Score report",
         "description": "A read-only note on one mint, from public on-chain data.",
         "image": "https://elghaly.dev/assets/art/og-quay-1200x630.jpg",
@@ -1570,6 +1661,8 @@ html[lang|="ar"] .btn {
       },
       {
         "@type": "Product",
+        "@id": "https://elghaly.dev/quay#plan-flex-card-pack",
+        "url": "https://elghaly.dev/quay#plan-flex-card-pack",
         "name": "Flex card pack",
         "description": "Image cards made from the text you send.",
         "image": "https://elghaly.dev/assets/art/og-quay-1200x630.jpg",
@@ -1587,6 +1680,60 @@ html[lang|="ar"] .btn {
             "@id": "https://elghaly.dev/#org"
           }
         }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://elghaly.dev/quay#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do I have to give you keys or wallet access?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. You send public data only. Never a private key, a seed phrase, or an RPC URL with a token in it: we will not ask for or accept one."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do the monthly plans renew by themselves?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The checkout charges one month and does not renew automatically. Order again for each further month."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What do I send for a Fee review?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Up to 200 transaction signatures (signatures only), your current priority-fee and tip settings, and which venue or aggregator you route through."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How fast is delivery?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The Fee review is one page by email within 48 hours of a complete brief, in English. For the other products, the delivery or start time is confirmed in our reply to your order."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will following a review lower my costs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It may not. A review is a recommendation only. Signatures cannot show your fills, your strategy, your RPC latency, or failures that are not recorded on chain, and we make no claim about earnings, returns or savings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I get my money back?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If you want your money back, you get it: no form, no reason and no time limit. Email support@elghaly.dev. See the refund policy."
+            }
+          }
+        ]
       }
     ]
   }
@@ -1612,7 +1759,10 @@ html[lang|="ar"] .btn {
         <p class="eyebrow">Read-only · public data</p>
         <h1 id="page-title" class="phero__title">QUAY</h1>
         <p class="phero__sub">A second pair of eyes on your Solana bot's fees, tips and setup, read from public data.</p>
-        <p class="phero__cta"><a class="btn btn--glass" href="#plans">See plans</a></p>
+        <p class="phero__cta">
+          <a class="btn btn--primary" href="#plans">See plans and prices<span class="btn__arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn--glass" href="mailto:support@elghaly.dev">Email us</a>
+        </p>
       </div>
       <figure class="phero__art">
         <!-- ART PLACEHOLDER: quay. Swap with tools/art/build_art.py; prompts in tools/art/PROMPTS.md -->
@@ -1623,15 +1773,52 @@ html[lang|="ar"] .btn {
       </figure>
     </section>
 
+    <section class="section section--start" aria-labelledby="what-heading">
+      <div class="section__head">
+        <p class="kicker">What it is</p>
+        <h2 id="what-heading" class="section__title">What QUAY is</h2>
+        <div class="section__body">
+          <p class="section__lead">QUAY is a set of read-only reviews, reports and alerts for people who run Solana bots. You send public data, such as transaction signatures, a mint address or the feed to watch, and we send back a written answer or an alert.</p>
+          <p class="section__lead">Nothing of ours touches your config, your wallet or your transactions. Anything that cannot be read from public data is marked UNKNOWN instead of guessed.</p>
+        </div>
+      </div>
+      <div class="grid grid--4">
+        <article class="card">
+          <div class="card__body">
+            <h3 class="card__title">Read-only</h3>
+            <p class="card__text">We read public data. We never touch your config, your wallet or your transactions.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__body">
+            <h3 class="card__title">Public data only</h3>
+            <p class="card__text">Never a key, a seed phrase or an RPC URL with a token in it. We will not ask for or accept one.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__body">
+            <h3 class="card__title">UNKNOWN, not guessed</h3>
+            <p class="card__text">What public data cannot show is marked UNKNOWN, with the reason.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__body">
+            <h3 class="card__title">Monthly or one-time</h3>
+            <p class="card__text">Two monthly plans and three one-time products. Nothing renews by itself.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="section section--start" aria-labelledby="who-heading">
       <div class="section__head">
         <p class="kicker">Who it is for</p>
         <h2 id="who-heading" class="section__title">Is QUAY for you?</h2>
       </div>
       <ul class="ticks">
-          <li>You run a Solana bot and want to see where its tips and fees go.</li>
-          <li>You want a message when an RPC or gRPC feed you rely on goes quiet.</li>
-          <li>You keep your wallet and keys: we only ever ask for public data.</li>
+        <li>You run a Solana bot and want to see where its tips and fees go.</li>
+        <li>You want a message when an RPC or gRPC feed you rely on goes quiet.</li>
+        <li>You keep your wallet and keys: we only ever ask for public data.</li>
       </ul>
     </section>
 
@@ -1650,34 +1837,35 @@ html[lang|="ar"] .btn {
           </tr>
         </thead>
         <tbody>
-            <tr>
-              <th scope="row">QUAY Land</th>
-              <td>A written report every week for one bot, by email: landed vs failed, and where tips are wasted.</td>
-              <td class="plans__price"><span class="price">US$149 <small>/ month</small></span></td>
-            </tr>
-            <tr>
-              <th scope="row">Node Watch</th>
-              <td>An alert message when an RPC or gRPC feed you name goes quiet.</td>
-              <td class="plans__price"><span class="price">US$79 <small>/ month</small></span></td>
-            </tr>
-            <tr>
-              <th scope="row">Fee review</th>
-              <td>One written page: your priority-fee and tip settings, read against what your public transactions paid and landed at.</td>
-              <td class="plans__price"><span class="price">US$199</span></td>
-            </tr>
-            <tr>
-              <th scope="row">Score report</th>
-              <td>A read-only note on one mint, from public on-chain data.</td>
-              <td class="plans__price"><span class="price">US$49</span></td>
-            </tr>
-            <tr>
-              <th scope="row">Flex card pack</th>
-              <td>Image cards made from the text you send. The cards show only what you send.</td>
-              <td class="plans__price"><span class="price">US$29</span></td>
-            </tr>
+          <tr id="plan-quay-land">
+            <th scope="row">QUAY Land</th>
+            <td>A written report every week for one bot, by email: landed vs failed, and where tips are wasted.</td>
+            <td class="plans__price"><span class="price">US$149 <small>/ month</small></span></td>
+          </tr>
+          <tr id="plan-node-watch">
+            <th scope="row">Node Watch</th>
+            <td>An alert message when an RPC or gRPC feed you name goes quiet.</td>
+            <td class="plans__price"><span class="price">US$79 <small>/ month</small></span></td>
+          </tr>
+          <tr id="plan-fee-review">
+            <th scope="row">Fee review</th>
+            <td>One written page: your priority-fee and tip settings, read against what your public transactions paid and landed at.</td>
+            <td class="plans__price"><span class="price">US$199</span></td>
+          </tr>
+          <tr id="plan-score-report">
+            <th scope="row">Score report</th>
+            <td>A read-only note on one mint, from public on-chain data.</td>
+            <td class="plans__price"><span class="price">US$49</span></td>
+          </tr>
+          <tr id="plan-flex-card-pack">
+            <th scope="row">Flex card pack</th>
+            <td>Image cards made from the text you send. The cards show only what you send.</td>
+            <td class="plans__price"><span class="price">US$29</span></td>
+          </tr>
         </tbody>
       </table>
-      <p class="note">Monthly plans: the shop checkout charges one month and does not renew automatically. Order again for each further month.</p>
+      <p class="note">Monthly plans: the checkout charges one month and does not renew automatically. Order again for each further month.</p>
+      <p class="store">Checkout is on our store: <a href="https://quay-shop.elghaly.dev/" rel="noopener">Buy on our store</a></p>
     </section>
 
     <section class="section section--start" aria-labelledby="delivery-heading">
@@ -1686,19 +1874,51 @@ html[lang|="ar"] .btn {
         <h2 id="delivery-heading" class="section__title">How delivery works</h2>
       </div>
       <ol class="steps">
-          <li><div><b>Order</b> <span>in the QUAY shop.</span></div></li>
-          <li><div><b>Send public data only:</b> <span>transaction signatures, a mint address, the feed to watch, or the text for your cards. Never a key, a seed phrase or an RPC URL with a token in it.</span></div></li>
-          <li><div><b>Fee review:</b> <span>one page by email within 48 hours of a complete brief. Other products: the delivery or start time is confirmed in our reply to your order.</span></div></li>
-          <li><div><b>QUAY Land and Node Watch</b> <span>run for the month you ordered: a report every week, or an alert when the feed goes quiet.</span></div></li>
+        <li><div><b>Choose a plan</b> <span>from the plan table and check out on our store.</span></div></li>
+        <li><div><b>Send public data only:</b> <span>transaction signatures, a mint address, the feed to watch, or the text for your cards.</span></div></li>
+        <li><div><b>Fee review:</b> <span>one page by email within 48 hours of a complete brief. Other products: the delivery or start time is confirmed in our reply to your order.</span></div></li>
+        <li><div><b>QUAY Land and Node Watch</b> <span>run for the month you ordered: a report every week, or an alert when the feed goes quiet.</span></div></li>
       </ol>
-      <p class="note">Anything that cannot be read from public data is marked UNKNOWN instead of guessed. Full details are on the <a href="/delivery.html">delivery page</a>.</p>
+      <p class="note">Full details are on the <a href="/delivery.html">delivery page</a>.</p>
     </section>
 
-    <section class="section" aria-label="Buy">
-      <div class="card buy">
-        <a class="btn btn--primary" href="https://quay-shop.elghaly.dev/">Buy in the QUAY shop<span class="btn__arrow" aria-hidden="true">→</span></a>
-        <p class="risk">Read-only: nothing of ours touches your config, your wallet or your transactions, and we make no claim about earnings, returns or savings. Want your money back? You get it, no reason needed (<a href="/refund.html">refunds</a>).</p>
+    <section class="section section--start" id="faq" aria-labelledby="faq-heading">
+      <div class="section__head">
+        <p class="kicker">FAQ</p>
+        <h2 id="faq-heading" class="section__title">Questions</h2>
       </div>
+      <div class="faq">
+        <details>
+          <summary>Do I have to give you keys or wallet access?</summary>
+          <p>No. You send public data only. Never a private key, a seed phrase, or an RPC URL with a token in it: we will not ask for or accept one.</p>
+        </details>
+        <details>
+          <summary>Do the monthly plans renew by themselves?</summary>
+          <p>No. The checkout charges one month and does not renew automatically. Order again for each further month.</p>
+        </details>
+        <details>
+          <summary>What do I send for a Fee review?</summary>
+          <p>Up to 200 transaction signatures (signatures only), your current priority-fee and tip settings, and which venue or aggregator you route through.</p>
+        </details>
+        <details>
+          <summary>How fast is delivery?</summary>
+          <p>The Fee review is one page by email within 48 hours of a complete brief, in English. For the other products, the delivery or start time is confirmed in our reply to your order.</p>
+        </details>
+        <details>
+          <summary>Will following a review lower my costs?</summary>
+          <p>It may not. A review is a recommendation only. Signatures cannot show your fills, your strategy, your RPC latency, or failures that are not recorded on chain, and we make no claim about earnings, returns or savings.</p>
+        </details>
+        <details>
+          <summary>Can I get my money back?</summary>
+          <p>If you want your money back, you get it: no form, no reason and no time limit. Email <a href="mailto:support@elghaly.dev">support@elghaly.dev</a>. See the <a href="/refund.html">refund policy</a>.</p>
+        </details>
+      </div>
+      <p class="note">Anything else? Email <a href="mailto:support@elghaly.dev">support@elghaly.dev</a>.</p>
+    </section>
+
+    <section class="section section--start" aria-labelledby="risk-heading">
+      <h2 id="risk-heading" class="kicker">Risk</h2>
+      <p class="risk">Read-only: nothing of ours touches your config, your wallet or your transactions, and we make no claim about earnings, returns or savings.</p>
     </section>
   </main>
 

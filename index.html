@@ -1272,25 +1272,110 @@ a.card:hover .card__media img {
   }
 }
 
-/* The one main button, and the risk line under it. */
-.buy {
-  display: grid;
-  justify-items: center;
-  gap: 0.9rem;
-  padding: 2rem 1.35rem;
-  text-align: center;
+/* The store: one small, plain link under the plan table. Our page is
+   where the product lives; the store is only where you pay. */
+.store {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
-.buy .btn {
-  width: 100%;
-  max-width: 22rem;
+.store a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-inline-start: 0.25rem;
+  padding: 0 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.store a::after {
+  content: "\2197";
+  margin-inline-start: 0.4rem;
+  color: var(--muted);
+}
+
+.store a:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* What it is: the lead paragraphs, then four small facts. */
+.section__body {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.section__body .section__lead {
+  margin: 0;
+}
+
+@media (min-width: 960px) {
+  .grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 640px) and (max-width: 959px) {
+  .grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* FAQ: native details/summary, so it works with no script. */
+.faq {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.faq details {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--glass);
+}
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 52px;
+  padding: 0.8rem 1.1rem;
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  flex: none;
+  color: var(--mint);
+  font-size: 1.4rem;
+  line-height: 1;
+  transition: transform 0.25s var(--ease);
+}
+
+.faq details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq details p {
+  margin: 0;
+  padding: 0 1.1rem 1.1rem;
+  color: var(--muted);
 }
 
 .risk {
   margin: 0;
-  max-width: 40rem;
+  max-width: 46rem;
   color: var(--muted);
-  font-size: 0.95rem;
 }
 
 /* ── footer ──────────────────────────────────────────────────────────── */
@@ -1659,8 +1744,8 @@ html[lang|="ar"] .btn {
       <ul class="links grid grid--2">
         <li><a class="card link reveal" href="https://35.elghaly.dev" rel="noopener noreferrer"><img class="link__thumb" src="/assets/35-card-192.webp" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name">35</span><span class="link__url">35.elghaly.dev</span></span></a></li>
         <li><a class="card link reveal" href="https://iris-35.elghaly.dev" rel="noopener noreferrer"><span class="link__thumb link__thumb--letter" aria-hidden="true">I</span><span class="link__text"><span class="link__name">Iris</span><span class="link__url">iris-35.elghaly.dev</span></span></a></li>
-        <li><a class="card link reveal" href="https://plumb-shop.elghaly.dev/" rel="noopener noreferrer"><img class="link__thumb" src="/assets/plumb-card-192.webp" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name" data-i18n="lk_plumb">Plumb shop</span><span class="link__url">plumb-shop.elghaly.dev</span></span></a></li>
-        <li><a class="card link reveal" href="https://quay-shop.elghaly.dev/" rel="noopener noreferrer"><img class="link__thumb" src="/assets/quay-card-192.webp" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name" data-i18n="lk_quay">Quay shop</span><span class="link__url">quay-shop.elghaly.dev</span></span></a></li>
+        <li><a class="card link reveal" href="/plumb"><img class="link__thumb" src="/assets/plumb-card-192.webp" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name">Plumb</span><span class="link__url">elghaly.dev/plumb</span></span></a></li>
+        <li><a class="card link reveal" href="/quay"><img class="link__thumb" src="/assets/quay-card-192.webp" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name">QUAY</span><span class="link__url">elghaly.dev/quay</span></span></a></li>
         <li><a class="card link reveal" href="https://stale.elghaly.dev" rel="noopener noreferrer"><span class="link__thumb link__thumb--letter" aria-hidden="true">S</span><span class="link__text"><span class="link__name">Stale</span><span class="link__url">stale.elghaly.dev</span></span></a></li>
         <li><a class="card link reveal" href="https://glance.elghaly.dev" rel="noopener noreferrer"><span class="link__thumb link__thumb--letter" aria-hidden="true">G</span><span class="link__text"><span class="link__name">Glance</span><span class="link__url">glance.elghaly.dev</span></span></a></li>
         <li><a class="card link reveal" href="https://elghaly.pro" rel="noopener noreferrer"><img class="link__thumb" src="/assets/elghaly-lock-192.webp" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name">Wyndham Heaven</span><span class="link__url">elghaly.pro</span></span></a></li>
@@ -1789,8 +1874,6 @@ html[lang|="ar"] .btn {
         quay_p: "تريد عيناً ثانية على رسوم بوتك على سولانا وإكرامياته وإعداده.",
         quay_price: "مدفوع. بدفعة واحدة: مراجعة رسوم مكتوبة بـ 199 دولاراً، وخيارات أخرى من 29 دولاراً. شهرياً: QUAY Land بـ 149 دولاراً، وNode Watch بـ 79 دولاراً.",
         links_h: "روابطنا",
-        lk_plumb: "متجر Plumb",
-        lk_quay: "متجر Quay",
         ev_k: "عبر الإنترنت · مجاناً",
         ev_h: "جولة تعريفية عبر الإنترنت: ابنِ بأمان أكبر على سولانا",
         ev_t: "السبت 10 أكتوبر 2026 · 16:00–17:00 بتوقيت UTC · عبر الإنترنت · مجاناً",
@@ -1845,8 +1928,6 @@ html[lang|="ar"] .btn {
         quay_p: "Вам нужен второй взгляд на комиссии, чаевые и настройку вашего бота на Solana.",
         quay_price: "Платно. Разово: письменный разбор комиссий — $199, другие варианты от $29. Ежемесячно: QUAY Land — $149, Node Watch — $79.",
         links_h: "Ссылки",
-        lk_plumb: "Магазин Plumb",
-        lk_quay: "Магазин Quay",
         ev_k: "Онлайн · бесплатно",
         ev_h: "Онлайн-разбор: строим безопаснее на Solana",
         ev_t: "Сб, 10 окт. 2026 · 16:00–17:00 UTC · онлайн · бесплатно",
@@ -1901,8 +1982,6 @@ html[lang|="ar"] .btn {
         quay_p: "你想请人再帮你看一遍 Solana 机器人的手续费、小费和配置。",
         quay_price: "付费。一次性：书面手续费审查 $199，其他选项 $29 起。按月：QUAY Land $149，Node Watch $79。",
         links_h: "链接",
-        lk_plumb: "Plumb 商店",
-        lk_quay: "Quay 商店",
         ev_k: "线上 · 免费",
         ev_h: "在线讲解：在 Solana 上更安全地构建",
         ev_t: "2026 年 10 月 10 日（周六）· 16:00–17:00 UTC · 线上 · 免费",
@@ -1957,8 +2036,6 @@ html[lang|="ar"] .btn {
         quay_p: "Du willst ein zweites Paar Augen auf die Gebühren, Tips und das Setup deines Solana-Bots.",
         quay_price: "Kostenpflichtig. Einmalig: eine schriftliche Gebührenprüfung kostet 199 $, andere Optionen ab 29 $. Monatlich: QUAY Land 149 $, Node Watch 79 $.",
         links_h: "Links",
-        lk_plumb: "Plumb-Shop",
-        lk_quay: "Quay-Shop",
         ev_k: "Online · kostenlos",
         ev_h: "Online-Walk-through: Sicherer bauen auf Solana",
         ev_t: "Sa, 10. Okt. 2026 · 16:00–17:00 UTC · online · kostenlos",
@@ -2013,8 +2090,6 @@ html[lang|="ar"] .btn {
         quay_p: "Quieres una segunda mirada a las comisiones, propinas y configuración de tu bot de Solana.",
         quay_price: "De pago. Pago único: una revisión de comisiones por escrito cuesta 199 $; otras opciones desde 29 $. Mensual: QUAY Land 149 $, Node Watch 79 $.",
         links_h: "Enlaces",
-        lk_plumb: "Tienda Plumb",
-        lk_quay: "Tienda Quay",
         ev_k: "En línea · gratis",
         ev_h: "Recorrido en línea: construye con más seguridad en Solana",
         ev_t: "Sáb 10 oct 2026 · 16:00–17:00 UTC · en línea · gratis",

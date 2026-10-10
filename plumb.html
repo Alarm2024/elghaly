@@ -141,8 +141,6 @@
       background: #121836;
       border-top: 1px solid rgba(159, 240, 208, 0.3);
       color: #eef3ff;
-      /* System font: the banner is up before the web font arrives, and
-         a font swap would re-wrap it and move its top edge. */
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
       font-size: 0.95rem;
       line-height: 1.5;
@@ -1261,25 +1259,110 @@ a.card:hover .card__media img {
   }
 }
 
-/* The one main button, and the risk line under it. */
-.buy {
-  display: grid;
-  justify-items: center;
-  gap: 0.9rem;
-  padding: 2rem 1.35rem;
-  text-align: center;
+/* The store: one small, plain link under the plan table. Our page is
+   where the product lives; the store is only where you pay. */
+.store {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
-.buy .btn {
-  width: 100%;
-  max-width: 22rem;
+.store a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-inline-start: 0.25rem;
+  padding: 0 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.store a::after {
+  content: "\2197";
+  margin-inline-start: 0.4rem;
+  color: var(--muted);
+}
+
+.store a:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* What it is: the lead paragraphs, then four small facts. */
+.section__body {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.section__body .section__lead {
+  margin: 0;
+}
+
+@media (min-width: 960px) {
+  .grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 640px) and (max-width: 959px) {
+  .grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* FAQ: native details/summary, so it works with no script. */
+.faq {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.faq details {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--glass);
+}
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 52px;
+  padding: 0.8rem 1.1rem;
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  flex: none;
+  color: var(--mint);
+  font-size: 1.4rem;
+  line-height: 1;
+  transition: transform 0.25s var(--ease);
+}
+
+.faq details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq details p {
+  margin: 0;
+  padding: 0 1.1rem 1.1rem;
+  color: var(--muted);
 }
 
 .risk {
   margin: 0;
-  max-width: 40rem;
+  max-width: 46rem;
   color: var(--muted);
-  font-size: 0.95rem;
 }
 
 /* ── footer ──────────────────────────────────────────────────────────── */
@@ -1476,6 +1559,8 @@ html[lang|="ar"] .btn {
       },
       {
         "@type": "Product",
+        "@id": "https://elghaly.dev/plumb#plan-starter",
+        "url": "https://elghaly.dev/plumb#plan-starter",
         "name": "Plumb Starter",
         "description": "One-time seat: partial pair board, 1–2 pairs, Telegram control and Jupiter rail, fixed slippage and tip defaults, 3 months of updates.",
         "image": "https://elghaly.dev/assets/art/og-plumb-1200x630.jpg",
@@ -1496,6 +1581,8 @@ html[lang|="ar"] .btn {
       },
       {
         "@type": "Product",
+        "@id": "https://elghaly.dev/plumb#plan-pro",
+        "url": "https://elghaly.dev/plumb#plan-pro",
         "name": "Plumb Pro",
         "description": "One-time seat: full multi-pair arbitrage board, you set slippage and tip, optional Jito bundle, private RPC hooks, 6 months of updates.",
         "image": "https://elghaly.dev/assets/art/og-plumb-1200x630.jpg",
@@ -1516,6 +1603,8 @@ html[lang|="ar"] .btn {
       },
       {
         "@type": "Product",
+        "@id": "https://elghaly.dev/plumb#plan-source",
+        "url": "https://elghaly.dev/plumb#plan-source",
         "name": "Plumb Source",
         "description": "One-time seat: everything in Pro plus the source code, the pair workshop and 6 months of updates.",
         "image": "https://elghaly.dev/assets/art/og-plumb-1200x630.jpg",
@@ -1533,6 +1622,68 @@ html[lang|="ar"] .btn {
             "@id": "https://elghaly.dev/#org"
           }
         }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://elghaly.dev/plumb#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do you ever hold my keys, my wallet or my funds?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Plumb runs on your machine with your keys and your wallet. We do not hold funds, do not take a cut of fills, and have no access to your balance at any point."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What exactly do I get after I pay?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A ready bot built for the pairs you name in your brief, delivered within 3.35 hours of confirmed payment and brief, plus a handover call to get it running on your machine. Starter and Pro ship the running program; Source ships the source code as well. Every seat is controlled from Telegram and starts in dry mode (HOLD)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What do I need on my side?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A machine that stays online, such as a small VPS, a Solana RPC endpoint, a Telegram bot token, and a funded wallet you control. We walk through each of these on the handover call."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which seat should I start on?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Starter if this is your first desk bot. Pro if you want the multi-pair arbitrage board with your own slippage and tip settings. Source only if you intend to edit the code yourself."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens when the update window ends?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nothing breaks. The seat is a lifetime licence and the software keeps running. Updates are included for 3 months on Starter and 6 months on Pro and Source; further updates are an optional US$149 a month."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this a token, a fund or an investment?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. You are buying software once and running it yourself. There is no token, no pooled capital, no managed account and nothing to deposit with us."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I get my money back?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If you want your money back, you get it: no form, no reason and no time limit. Email support@elghaly.dev. See the refund policy."
+            }
+          }
+        ]
       }
     ]
   }
@@ -1558,7 +1709,10 @@ html[lang|="ar"] .btn {
         <p class="eyebrow">One-time seats</p>
         <h1 id="page-title" class="phero__title">Plumb</h1>
         <p class="phero__sub">Solana bot software that runs on your own Linux server, controlled from Telegram.</p>
-        <p class="phero__cta"><a class="btn btn--glass" href="#plans">See plans</a></p>
+        <p class="phero__cta">
+          <a class="btn btn--primary" href="#plans">See plans and prices<span class="btn__arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn--glass" href="mailto:support@elghaly.dev">Email us</a>
+        </p>
       </div>
       <figure class="phero__art">
         <!-- ART PLACEHOLDER: plumb. Swap with tools/art/build_art.py; prompts in tools/art/PROMPTS.md -->
@@ -1569,15 +1723,52 @@ html[lang|="ar"] .btn {
       </figure>
     </section>
 
+    <section class="section section--start" aria-labelledby="what-heading">
+      <div class="section__head">
+        <p class="kicker">What it is</p>
+        <h2 id="what-heading" class="section__title">What Plumb is</h2>
+        <div class="section__body">
+          <p class="section__lead">Plumb is desk software for Solana. It runs on your own Linux server, with your own keys and your own wallet, and you control it from Telegram.</p>
+          <p class="section__lead">We build it for the pairs you name, deliver it to your server, and walk you through it on a handover call. It starts in dry mode (HOLD) and sends nothing until you switch it on.</p>
+        </div>
+      </div>
+      <div class="grid grid--4">
+        <article class="card">
+          <div class="card__body">
+            <h3 class="card__title">Your server, your keys</h3>
+            <p class="card__text">Plumb runs on your machine. We never hold your keys, your wallet or your funds.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__body">
+            <h3 class="card__title">Telegram control</h3>
+            <p class="card__text">Every seat is controlled from Telegram.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__body">
+            <h3 class="card__title">Starts in dry mode</h3>
+            <p class="card__text">It ships in HOLD and sends nothing until you, the owner, switch it on.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__body">
+            <h3 class="card__title">Lifetime licence</h3>
+            <p class="card__text">Pay once. Nothing stops working when the included updates end.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="section section--start" aria-labelledby="who-heading">
       <div class="section__head">
         <p class="kicker">Who it is for</p>
         <h2 id="who-heading" class="section__title">Is Plumb for you?</h2>
       </div>
       <ul class="ticks">
-          <li>You run your own Linux server, or a small VPS that stays online.</li>
-          <li>You want to control a Solana bot from Telegram, with your own keys and your own wallet.</li>
-          <li>You have a Solana RPC endpoint and a Telegram bot token, or will set them up. We walk through both on the handover call.</li>
+        <li>You run your own Linux server, or a small VPS that stays online.</li>
+        <li>You want to control a Solana bot from Telegram, with your own keys and your own wallet.</li>
+        <li>You have a Solana RPC endpoint and a Telegram bot token, or will set them up. We walk through both on the handover call.</li>
       </ul>
     </section>
 
@@ -1596,24 +1787,25 @@ html[lang|="ar"] .btn {
           </tr>
         </thead>
         <tbody>
-            <tr>
-              <th scope="row">Starter</th>
-              <td>Partial pair board, 1–2 pairs, Telegram control and Jupiter rail, fixed slippage and tip defaults, 3 months of updates.</td>
-              <td class="plans__price"><span class="price">US$350</span></td>
-            </tr>
-            <tr>
-              <th scope="row">Pro</th>
-              <td>Full multi-pair arbitrage board, you set slippage and tip, optional Jito bundle, private RPC hooks, 6 months of updates.</td>
-              <td class="plans__price"><span class="price">US$699</span></td>
-            </tr>
-            <tr>
-              <th scope="row">Source</th>
-              <td>Everything in Pro, plus the source code, the pair workshop and 6 months of updates.</td>
-              <td class="plans__price"><span class="price">US$1,999</span></td>
-            </tr>
+          <tr id="plan-starter">
+            <th scope="row">Starter</th>
+            <td>Partial pair board, 1–2 pairs, Telegram control and Jupiter rail, fixed slippage and tip defaults, 3 months of updates.</td>
+            <td class="plans__price"><span class="price">US$350</span></td>
+          </tr>
+          <tr id="plan-pro">
+            <th scope="row">Pro</th>
+            <td>Full multi-pair arbitrage board, you set slippage and tip, optional Jito bundle, private RPC hooks, 6 months of updates.</td>
+            <td class="plans__price"><span class="price">US$699</span></td>
+          </tr>
+          <tr id="plan-source">
+            <th scope="row">Source</th>
+            <td>Everything in Pro, plus the source code, the pair workshop and 6 months of updates.</td>
+            <td class="plans__price"><span class="price">US$1,999</span></td>
+          </tr>
         </tbody>
       </table>
-      <p class="note">Every seat ships in dry mode (HOLD): it sends nothing until you switch it on. After the included updates, further updates are optional at US$149 a month; nothing stops working without them.</p>
+      <p class="note">Every seat ships in dry mode (HOLD). After the included updates, further updates are optional at US$149 a month; nothing stops working without them.</p>
+      <p class="store">Checkout is on our store: <a href="https://plumb-shop.elghaly.dev/" rel="noopener">Buy on our store</a></p>
     </section>
 
     <section class="section section--start" aria-labelledby="delivery-heading">
@@ -1622,19 +1814,55 @@ html[lang|="ar"] .btn {
         <h2 id="delivery-heading" class="section__title">How delivery works</h2>
       </div>
       <ol class="steps">
-          <li><div><b>Buy a seat</b> <span>in the Plumb shop.</span></div></li>
-          <li><div><b>Send your brief:</b> <span>the seat tier, the pairs you name, and an email we can reach.</span></div></li>
-          <li><div><b>We deliver within 3.35 hours</b> <span>of your confirmed payment and brief: the software, set up for your brief, on your server or as a download.</span></div></li>
-          <li><div><b>Handover call</b> <span>within 24 hours of delivery, to get it running on your machine.</span></div></li>
+        <li><div><b>Choose a seat</b> <span>from the plan table and check out on our store.</span></div></li>
+        <li><div><b>Send your brief:</b> <span>the seat tier, the pairs you name, and an email we can reach.</span></div></li>
+        <li><div><b>We deliver within 3.35 hours</b> <span>of your confirmed payment and brief: the software, set up for your brief, on your server or as a download.</span></div></li>
+        <li><div><b>Handover call</b> <span>within 24 hours of delivery, to get it running on your machine.</span></div></li>
       </ol>
-      <p class="note">Full details are on the <a href="/delivery.html">delivery page</a>. We never hold your keys, your wallet or your funds.</p>
+      <p class="note">Full details are on the <a href="/delivery.html">delivery page</a>.</p>
     </section>
 
-    <section class="section" aria-label="Buy">
-      <div class="card buy">
-        <a class="btn btn--primary" href="https://plumb-shop.elghaly.dev/">Buy in the Plumb shop<span class="btn__arrow" aria-hidden="true">→</span></a>
-        <p class="risk">We make no promise of results: the rules, the size and the risk are yours, and you can lose money. Want your money back? You get it, no reason needed (<a href="/refund.html">refunds</a>).</p>
+    <section class="section section--start" id="faq" aria-labelledby="faq-heading">
+      <div class="section__head">
+        <p class="kicker">FAQ</p>
+        <h2 id="faq-heading" class="section__title">Questions</h2>
       </div>
+      <div class="faq">
+        <details>
+          <summary>Do you ever hold my keys, my wallet or my funds?</summary>
+          <p>No. Plumb runs on your machine with your keys and your wallet. We do not hold funds, do not take a cut of fills, and have no access to your balance at any point.</p>
+        </details>
+        <details>
+          <summary>What exactly do I get after I pay?</summary>
+          <p>A ready bot built for the pairs you name in your brief, delivered within 3.35 hours of confirmed payment and brief, plus a handover call to get it running on your machine. Starter and Pro ship the running program; Source ships the source code as well. Every seat is controlled from Telegram and starts in dry mode (HOLD).</p>
+        </details>
+        <details>
+          <summary>What do I need on my side?</summary>
+          <p>A machine that stays online, such as a small VPS, a Solana RPC endpoint, a Telegram bot token, and a funded wallet you control. We walk through each of these on the handover call.</p>
+        </details>
+        <details>
+          <summary>Which seat should I start on?</summary>
+          <p>Starter if this is your first desk bot. Pro if you want the multi-pair arbitrage board with your own slippage and tip settings. Source only if you intend to edit the code yourself.</p>
+        </details>
+        <details>
+          <summary>What happens when the update window ends?</summary>
+          <p>Nothing breaks. The seat is a lifetime licence and the software keeps running. Updates are included for 3 months on Starter and 6 months on Pro and Source; further updates are an optional US$149 a month.</p>
+        </details>
+        <details>
+          <summary>Is this a token, a fund or an investment?</summary>
+          <p>No. You are buying software once and running it yourself. There is no token, no pooled capital, no managed account and nothing to deposit with us.</p>
+        </details>
+        <details>
+          <summary>Can I get my money back?</summary>
+          <p>If you want your money back, you get it: no form, no reason and no time limit. Email <a href="mailto:support@elghaly.dev">support@elghaly.dev</a>. See the <a href="/refund.html">refund policy</a>.</p>
+        </details>
+      </div>
+      <p class="note">Anything else? Email <a href="mailto:support@elghaly.dev">support@elghaly.dev</a>.</p>
+    </section>
+
+    <section class="section section--start" aria-labelledby="risk-heading">
+      <h2 id="risk-heading" class="kicker">Risk</h2>
+      <p class="risk">We make no promise of results. Plumb is a tool: the rules, the size and the risk are yours. Markets can move against you and you can lose money.</p>
     </section>
   </main>
 
