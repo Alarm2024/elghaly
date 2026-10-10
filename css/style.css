@@ -1,4 +1,10 @@
-/* Wyndham Heaven — ink + midnight teal */
+/* elghaly.dev sub-pages (About, Contact, Delivery, Refunds, Terms,
+   Privacy, 404 and the Iris policies): palette 5b, as on the home page.
+   A soft indigo-purple page, one near-black card that holds the words,
+   white bold headings, lavender for the quieter text on the card, and
+   gold for the one button. Lavender is 3.2:1 on the purple, so text on
+   the purple is white (5:1 or more) and lavender stays on the card
+   (9.8:1). */
 
 /* Fonts are served from /fonts (SIL OFL 1.1, see fonts/OFL-*.txt), the latin subset,
    so no third-party request sits on the critical path. */
@@ -10,38 +16,6 @@
   font-display: swap;
   src: url("/fonts/cinzel-500-wordmark.woff2") format("woff2");
   unicode-range: U+0041,U+0045,U+0047,U+0048,U+004C,U+0059;
-}
-@font-face {
-  font-family: "Cormorant Garamond";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/cormorant-garamond-latin-400-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-@font-face {
-  font-family: "Cormorant Garamond";
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/cormorant-garamond-latin-400-italic.woff2") format("woff2");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-@font-face {
-  font-family: "Cormorant Garamond";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-@font-face {
-  font-family: "Outfit";
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("/fonts/outfit-latin-300-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face {
   font-family: "Outfit";
@@ -59,18 +33,33 @@
   src: url("/fonts/outfit-latin-500-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/outfit-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
 
 :root {
-  --ink: #000000;
-  --ink-soft: #1c1b21;
-  --ink-muted: #2a2930;
-  --accent: #ffffff;
-  --accent-warm: #a3a2ad;
-  --accent-dim: rgba(255, 255, 255, 0.12);
+  color-scheme: dark;
+  --bg: #5a4fc0;
+  --bg-2: #6a5fd0;
+  --card: #0d0b1f;
+  --card-2: #17142f;
+  --line: #1c1838;
+  --line-2: #2e2856;
   --text: #ffffff;
-  --text-muted: #a3a2ad;
-  --font-serif: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "Outfit", system-ui, sans-serif;
+  --text-muted: #b9b3e6;
+  --gold: #f5c542;
+  --gold-2: #ffd45e;
+  --gold-ink: #1a1405;
+  /* The names the pages' own small style blocks use: links and focus
+     rings are white, input borders a faint white. */
+  --accent: var(--text);
+  --accent-dim: rgba(255, 255, 255, 0.22);
+  --font-sans: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 2rem;
@@ -91,6 +80,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  background: var(--bg);
 }
 
 body {
@@ -98,10 +88,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--ink);
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(46, 230, 199, 0.08), transparent),
-    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(46, 230, 199, 0.04), transparent);
+  background: linear-gradient(180deg, var(--bg), var(--bg-2));
   color: var(--text);
   font-family: var(--font-sans);
   font-weight: 400;
@@ -110,10 +97,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* themes.js fills #topbar after first paint; hold its 56px so the hero
-   does not jump down when the theme button arrives. */
-.topbar {
-  min-height: 56px;
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
 }
 
 /* Signs */
@@ -124,9 +110,7 @@ body {
   text-align: center;
   font-size: 1rem;
   letter-spacing: 0.35em;
-  /* Colour emoji draw in their own colours; this sets the text colour
-     around them, which axe measures (accent-dim was 1.97:1 on ink). */
-  color: var(--text-muted);
+  color: var(--text);
   user-select: none;
 }
 
@@ -139,7 +123,7 @@ body {
   margin-top: auto;
 }
 
-/* Hero */
+/* Hero: on the purple, so everything here is white. */
 .hero {
   width: 100%;
   max-width: calc(var(--max-width) + var(--space-md) * 2);
@@ -148,9 +132,7 @@ body {
 }
 
 .hero__brand {
-  /* inline-block: the Solana gradient spans the letters, not the whole row. */
-  display: inline-block;
-  font-family: "Cinzel Wordmark", var(--font-serif);
+  font-family: "Cinzel Wordmark", Georgia, serif;
   font-size: clamp(1.75rem, 7.5vw, 2.5rem);
   font-weight: 500;
   line-height: 1.1;
@@ -161,7 +143,7 @@ body {
   direction: ltr;
   unicode-bidi: isolate;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--text);
   margin-bottom: var(--space-md);
 }
 
@@ -171,41 +153,27 @@ body {
 }
 
 .hero__title {
-  font-family: var(--font-serif);
-  font-size: clamp(2.6rem, 10vw, 4.25rem);
-  font-weight: 400;
-  font-style: italic;
-  line-height: 1.1;
+  font-size: clamp(2.2rem, 8vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
   color: var(--text);
   margin-bottom: var(--space-sm);
 }
 
-/* Home page: the h1 says what we do; the tagline sits under it. */
-.hero__title--lead {
-  font-size: clamp(1.85rem, 6.2vw, 2.9rem);
-  font-style: normal;
-  line-height: 1.15;
-  max-width: 22ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.hero__tagline {
-  font-family: var(--font-serif);
-  font-size: clamp(1.35rem, 4.6vw, 1.85rem);
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.2;
-  color: var(--accent);
-  margin-bottom: var(--space-sm);
+.hero__sub {
+  margin: 0 0 0.5rem;
+  color: var(--text);
+  font-size: 1.05rem;
 }
 
 .hero__tag {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text);
 }
 
 .hero__cta {
@@ -216,54 +184,79 @@ body {
   gap: var(--space-sm);
 }
 
+/* page-menu.js draws a see-through button; here it is a near-black
+   secondary button. Its panel takes the colour of the page behind it
+   from a script, hence the !important. */
+.page-menu .pm {
+  border-color: var(--line);
+  background: var(--card);
+  color: var(--text);
+  box-shadow: 0 12px 26px -16px rgba(16, 10, 58, 0.7);
+}
+
+.page-menu .pm-more {
+  border-inline-start-color: var(--line-2);
+}
+
+.page-menu .pm-panel {
+  border-color: var(--line);
+  background: var(--card) !important;
+  color: var(--text);
+}
+
+/* Buttons: gold for the one thing to press. */
 .btn {
-  display: inline-block;
-  padding: 0.75rem 1.75rem;
-  border: 1px solid var(--accent);
-  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 1.6rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
   font-family: var(--font-sans);
   font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
+  font-weight: 700;
   text-decoration: none;
-  transition: background var(--transition), color var(--transition);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
 }
 
 .btn--primary {
-  background: var(--accent);
-  color: var(--ink);
+  background: var(--gold);
+  color: var(--gold-ink);
+  box-shadow: 0 12px 26px -14px rgba(26, 20, 5, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
 .btn--primary:hover,
 .btn--primary:focus-visible {
-  background: transparent;
-  color: var(--accent);
+  background: var(--gold-2);
 }
 
-.btn--ghost {
-  background: transparent;
-  color: var(--accent);
-}
-
-.btn--ghost:hover,
-.btn--ghost:focus-visible {
-  background: var(--accent-dim);
+.btn--dark {
+  background: var(--card-2);
+  border-color: var(--line-2);
   color: var(--text);
+  font-weight: 500;
 }
 
-.btn:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
+.btn--dark:hover,
+.btn--dark:focus-visible {
+  background: #201c3e;
 }
 
-/* Main sections */
+/* The words: one near-black card, like the cards on the home page. */
 main {
-  width: 100%;
-  max-width: calc(var(--max-width) + var(--space-md) * 2);
-  padding: 0 var(--space-md) var(--space-lg);
+  width: calc(100% - 2rem);
+  max-width: 44rem;
+  margin: 0 auto var(--space-lg);
+  padding: var(--space-md) 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-md);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--card);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 24px 52px -24px rgba(16, 10, 58, 0.7);
 }
 
 .section {
@@ -271,269 +264,23 @@ main {
 }
 
 .section__label {
-  font-family: var(--font-serif);
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.24em;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--text);
   margin-bottom: var(--space-sm);
 }
 
-/* Who */
-.who__line {
-  font-family: var(--font-serif);
-  font-size: clamp(1.6rem, 6vw, 2.1rem);
-  font-weight: 400;
-  line-height: 1.3;
-  color: var(--text);
-}
-
-.who__line--accent {
-  font-style: italic;
-  color: var(--accent-warm);
-  margin-top: var(--space-xs);
-}
-
-/* Build */
 .build__text {
-  font-size: 1.125rem;
-  line-height: 1.6;
+  font-size: 1.0625rem;
+  line-height: 1.65;
   color: var(--text-muted);
   max-width: 32rem;
   margin-inline: auto;
 }
 
-/* Doors — map, not list */
-.doors__map {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  max-width: 36rem;
-  margin-inline: auto;
-  text-align: left;
-}
-
-.door {
-  display: grid;
-  grid-template-columns: 6rem 1fr;
-  gap: 0.35rem var(--space-sm);
-  align-items: baseline;
-  padding: 1.1rem 1.25rem;
-  border: 1px solid var(--accent-dim);
-  border-radius: 12px;
-  background: var(--ink-soft);
-  color: var(--text);
-  text-decoration: none;
-  transition:
-    border-color var(--transition),
-    background var(--transition);
-}
-
-.door:hover,
-.door:focus-visible {
-  border-color: var(--accent);
-  background: var(--ink-muted);
-  outline: none;
-}
-
-.door__name {
-  font-family: var(--font-serif);
-  font-size: 1.6rem;
-  line-height: 1.1;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--accent-warm);
-}
-
-.doors__intro {
-  margin-bottom: var(--space-md);
-}
-
-.door__desc {
-  font-size: 1rem;
-  line-height: 1.55;
-  color: var(--text-muted);
-}
-
-.door__row {
-  display: block;
-}
-
-.door__row + .door__row {
-  margin-top: 0.2rem;
-}
-
-.door__row b {
-  font-weight: 500;
-  color: var(--accent-warm);
-  margin-right: 0.35rem;
-}
-
-.door:hover .door__name,
-.door:focus-visible .door__name {
-  color: var(--accent);
-}
-
-.door:hover .door__desc,
-.door:focus-visible .door__desc {
-  color: var(--text);
-}
-
-/* Contact */
-.contact__list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-}
-
-.contact__list a {
-  font-size: 1.0625rem;
-  color: var(--text-muted);
-  text-decoration: underline;
-  text-decoration-color: var(--accent-dim);
-  text-underline-offset: 3px;
-  letter-spacing: 0.02em;
-  transition: color var(--transition);
-}
-
-.contact__list a:hover,
-.contact__list a:focus-visible {
-  color: var(--accent);
-  text-decoration-color: var(--accent);
-  outline: none;
-}
-
-.contact__mail {
-  margin-top: var(--space-sm);
-}
-
-/* Socials */
-.socials__list {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-sm) var(--space-md);
-}
-
-.socials__list a {
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text);
-  text-decoration: none;
-  padding-bottom: 2px;
-  border-bottom: 1px solid transparent;
-  transition:
-    color var(--transition),
-    border-color var(--transition);
-}
-
-.socials__list a:hover,
-.socials__list a:focus-visible {
-  color: var(--accent);
-  border-bottom-color: var(--accent-dim);
-  outline: none;
-}
-
-/* Links card: the links we hand out everywhere (site, Instagram,
-   Facebook, TikTok). Dark cards with soft Solana tones: a faint
-   purple-to-green border and a gentle glow on hover, never neon.
-   Two across on wide screens, one per row on phones. */
-.links-card__grid {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-sm);
-  max-width: 36rem;
-  margin-inline: auto;
-}
-
-.links-card__grid > li:last-child:nth-child(odd) {
-  grid-column: 1 / -1;
-}
-
-.links-card__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.2rem;
-  min-height: 5.5rem;
-  padding: 1rem 1.25rem;
-  border: 1px solid transparent;
-  border-radius: 12px;
-  /* Inner fill (dark card + a whisper of tint), then the gradient that
-     shows only through the transparent 1px border. */
-  background:
-    linear-gradient(135deg, rgba(153, 69, 255, 0.07), rgba(20, 241, 149, 0.04)) padding-box,
-    linear-gradient(var(--ink-soft), var(--ink-soft)) padding-box,
-    linear-gradient(135deg, rgba(153, 69, 255, 0.45), rgba(0, 194, 255, 0.3), rgba(20, 241, 149, 0.4)) border-box;
-  color: var(--text);
-  text-decoration: none;
-  transition:
-    box-shadow var(--transition),
-    background var(--transition);
-}
-
-.links-card__item:hover,
-.links-card__item:focus-visible {
-  background:
-    linear-gradient(135deg, rgba(153, 69, 255, 0.1), rgba(20, 241, 149, 0.06)) padding-box,
-    linear-gradient(var(--ink-muted), var(--ink-muted)) padding-box,
-    linear-gradient(135deg, rgba(153, 69, 255, 0.7), rgba(0, 194, 255, 0.5), rgba(20, 241, 149, 0.65)) border-box;
-  box-shadow:
-    0 0 18px -6px rgba(153, 69, 255, 0.35),
-    0 0 22px -8px rgba(20, 241, 149, 0.25);
-  outline: none;
-}
-
-.links-card__item:focus-visible {
-  outline: 2px solid rgba(20, 241, 149, 0.6);
-  outline-offset: 3px;
-}
-
-.links-card__name {
-  font-family: var(--font-serif);
-  font-size: 1.45rem;
-  line-height: 1.15;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  /* Pastel purple to pastel green; plain colour first for old browsers. */
-  color: #cdb4ff;
-  background: linear-gradient(90deg, #cdb4ff, #a8e6ff, #a6f2d2);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.links-card__url {
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  direction: ltr;
-  unicode-bidi: isolate;
-}
-
-.links-card__item:hover .links-card__url,
-.links-card__item:focus-visible .links-card__url {
-  color: #c4f5e1;
-}
-
-@media (max-width: 440px) {
-  .links-card__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .links-card__item {
-    min-height: 4.75rem;
-  }
-}
-
-/* Footer */
+/* Footer: on the purple, so white. */
 .footer {
   width: 100%;
   max-width: calc(var(--max-width) + var(--space-md) * 2);
@@ -542,44 +289,21 @@ main {
 }
 
 .footer p {
-  font-family: var(--font-serif);
-  font-size: 1.125rem;
-  font-style: italic;
-  color: var(--text-muted);
-  letter-spacing: 0.04em;
+  font-size: 0.95rem;
+  color: var(--text);
 }
 
 .footer a {
-  color: var(--text-muted);
+  color: var(--text);
   text-decoration: underline;
-  text-decoration-color: var(--accent-dim);
+  text-decoration-color: rgba(255, 255, 255, 0.45);
   text-underline-offset: 3px;
-  transition: color var(--transition), text-decoration-color var(--transition);
+  transition: text-decoration-color var(--transition);
 }
 
 .footer a:hover,
 .footer a:focus-visible {
-  color: var(--accent);
-  text-decoration-color: var(--accent);
-}
-
-/* Phones: a door's name sits above its line instead of squeezing beside it. */
-@media (max-width: 440px) {
-  .door {
-    grid-template-columns: 1fr;
-    gap: 0.25rem;
-  }
-
-  main {
-    padding-inline: var(--space-sm);
-  }
-}
-
-.door:focus-visible,
-.contact__list a:focus-visible,
-.socials__list a:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
+  text-decoration-color: var(--text);
 }
 
 @media (min-width: 768px) {
@@ -588,7 +312,8 @@ main {
   }
 
   main {
-    gap: var(--space-xl);
+    padding: var(--space-lg) 2.5rem;
+    gap: var(--space-lg);
   }
 }
 
@@ -602,45 +327,4 @@ main {
   *::after {
     transition-duration: 0.01ms !important;
   }
-}
-
-/* Event register button (overrides Luma embed default look) */
-.event__cta { margin-top: var(--space-sm); }
-.event a.event__btn {
-  display: inline-block;
-  padding: 0.7rem 1.5rem;
-  border: 1px solid var(--accent-dim);
-  border-radius: 12px;
-  background: var(--ink-soft);
-  color: var(--accent-warm);
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 500;
-  text-decoration: none;
-  box-shadow: none;
-  transition: border-color var(--transition), background var(--transition);
-}
-.event a.event__btn:hover,
-.event a.event__btn:focus-visible {
-  border-color: var(--accent);
-  background: var(--ink-muted);
-  color: var(--accent);
-  box-shadow: none;
-}
-
-/* Solana (the default theme), as on solana.com: black, dark-grey cards,
-   white titles, grey text. */
-html[data-theme="solana"] body {
-  /* Purple and green as a dim glow at the foot of the page, the way
-     solana.com lights its globe, never as text or button colour. */
-  background-image:
-    radial-gradient(ellipse 140% 22% at 50% 100%, rgba(67, 10, 123, 0.55), transparent 72%),
-    radial-gradient(ellipse 55% 14% at 0% 97%, rgba(41, 85, 52, 0.38), transparent 75%),
-    radial-gradient(ellipse 55% 14% at 100% 97%, rgba(41, 85, 52, 0.3), transparent 75%);
-}
-html[data-theme="solana"] .hero__brand {
-  background: linear-gradient(90deg, #a463ff, #14f195);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Who runs elghaly and what we build. Founded 2022 by Wyndham Heaven, based in Dubai, UAE.">
-  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Who runs elghaly and what we build. Founded 2022 by Wyndham Heaven.">
+  <meta name="theme-color" content="#352373">
   <title>About · elghaly</title>
   <link rel="canonical" href="https://elghaly.dev/about.html">
   <!-- Google tag (gtag.js) — elghaly.dev GA4 + Consent Mode v2 (free, self-hosted) -->
@@ -113,13 +113,15 @@
       right: 0;
       bottom: 0;
       padding: 0.85rem 1rem calc(0.85rem + env(safe-area-inset-bottom, 0px));
-      background: #1c1b21;
-      border-top: 1px solid rgba(153, 69, 255, 0.34);
-      color: #f4f4f7;
-      font-family: "Outfit", system-ui, sans-serif;
+      background: #0d0b1f;
+      border-top: 1px solid #1c1838;
+      color: #ffffff;
+      /* System font: the banner is up before the web font arrives, and
+         a font swap would re-wrap it and move its top edge. */
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
       font-size: 0.95rem;
       line-height: 1.5;
-      box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 -12px 32px rgba(16, 10, 58, 0.45);
     }
     #elghaly-consent .ec-inner {
       max-width: 40rem;
@@ -133,7 +135,7 @@
     #elghaly-consent .ec-text {
       flex: 1 1 16rem;
       margin: 0;
-      color: #9ab3ad;
+      color: #b9b3e6;
     }
     #elghaly-consent .ec-text a {
       color: #ffffff;
@@ -147,41 +149,47 @@
     #elghaly-consent .ec-btn {
       appearance: none;
       cursor: pointer;
+      min-height: 44px;
       padding: 0.55rem 1.15rem;
-      border-radius: 12px;
-      border: 1px solid #ffffff;
+      border-radius: 999px;
+      border: 1px solid #2e2856;
       font: inherit;
-      font-weight: 500;
-      letter-spacing: 0.04em;
+      font-weight: 600;
       transition: background 0.25s ease, color 0.25s ease;
     }
     #elghaly-consent .ec-btn--primary {
-      background: #ffffff;
-      color: #000000;
+      background: #f5c542;
+      border-color: #f5c542;
+      color: #1a1405;
     }
     #elghaly-consent .ec-btn--primary:hover,
     #elghaly-consent .ec-btn--primary:focus-visible {
-      background: transparent;
-      color: #ffffff;
+      background: #ffd45e;
     }
     #elghaly-consent .ec-btn--ghost {
-      background: transparent;
+      background: #17142f;
       color: #ffffff;
     }
     #elghaly-consent .ec-btn--ghost:hover,
     #elghaly-consent .ec-btn--ghost:focus-visible {
-      background: rgba(153, 69, 255, 0.34);
-      color: #e8fbf6;
+      background: #201c3e;
     }
     #elghaly-consent .ec-btn:focus-visible {
       outline: 2px solid #ffffff;
       outline-offset: 3px;
     }
   </style>
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="css/style.css?v=11">
+  <link rel="icon" href="/favicon.ico?v=e1" sizes="any">
+  <link rel="icon" href="/favicon.svg?v=e1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=e1">
+  <link rel="manifest" href="/site.webmanifest?v=e1">
+  <meta name="apple-mobile-web-app-title" content="elghaly">
+  <!-- The fonts the first screen is set in, fetched with the stylesheet so
+       the text does not re-flow when they arrive. -->
+  <link rel="preload" href="/fonts/outfit-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/outfit-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/cinzel-500-wordmark.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css?v=13">
   <style>
     .policy p + p, .policy ul + p { margin-top: .75rem; }
     .policy ul { max-width: 32rem; margin: .5rem auto 0; padding-left: 1.2rem; text-align: left; color: var(--text-muted); line-height: 1.7; }
@@ -203,15 +211,15 @@
   <main class="policy">
     <section class="section">
       <h2 class="section__label">Who we are</h2>
-      <p class="build__text"><strong>elghaly</strong> was founded in 2022 by Wyndham Heaven, who runs it day to day. We are based in Dubai, UAE, and have built software under the elghaly name since 2022.</p>
+      <p class="build__text"><strong>elghaly</strong> was founded in 2022 by Wyndham Heaven, who runs it day to day. We have built software under the elghaly name since 2022.</p>
       <p class="build__text">We are a small remote team. Support is by email at <a href="mailto:support@elghaly.dev">support@elghaly.dev</a>.</p>
     </section>
 
     <section class="section">
       <h2 class="section__label">What we build</h2>
       <ul>
-        <li><a href="https://plumb-shop.elghaly.dev/">Plumb</a> — self-hosted desk software for Solana, sold as a one-time seat (Starter US$350, Pro US$699, Source US$1,999). You run it on your own server with your own keys; we never hold your keys or your funds. All seats: <a href="/plumb">elghaly.dev/plumb</a>.</li>
-        <li><a href="https://quay-shop.elghaly.dev/">QUAY</a> — for people who run Solana bots. One-time: a Fee review (US$199, your priority-fee and tip settings read against what your public transactions paid and landed at), a Score report (US$49, a read-only note on one mint) and a Flex card pack (US$29, image cards made from text you send). Monthly: QUAY Land (US$149 a month, a written report every week for one bot: landed vs failed, and where tips are wasted) and Node Watch (US$79 a month, an alert message when an RPC or gRPC feed you name goes quiet). The shop charges one month at a time and does not renew automatically. All plans: <a href="/quay">elghaly.dev/quay</a>.</li>
+        <li><a href="/plumb">Plumb</a> — self-hosted desk software for Solana, sold as a one-time seat (Starter US$350, Pro US$699, Source US$1,999). You run it on your own server with your own keys; we never hold your keys or your funds.</li>
+        <li><a href="/quay">QUAY</a> — for people who run Solana bots. One-time: a Fee review (US$199, your priority-fee and tip settings read against what your public transactions paid and landed at), a Score report (US$49, a read-only note on one mint) and a Flex card pack (US$29, image cards made from text you send). Monthly: QUAY Land (US$149 a month, a written report every week for one bot: landed vs failed, and where tips are wasted) and Node Watch (US$79 a month, an alert message when an RPC or gRPC feed you name goes quiet). The shop charges one month at a time and does not renew automatically.</li>
         <li><a href="https://glance.elghaly.dev/">Glance</a> and <a href="https://stale.elghaly.dev/">stale</a> — free, open-source checks for developers: honest status cards for bots, and how far an RPC endpoint is behind.</li>
         <li><a href="https://iris-35.elghaly.dev/">Iris 35</a> — a free help page for people who think their wallet was compromised. No wallet connect.</li>
       </ul>
@@ -226,7 +234,7 @@
 
   <footer class="footer">
     <p><a href="/">elghaly.dev</a> · <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/refund.html">Refunds</a> · <a href="/delivery.html">Delivery</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></p>
-    <p class="footer__biz">elghaly · Dubai, UAE · <a href="mailto:support@elghaly.dev">support@elghaly.dev</a></p>
+    <p class="footer__biz">elghaly · <a href="mailto:support@elghaly.dev">support@elghaly.dev</a></p>
   <p class="lic-badges"><a href="https://creativecommons.org/licenses/by/4.0/" rel="license">© elghaly · CC BY 4.0</a> <a href="https://github.com/Alarm2024/elghaly/blob/main/LICENSE">Code: MIT</a> <a href="https://github.com/Alarm2024">Open source</a></p>
   </footer>
 <script src="/page-menu.js" defer></script>

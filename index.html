@@ -1,33 +1,47 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="solana">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="We set up Linux servers, build Telegram bots, and make tools for Solana.">
-  <meta name="theme-color" content="#070d20">
+  <meta name="theme-color" content="#352373">
   <title>elghaly — Linux servers, Telegram bots, Solana tools</title>
   <link rel="canonical" href="https://elghaly.dev/">
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <!-- The hero photo is the largest thing on a phone's first screen: ask for
-       it before the long inline styles below are read. -->
-  <link rel="preload" as="image" href="/assets/elghaly-hero-640.webp" imagesrcset="/assets/elghaly-hero-640.webp 640w, /assets/elghaly-hero-1168.webp 1168w" imagesizes="(max-width: 704px) calc(100vw - 4rem), 40rem" fetchpriority="high">
+  <link rel="icon" href="/favicon.ico?v=e1" sizes="any">
+  <link rel="icon" href="/favicon.svg?v=e1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=e1">
+  <link rel="manifest" href="/site.webmanifest?v=e1">
+  <meta name="apple-mobile-web-app-title" content="elghaly">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="elghaly">
   <meta property="og:url" content="https://elghaly.dev/">
   <meta property="og:title" content="elghaly — Linux servers, Telegram bots, Solana tools">
   <meta property="og:description" content="We set up Linux servers, build Telegram bots, and make tools for Solana.">
-  <meta property="og:image" content="https://elghaly.dev/assets/og-elghaly-1200x630.jpg">
+  <meta property="og:image" content="https://elghaly.dev/assets/art/og-home-1200x630.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="elghaly — tools that refuse to guess and show why">
+  <meta property="og:image:alt" content="elghaly — Linux servers, Telegram bots and tools for Solana">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@wyndham350">
   <meta name="twitter:title" content="elghaly — Linux servers, Telegram bots, Solana tools">
   <meta name="twitter:description" content="We set up Linux servers, build Telegram bots, and make tools for Solana.">
-  <meta name="twitter:image" content="https://elghaly.dev/assets/og-elghaly-1200x630.jpg">
+  <meta name="twitter:image" content="https://elghaly.dev/assets/art/og-home-1200x630.jpg">
+
+  <!-- The hero picture is the largest thing on the first screen: fetch it
+       first, the tall cut on phones and the wide one elsewhere. -->
+  <link rel="preload" as="image" type="image/avif" media="(max-width: 699px)" fetchpriority="high"
+        href="/assets/art/hero-tall-600.avif"
+        imagesrcset="/assets/art/hero-tall-600.avif 600w, /assets/art/hero-tall-900.avif 900w" imagesizes="100vw">
+  <link rel="preload" as="image" type="image/avif" media="(min-width: 700px)" fetchpriority="high"
+        href="/assets/art/hero-wide-1280.avif"
+        imagesrcset="/assets/art/hero-wide-1280.avif 1280w, /assets/art/hero-wide-1920.avif 1920w" imagesizes="100vw">
+  <link rel="preload" href="/fonts/outfit-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/outfit-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/outfit-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Cards fade in as they scroll into view; without this class (no
+       script, or an old browser) they are simply shown. -->
+  <script>if ("IntersectionObserver" in window) document.documentElement.className += " js";</script>
 
   <!-- Google tag (gtag.js) — elghaly.dev GA4 + Consent Mode v2 (free, self-hosted) -->
   <script>
@@ -138,13 +152,15 @@
       right: 0;
       bottom: 0;
       padding: 0.85rem 1rem calc(0.85rem + env(safe-area-inset-bottom, 0px));
-      background: #121836;
-      border-top: 1px solid rgba(153, 69, 255, 0.34);
-      color: #f4f4f7;
-      font-family: "Outfit", system-ui, sans-serif;
+      background: #0d0b1f;
+      border-top: 1px solid #1c1838;
+      color: #ffffff;
+      /* System font: the banner is up before the web font arrives, and
+         a font swap would re-wrap it and move its top edge. */
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
       font-size: 0.95rem;
       line-height: 1.5;
-      box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 -12px 32px rgba(16, 10, 58, 0.45);
     }
     #elghaly-consent .ec-inner {
       max-width: 40rem;
@@ -158,7 +174,7 @@
     #elghaly-consent .ec-text {
       flex: 1 1 16rem;
       margin: 0;
-      color: #9ab3ad;
+      color: #b9b3e6;
     }
     #elghaly-consent .ec-text a {
       color: #ffffff;
@@ -172,94 +188,54 @@
     #elghaly-consent .ec-btn {
       appearance: none;
       cursor: pointer;
+      min-height: 44px;
       padding: 0.55rem 1.15rem;
-      border-radius: 12px;
-      border: 1px solid #ffffff;
+      border-radius: 999px;
+      border: 1px solid #2e2856;
       font: inherit;
-      font-weight: 500;
-      letter-spacing: 0.04em;
+      font-weight: 600;
       transition: background 0.25s ease, color 0.25s ease;
     }
     #elghaly-consent .ec-btn--primary {
-      background: #ffffff;
-      color: #000000;
+      background: #f5c542;
+      border-color: #f5c542;
+      color: #1a1405;
     }
     #elghaly-consent .ec-btn--primary:hover,
     #elghaly-consent .ec-btn--primary:focus-visible {
-      background: transparent;
-      color: #ffffff;
+      background: #ffd45e;
     }
     #elghaly-consent .ec-btn--ghost {
-      background: transparent;
+      background: #17142f;
       color: #ffffff;
     }
     #elghaly-consent .ec-btn--ghost:hover,
     #elghaly-consent .ec-btn--ghost:focus-visible {
-      background: rgba(153, 69, 255, 0.34);
-      color: #e8fbf6;
+      background: #201c3e;
     }
     #elghaly-consent .ec-btn:focus-visible {
       outline: 2px solid #ffffff;
       outline-offset: 3px;
     }
   </style>
-
-  <!-- inline:css/style.css — edit css/style.css, then: python3 tools/site-kit/sitekit.py inline index.html css/style.css -->
+  <!-- inline:css/glass.css — edit css/glass.css, then: python3 tools/site-kit/sitekit.py inline index.html css/glass.css -->
   <style>
-/* Wyndham Heaven — ink + midnight teal */
+/* elghaly.dev home, /plumb and /quay: palette 5b.
+   A soft indigo-purple page, solid near-black cards, white bold headings,
+   lavender for the quieter text on cards, and gold for the one thing to
+   press on each screen. Lavender is for cards only: on the purple it is
+   3.2:1, so text on the purple is white (5:1 or more).
+   Phones first: everything below is the iPhone layout, and the
+   min-width queries widen it. Inlined into each page by
+   tools/site-kit/sitekit.py, so this file is the one to edit. */
 
-/* Fonts are served from /fonts (SIL OFL 1.1, see fonts/OFL-*.txt), the latin subset,
-   so no third-party request sits on the critical path. */
-@font-face {
-  /* Cairo (SIL OFL 1.1, fonts/OFL-Cairo.txt) for Arabic letters only: the
-     Latin fonts have none, and a phone's fallback is a plain Times-style
-     face. unicode-range means only a page showing Arabic downloads it. */
-  font-family: "Cairo";
-  font-style: normal;
-  font-weight: 200 1000;
-  font-display: swap;
-  src: url("/fonts/cairo-arabic-wght.woff2") format("woff2");
-  unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC;
-}
-@font-face {
-  /* Cinzel, for the ELGHALY wordmark only: the six capitals it draws (1.3 KB). */
-  font-family: "Cinzel Wordmark";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("/fonts/cinzel-500-wordmark.woff2") format("woff2");
-  unicode-range: U+0041,U+0045,U+0047,U+0048,U+004C,U+0059;
-}
-@font-face {
-  font-family: "Cormorant Garamond";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/cormorant-garamond-latin-400-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-@font-face {
-  font-family: "Cormorant Garamond";
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/cormorant-garamond-latin-400-italic.woff2") format("woff2");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-@font-face {
-  font-family: "Cormorant Garamond";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
+/* Fonts are served from /fonts (SIL OFL 1.1, see fonts/OFL-*.txt). */
 @font-face {
   font-family: "Outfit";
   font-style: normal;
-  font-weight: 300;
+  font-weight: 700;
   font-display: swap;
-  src: url("/fonts/outfit-latin-300-normal.woff2") format("woff2");
+  src: url("/fonts/outfit-latin-700-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face {
@@ -278,295 +254,186 @@
   src: url("/fonts/outfit-latin-500-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
+@font-face {
+  /* Cairo for Arabic letters only; unicode-range means only a page
+     showing Arabic downloads it. */
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url("/fonts/cairo-arabic-wght.woff2") format("woff2");
+  unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC;
+}
+@font-face {
+  /* Cinzel, for the ELGHALY wordmark only: the six capitals it draws. */
+  font-family: "Cinzel Wordmark";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/cinzel-500-wordmark.woff2") format("woff2");
+  unicode-range: U+0041,U+0045,U+0047,U+0048,U+004C,U+0059;
+}
 
 :root {
-  --ink: #070d20;
-  --ink-soft: #111833;
-  --ink-muted: #1a2347;
-  --accent: #ffffff;
-  --accent-warm: #a3a2ad;
-  --accent-dim: rgba(255, 255, 255, 0.12);
+  color-scheme: dark;
+  --bg: #5a4fc0;
+  --bg-2: #6a5fd0;
+  --card: #0d0b1f;
+  --card-2: #17142f;
+  --line: #1c1838;
+  --line-2: #2e2856;
   --text: #ffffff;
-  --text-muted: #a3a2ad;
-  --font-serif: "Cormorant Garamond", "Cairo", Georgia, serif;
-  --font-sans: "Outfit", "Cairo", system-ui, sans-serif;
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 2rem;
-  --space-lg: 3.5rem;
-  --space-xl: 5rem;
-  --max-width: 40rem;
-  --transition: 0.25s ease;
+  --muted: #b9b3e6;
+  --gold: #f5c542;
+  --gold-2: #ffd45e;
+  --gold-ink: #1a1405;
+  --pos: #7be3b0; /* mint: small positive numbers only, and sparingly */
+  --on-bg-line: rgba(255, 255, 255, 0.2);
+  --shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 18px 40px -20px rgba(16, 10, 58, 0.6);
+  --shadow-hi: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 26px 52px -22px rgba(16, 10, 58, 0.75);
+  --radius: 22px;
+  --radius-sm: 20px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --font: "Outfit", "Cairo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --max: 72rem;
+  --gutter: 1rem;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  background: var(--bg);
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: var(--ink);
-  background-image:
-    radial-gradient(ellipse 90% 55% at 50% -12%, rgba(153, 69, 255, 0.16), transparent 60%),
-    radial-gradient(ellipse 65% 45% at 100% 2%, rgba(20, 241, 149, 0.08), transparent 55%),
-    radial-gradient(ellipse 85% 60% at 0% 100%, rgba(68, 99, 255, 0.12), transparent 62%);
-  background-attachment: fixed;
   color: var(--text);
-  font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  font: 400 1.0625rem/1.6 var(--font);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-/* themes.js fills #topbar after first paint; hold its 56px so the hero
-   does not jump down when the theme button arrives. */
-.topbar {
-  min-height: 56px;
+/* The page colour: a fixed layer, because background-attachment: fixed
+   is ignored on iPhone. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, var(--bg), var(--bg-2));
 }
 
-/* Signs */
-.signs {
-  width: 100%;
-  max-width: calc(var(--max-width) + var(--space-md) * 2);
-  padding: var(--space-sm) var(--space-md);
-  text-align: center;
-  font-size: 1rem;
-  letter-spacing: 0.35em;
-  /* Colour emoji draw in their own colours; this sets the text colour
-     around them, which axe measures (accent-dim was 1.97:1 on ink). */
-  color: var(--text-muted);
-  user-select: none;
-}
-
-.signs--top {
-  padding-top: var(--space-md);
-}
-
-.signs--bottom {
-  padding-bottom: var(--space-xs);
-  margin-top: auto;
-}
-
-/* Hero */
-.hero {
-  width: 100%;
-  max-width: calc(var(--max-width) + var(--space-md) * 2);
-  padding: var(--space-lg) var(--space-md) var(--space-md);
-  text-align: center;
-}
-
-.hero__brand {
-  /* inline-block: the Solana gradient spans the letters, not the whole row. */
-  display: inline-block;
-  font-family: "Cinzel Wordmark", var(--font-serif);
-  font-size: clamp(2.25rem, 10vw, 3.5rem);
-  font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: 0.2em;
-  /* Tracking also lands after the last letter; this balances it so the
-     word sits centred. The wordmark is Latin, so it stays left-to-right. */
-  padding-left: 0.2em;
-  direction: ltr;
-  unicode-bidi: isolate;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: var(--space-md);
-}
-
-.hero__brand a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* The padlock banner under the wordmark. width/height on the tag reserve
-   its box before it loads, so nothing below it moves. */
-.hero__art {
+img {
   display: block;
-  width: 100%;
+  max-width: 100%;
   height: auto;
-  margin: 0 auto var(--space-md);
-  border: 1px solid rgba(34, 211, 238, 0.22);
-  border-radius: 20px;
-  box-shadow:
-    0 0 28px -10px rgba(34, 211, 238, 0.45),
-    0 0 36px -12px rgba(168, 85, 247, 0.5);
 }
 
-.hero__title {
-  font-family: var(--font-serif);
-  font-size: clamp(2.6rem, 10vw, 4.25rem);
-  font-weight: 400;
-  font-style: italic;
-  line-height: 1.1;
+a {
   color: var(--text);
-  margin-bottom: var(--space-sm);
+  text-underline-offset: 3px;
 }
 
-/* Home page: the h1 says what we do; the tagline sits under it. */
-.hero__title--lead {
-  font-size: clamp(1.85rem, 6.2vw, 2.9rem);
-  font-style: normal;
-  line-height: 1.15;
-  max-width: 22ch;
-  margin-left: auto;
-  margin-right: auto;
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
-.hero__tagline {
-  font-family: var(--font-serif);
-  font-size: clamp(1.35rem, 4.6vw, 1.85rem);
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.2;
-  color: var(--accent);
-  margin-bottom: var(--space-sm);
-}
-
-.hero__tag {
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.hero__cta {
-  margin-top: var(--space-md);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-sm);
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  min-height: 48px;
-  padding: 0.8rem 1.6rem;
-  border: 1px solid var(--accent);
-  border-radius: 14px;
-  font-family: var(--font-sans);
-  font-size: 1.0625rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  text-decoration: none;
-  transition: background var(--transition), color var(--transition), box-shadow var(--transition), transform var(--transition);
-}
-
-.btn__arrow {
-  transition: transform var(--transition);
-}
-
-.btn:hover .btn__arrow,
-.btn:focus-visible .btn__arrow {
-  transform: translateX(3px);
-}
-
-[dir="rtl"] .btn__arrow {
-  transform: scaleX(-1);
-}
-
-[dir="rtl"] .btn:hover .btn__arrow,
-[dir="rtl"] .btn:focus-visible .btn__arrow {
-  transform: scaleX(-1) translateX(3px);
-}
-
-/* Solana theme: the primary button wears the gradient. #a463ff, not the
-   brand #9945ff, so the dark label clears 4.5:1 at the purple end too. */
-html[data-theme="solana"] .btn {
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
   border-radius: 999px;
-}
-html[data-theme="solana"] .btn--primary {
-  border-color: transparent;
-  background: #ffffff;
-  color: #000000;
-  box-shadow: none;
-}
-html[data-theme="solana"] .btn--primary:hover,
-html[data-theme="solana"] .btn--primary:focus-visible {
-  background: #e4e4e8;
-  color: #000000;
-  box-shadow: none;
-}
-html[data-theme="solana"] .btn--ghost {
-  border-color: var(--accent-dim);
-  background: var(--ink-soft);
-  color: var(--text);
-}
-html[data-theme="solana"] .btn--ghost:hover,
-html[data-theme="solana"] .btn--ghost:focus-visible {
-  border-color: rgba(255, 255, 255, 0.22);
-  background: var(--ink-muted);
-  color: var(--text);
+  background: var(--gold);
+  color: var(--gold-ink);
+  font-weight: 500;
+  text-decoration: none;
 }
 
-/* Chinese has no spaces between words, so a browser breaks a heading after
-   any character ("服务 / 器"). Keep runs whole and break at the spaces and
-   punctuation, with the lines balanced. */
-html[lang|="zh"] .hero__title,
-html[lang|="zh"] .hero__tagline,
-html[lang|="zh"] .section__label {
-  word-break: keep-all;
-  line-break: strict;
-  text-wrap: balance;
+.skip:focus {
+  top: 0.75rem;
 }
 
-/* Arabic has no italics; a browser's slanted fake of Cairo reads as broken. */
-html[lang|="ar"] .hero__title,
-html[lang|="ar"] .hero__tagline,
-html[lang|="ar"] .who__line--accent,
-html[lang|="ar"] .footer p,
-html[lang|="ar"] em,
-html[lang|="ar"] i {
-  font-style: normal;
+/* ── top bar ─────────────────────────────────────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(90, 79, 192, 0.94);
+  border-bottom: 1px solid var(--on-bg-line);
 }
 
-/* Arabic letters join, and tracking pulls them apart into separate glyphs.
-   Nothing that carries translated text keeps its letter-spacing in Arabic. */
-html[lang|="ar"] .hero__tag,
-html[lang|="ar"] .btn,
-html[lang|="ar"] .section__label,
-html[lang|="ar"] .door__name,
-html[lang|="ar"] .contact__list a,
-html[lang|="ar"] .socials__list a,
-html[lang|="ar"] .footer p {
-  letter-spacing: 0;
-}
-
-/* Phones: the two buttons stack, full width. Side by side they only just
-   fit, so the web font arriving (wider than the fallback) wrapped them onto
-   a second line and pushed the page down. */
-@media (max-width: 480px) {
-  .hero__cta {
-    flex-direction: column;
-    align-items: stretch;
-    max-width: 22rem;
-    margin-left: auto;
-    margin-right: auto;
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .nav {
+    background: rgba(90, 79, 192, 0.78);
+    -webkit-backdrop-filter: saturate(160%) blur(16px);
+    backdrop-filter: saturate(160%) blur(16px);
   }
 }
 
-/* Language bar: left of the theme button in the top bar. */
+.nav__in {
+  max-width: var(--max);
+  min-height: 60px;
+  margin: 0 auto;
+  padding: 0.5rem var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand {
+  flex: none;
+  font-family: "Cinzel Wordmark", Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.nav__links {
+  display: none;
+  gap: 0.25rem;
+  margin-inline-start: auto;
+}
+
+.nav__links a {
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.nav__links a:hover,
+.nav__links a[aria-current="page"] {
+  background: var(--card);
+}
+
+.nav__shop {
+  margin-inline-start: auto;
+}
+
 .lang-switch {
   display: flex;
   gap: 4px;
-  flex: 1 1 auto;
   min-width: 0;
+  margin-inline-start: auto;
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -577,443 +444,1172 @@ html[lang|="ar"] .footer p {
 
 .lang-btn {
   flex: none;
-  min-width: 36px;
-  min-height: 32px;
-  padding: 4px 7px;
-  border: 1px solid var(--accent-dim);
-  border-radius: 8px;
+  min-width: 40px;
+  min-height: 36px;
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  border-radius: 999px;
   background: transparent;
-  color: var(--text-muted);
-  font: 600 12px var(--font-sans);
+  color: var(--text);
+  font: 500 12px var(--font);
   cursor: pointer;
 }
 
 .lang-btn[aria-pressed="true"] {
-  color: var(--text);
-  border-color: var(--accent);
-  background: var(--ink-soft);
+  border-color: var(--line);
+  background: var(--card);
 }
 
-.lang-btn:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+/* Phones: the wordmark and all six languages fit on one line at 360px. */
+@media (max-width: 420px) {
+  .nav__in {
+    gap: 0.5rem;
+  }
+
+  .brand {
+    font-size: 0.9rem;
+    letter-spacing: 0.14em;
+  }
+
+  .lang-switch {
+    gap: 2px;
+  }
+
+  .lang-btn {
+    min-width: 34px;
+    padding: 4px 5px;
+  }
 }
 
-[dir="rtl"] .doors__map,
-[dir="rtl"] .door {
-  text-align: right;
-}
-
-.btn--primary {
-  background: var(--accent);
-  color: var(--ink);
-}
-
-.btn--primary:hover,
-.btn--primary:focus-visible {
-  background: transparent;
-  color: var(--accent);
-}
-
-.btn--ghost {
-  background: transparent;
-  color: var(--accent);
-}
-
-.btn--ghost:hover,
-.btn--ghost:focus-visible {
-  background: var(--accent-dim);
-  color: var(--text);
-}
-
-.btn:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-/* Main sections */
-main {
-  width: 100%;
-  max-width: calc(var(--max-width) + var(--space-md) * 2);
-  padding: 0 var(--space-md) var(--space-lg);
+/* Product pages keep their three links on phones too. */
+.nav__links--always {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
 }
 
-.section {
+@media (max-width: 420px) {
+  .nav__links--always a {
+    padding: 0.5rem 0.55rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .nav__links {
+    display: flex;
+  }
+
+  .lang-switch {
+    margin-inline-start: 0.5rem;
+  }
+
+  .nav__links + .nav__shop {
+    margin-inline-start: 0.5rem;
+  }
+}
+
+/* ── buttons ─────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 52px;
+  padding: 0 1.6rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font: 500 1.0625rem/1.1 var(--font);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), background-color 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+
+/* Gold is for the one thing to press on each screen. */
+.btn--primary {
+  background: var(--gold);
+  color: var(--gold-ink);
+  font-weight: 700;
+  box-shadow: 0 12px 26px -14px rgba(26, 20, 5, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.btn--primary:hover {
+  background: var(--gold-2);
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px -14px rgba(26, 20, 5, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn--dark {
+  background: var(--card);
+  border-color: var(--line);
+  color: var(--text);
+  box-shadow: 0 12px 26px -16px rgba(16, 10, 58, 0.7);
+}
+
+.btn--dark:hover {
+  background: var(--card-2);
+  border-color: var(--line-2);
+  transform: translateY(-1px);
+}
+
+/* On a card, a dark button steps up one shade so it still reads. */
+.card .btn--dark {
+  background: var(--card-2);
+  border-color: var(--line-2);
+  box-shadow: none;
+}
+
+.card .btn--dark:hover {
+  background: #201c3e;
+  border-color: #3b3470;
+}
+
+.btn--sm {
+  min-height: 40px;
+  padding: 0 1rem;
+  font-size: 0.95rem;
+}
+
+.btn__arrow {
+  transition: transform 0.25s var(--ease);
+}
+
+.btn:hover .btn__arrow {
+  transform: translateX(3px);
+}
+
+[dir="rtl"] .btn__arrow {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .btn:hover .btn__arrow {
+  transform: scaleX(-1) translateX(3px);
+}
+
+/* ── hero ────────────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 2.75rem var(--gutter) 3rem;
   text-align: center;
 }
 
-.section__label {
-  font-family: var(--font-serif);
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: var(--space-sm);
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
 }
 
-/* Who */
-.who__line {
-  font-family: var(--font-serif);
-  font-size: clamp(1.6rem, 6vw, 2.1rem);
+.hero__bg picture {
+  display: block;
+  height: 100%;
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: drift 28s ease-in-out infinite alternate;
+  transform-origin: 70% 30%;
+}
+
+/* Fade the picture out at the bottom, so the hero melts into the page
+   colour behind it with no edge, and lay a veil of the page colour over it
+   so white words stay readable over any part of the picture. */
+.hero__bg {
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+}
+
+.hero__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(90, 79, 192, 0.2) 0%, rgba(90, 79, 192, 0.45) 60%);
+}
+
+.hero__in {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.signs {
+  margin: 0 0 0.9rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.35em;
+  color: var(--text);
+  user-select: none;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px rgba(245, 197, 66, 0.6);
+}
+
+.hero__title {
+  margin: 1rem auto 0.9rem;
+  max-width: 21ch;
+  font-size: clamp(2.15rem, 8vw, 4.1rem);
+  font-weight: 700;
+  line-height: 1.07;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.hero__sub {
+  max-width: 34rem;
+  margin: 0 auto;
+  color: var(--text);
+  font-size: clamp(1.08rem, 3.8vw, 1.3rem);
   font-weight: 400;
-  line-height: 1.3;
+}
+
+.hero__cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 22rem;
+  margin: 1.75rem auto 0;
+}
+
+.hero__shot {
+  max-width: 46rem;
+  margin: 2.5rem auto 0;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--card);
+  box-shadow: 0 30px 70px -30px rgba(16, 10, 58, 0.8);
+}
+
+.hero__shot img {
+  width: 100%;
+  border-radius: 18px;
+}
+
+.hero__ask {
+  display: flex;
+  justify-content: center;
+  min-height: 46px;
+  margin: 1.5rem 0 0;
+}
+
+/* page-menu.js draws a see-through button; here it is a near-black
+   secondary button like the others. Its panel takes the colour of the
+   page behind it from a script, hence the !important. */
+.hero__ask .pm {
+  border-color: var(--line);
+  background: var(--card);
+  color: var(--text);
+  box-shadow: 0 12px 26px -16px rgba(16, 10, 58, 0.7);
+}
+
+.hero__ask .pm-more {
+  border-inline-start-color: var(--line-2);
+}
+
+.hero__ask .pm-panel {
+  border-color: var(--line);
+  background: var(--card) !important;
   color: var(--text);
 }
 
-.who__line--accent {
-  font-style: italic;
-  color: var(--accent-warm);
-  margin-top: var(--space-xs);
+@media (min-width: 560px) {
+  .hero__cta {
+    flex-direction: row;
+    justify-content: center;
+    max-width: none;
+  }
 }
 
-/* Build */
-.build__text {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: var(--text-muted);
-  max-width: 32rem;
-  margin-inline: auto;
+@media (min-width: 900px) {
+  .hero {
+    padding: 5rem var(--gutter) 4rem;
+  }
 }
 
-/* Doors — map, not list */
-.doors__map {
+/* Page heroes (/plumb, /quay): words on the left, picture on the right. */
+.phero {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 2.5rem var(--gutter) 1rem;
+  display: grid;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+.phero__title {
+  margin: 0.9rem 0 0.75rem;
+  font-size: clamp(2.6rem, 11vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.phero__sub {
+  margin: 0;
+  max-width: 34rem;
+  color: var(--text);
+  font-size: clamp(1.1rem, 3.9vw, 1.3rem);
+  font-weight: 400;
+}
+
+.phero__cta {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  max-width: 36rem;
-  margin-inline: auto;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.phero__art {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  aspect-ratio: 16 / 10;
+  background: var(--card);
+  box-shadow: var(--shadow-hi);
+}
+
+.phero__art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 900px) {
+  .phero {
+    grid-template-columns: 1.05fr 1fr;
+    padding-top: 4.5rem;
+  }
+}
+
+/* ── sections and cards ──────────────────────────────────────────────── */
+.section {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 3rem var(--gutter);
+}
+
+.section__head {
+  max-width: 42rem;
+  margin: 0 auto 1.75rem;
+  text-align: center;
+}
+
+.section--start .section__head {
+  margin-inline: 0;
   text-align: start;
 }
 
-.door {
-  display: grid;
-  grid-template-columns: 6rem 1fr;
-  gap: 0.35rem var(--space-sm);
-  align-items: baseline;
-  padding: 1.1rem 1.25rem;
-  border: 1px solid var(--accent-dim);
-  border-radius: 12px;
-  background: var(--ink-soft);
+.kicker {
+  margin: 0 0 0.4rem;
   color: var(--text);
-  text-decoration: none;
-  transition:
-    border-color var(--transition),
-    background var(--transition);
-}
-
-.door:hover,
-.door:focus-visible {
-  border-color: var(--accent);
-  background: var(--ink-muted);
-  outline: none;
-}
-
-.door__name {
-  font-family: var(--font-serif);
-  font-size: 1.6rem;
-  line-height: 1.1;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--accent-warm);
-}
-
-.doors__intro {
-  margin-bottom: var(--space-md);
-}
-
-.door__desc {
-  font-size: 1rem;
-  line-height: 1.55;
-  color: var(--text-muted);
-}
-
-.door__row {
-  display: block;
-}
-
-.door__row + .door__row {
-  margin-top: 0.2rem;
-}
-
-.door__row b {
+  font-size: 0.8rem;
   font-weight: 500;
-  color: var(--accent-warm);
-  margin-inline-end: 0.35rem;
-}
-
-.door:hover .door__name,
-.door:focus-visible .door__name {
-  color: var(--accent);
-}
-
-.door:hover .door__desc,
-.door:focus-visible .door__desc {
-  color: var(--text);
-}
-
-/* Contact */
-.contact__list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-}
-
-.contact__list a {
-  font-size: 1.0625rem;
-  color: var(--text-muted);
-  text-decoration: underline;
-  text-decoration-color: var(--accent-dim);
-  text-underline-offset: 3px;
-  letter-spacing: 0.02em;
-  transition: color var(--transition);
-}
-
-.contact__list a:hover,
-.contact__list a:focus-visible {
-  color: var(--accent);
-  text-decoration-color: var(--accent);
-  outline: none;
-}
-
-.contact__mail {
-  margin-top: var(--space-sm);
-}
-
-/* Socials */
-.socials__list {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-sm) var(--space-md);
-}
-
-.socials__list a {
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+}
+
+.section__title {
+  margin: 0;
+  font-size: clamp(1.65rem, 5.6vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.section__lead {
+  margin: 0.75rem 0 0;
   color: var(--text);
-  text-decoration: none;
-  padding-bottom: 2px;
-  border-bottom: 1px solid transparent;
-  transition:
-    color var(--transition),
-    border-color var(--transition);
 }
 
-.socials__list a:hover,
-.socials__list a:focus-visible {
-  color: var(--accent);
-  border-bottom-color: var(--accent-dim);
-  outline: none;
+/* On a card the quieter words are lavender. */
+.card .kicker,
+.card .section__lead {
+  color: var(--muted);
 }
 
-/* Links card: the links we hand out everywhere (site, Instagram,
-   Facebook, TikTok). Dark cards with soft Solana tones: a faint
-   purple-to-green border and a gentle glow on hover, never neon.
-   Two across on wide screens, one per row on phones. */
-.links-card__grid {
-  list-style: none;
+.grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-sm);
-  max-width: 36rem;
-  margin-inline: auto;
+  gap: 1rem;
 }
 
-.links-card__grid > li:last-child:nth-child(odd) {
-  grid-column: 1 / -1;
+@media (min-width: 640px) {
+  .grid--2,
+  .grid--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-.links-card__item {
+@media (min-width: 960px) {
+  .grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .section {
+    padding-block: 4.5rem;
+  }
+}
+
+.card {
+  position: relative;
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  text-decoration: none;
+  transition: transform 0.4s var(--ease), border-color 0.4s, box-shadow 0.4s;
+}
+
+a.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-2);
+  box-shadow: var(--shadow-hi);
+}
+
+a.card:focus-visible {
+  border-radius: var(--radius);
+}
+
+.card__media {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+
+.card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+
+a.card:hover .card__media img {
+  transform: scale(1.035);
+}
+
+.card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1.2rem 1.3rem 1.35rem;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.card__text {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.card__rows {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.card__rows b {
+  margin-inline-end: 0.35rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.card__more {
+  margin-top: auto;
+  padding-top: 0.6rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.card--feature .card__title {
+  font-size: 1.6rem;
+}
+
+.grid--more {
+  margin-top: 1rem;
+}
+
+.panel__sub {
+  margin-top: 1.25rem;
+}
+
+/* The Luma button: the Luma script styles .luma-checkout--button, and
+   this keeps it in the page's own look. */
+.event__cta {
+  margin: 0;
+  align-self: center;
+}
+
+.event a.event__btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.2rem;
-  min-height: 5.5rem;
-  padding: 1rem 1.25rem;
-  border: 1px solid transparent;
-  border-radius: 12px;
-  /* Inner fill (dark card + a whisper of tint), then the gradient that
-     shows only through the transparent 1px border. */
-  background:
-    linear-gradient(135deg, rgba(153, 69, 255, 0.07), rgba(20, 241, 149, 0.04)) padding-box,
-    linear-gradient(var(--ink-soft), var(--ink-soft)) padding-box,
-    linear-gradient(135deg, rgba(153, 69, 255, 0.45), rgba(0, 194, 255, 0.3), rgba(20, 241, 149, 0.4)) border-box;
+  min-height: 52px;
+  padding: 0 1.6rem;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: var(--card-2);
   color: var(--text);
+  font: 500 1.0625rem/1.1 var(--font);
   text-decoration: none;
-  transition:
-    box-shadow var(--transition),
-    background var(--transition);
+  box-shadow: none;
 }
 
-.links-card__item:hover,
-.links-card__item:focus-visible {
-  background:
-    linear-gradient(135deg, rgba(153, 69, 255, 0.1), rgba(20, 241, 149, 0.06)) padding-box,
-    linear-gradient(var(--ink-muted), var(--ink-muted)) padding-box,
-    linear-gradient(135deg, rgba(153, 69, 255, 0.7), rgba(0, 194, 255, 0.5), rgba(20, 241, 149, 0.65)) border-box;
-  box-shadow:
-    0 0 18px -6px rgba(153, 69, 255, 0.35),
-    0 0 22px -8px rgba(20, 241, 149, 0.25);
-  outline: none;
+.event a.event__btn:hover {
+  background: #201c3e;
+  border-color: #3b3470;
 }
 
-.links-card__item:focus-visible {
-  outline: 2px solid rgba(20, 241, 149, 0.6);
-  outline-offset: 3px;
+/* Links: a picture or a letter, the name, and the address. */
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.links-card__name {
-  font-family: var(--font-serif);
-  font-size: 1.45rem;
-  line-height: 1.15;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  /* Pastel purple to pastel green; plain colour first for old browsers. */
-  color: #cdb4ff;
-  background: linear-gradient(90deg, #cdb4ff, #a8e6ff, #a6f2d2);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
 }
 
-.links-card__url {
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
+.link__thumb {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  object-fit: cover;
+  background: var(--card-2);
+}
+
+/* A letter on a small tile of the page purple: white on #5a4fc0 is 6.3:1. */
+.link__thumb--letter {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(160deg, var(--bg-2), var(--bg));
+  color: var(--text);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.link__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.link__name {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.link__url {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.875rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   direction: ltr;
   unicode-bidi: isolate;
 }
 
-.links-card__item:hover .links-card__url,
-.links-card__item:focus-visible .links-card__url {
-  color: #c4f5e1;
+[dir="rtl"] .link__url {
+  text-align: right;
 }
 
-/* Each card: its picture at the start, then name and address. */
-.links-card__item {
-  flex-direction: row;
-  justify-content: flex-start;
-  gap: 0.9rem;
-  text-align: start;
+/* The two shops: small square tiles under the links, secondary on
+   purpose: a small heading, no shadow, a smaller lavender label on the
+   card, and one short white line under each tile (white on the purple
+   is 5:1 or more). */
+.shops {
+  margin-top: 1.75rem;
+  text-align: center;
 }
 
-.links-card__text {
+.shops__title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.shop-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 10.5rem));
+  justify-content: center;
+  gap: 0.75rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shop {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  min-width: 0;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.links-card__thumb {
-  flex: none;
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  object-fit: cover;
-  box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.3);
+.shop__note {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.8rem;
+  line-height: 1.35;
 }
 
-/* Iris, Stale and Glance have no picture: a tile with the first letter,
-   in the same gradient border as the cards, so every row lines up. */
-.links-card__thumb--letter {
+.shop-tile {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid transparent;
-  box-shadow: none;
-  background:
-    linear-gradient(135deg, rgba(34, 211, 238, 0.16), rgba(168, 85, 247, 0.2)) padding-box,
-    linear-gradient(var(--ink), var(--ink)) padding-box,
-    linear-gradient(135deg, rgba(34, 211, 238, 0.6), rgba(168, 85, 247, 0.6)) border-box;
-  font-family: var(--font-serif);
-  font-size: 1.6rem;
-  font-weight: 600;
-  line-height: 1;
+  gap: 0.45rem;
+  width: 6.5rem;
+  aspect-ratio: 1 / 1;
+  padding: 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: border-color 0.25s, color 0.25s;
+}
+
+.shop-tile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.shop-tile:hover {
+  border-color: var(--line-2);
   color: var(--text);
 }
 
-@media (max-width: 440px) {
-  .links-card__grid {
-    grid-template-columns: 1fr;
-  }
+/* About + contact panel. */
+.panel {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem 1.35rem;
+}
 
-  .links-card__item {
-    min-height: 4.75rem;
-  }
+.panel p {
+  margin: 0;
+}
 
-  .links-card__thumb {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
+.panel .section__title + p,
+.panel .kicker + .section__title {
+  margin-top: 0.6rem;
+}
+
+.panel .card__title + p {
+  margin-top: 0.4rem;
+}
+
+.panel__lead {
+  font-size: clamp(1.2rem, 4.2vw, 1.5rem);
+  line-height: 1.35;
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 760px) {
+  .panel {
+    grid-template-columns: 1.3fr 1fr;
+    padding: 2rem;
   }
 }
 
-/* Footer */
-.footer {
+/* Plan table: rows of glass on phones, a real table from 700px. */
+.plans {
   width: 100%;
-  max-width: calc(var(--max-width) + var(--space-md) * 2);
-  padding: var(--space-sm) var(--space-md) var(--space-lg);
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.plans caption {
+  padding: 0 0 0.75rem;
+  color: var(--text);
+  font-size: 0.95rem;
+  text-align: start;
+}
+
+.plans th,
+.plans td {
+  padding: 1rem 1.1rem;
+  text-align: start;
+  vertical-align: top;
+}
+
+.plans thead th {
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.plans tbody th {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.plans td {
+  color: var(--muted);
+}
+
+.price {
+  color: var(--text);
+  font-size: 1.25rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.price small {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.plans tbody tr {
+  background: var(--card);
+}
+
+@media (max-width: 699px) {
+  .plans thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .plans,
+  .plans tbody,
+  .plans tr,
+  .plans th,
+  .plans td {
+    display: block;
+  }
+
+  .plans tbody tr {
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .plans caption {
+    display: block;
+  }
+
+  .plans tbody th {
+    padding-bottom: 0.25rem;
+  }
+
+  .plans td {
+    padding-top: 0.25rem;
+  }
+
+  .plans td.plans__price {
+    padding-top: 0;
+  }
+}
+
+@media (min-width: 700px) {
+  .plans tbody th,
+  .plans tbody td {
+    border-top: 1px solid var(--line);
+  }
+
+  .plans tbody tr:first-child th {
+    border-start-start-radius: var(--radius);
+  }
+
+  .plans tbody tr:first-child td:last-child {
+    border-start-end-radius: var(--radius);
+  }
+
+  .plans tbody tr:last-child th {
+    border-end-start-radius: var(--radius);
+  }
+
+  .plans tbody tr:last-child td:last-child {
+    border-end-end-radius: var(--radius);
+  }
+
+  .plans tbody tr:last-child th,
+  .plans tbody tr:last-child td {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .plans tbody th:first-child {
+    border-inline-start: 1px solid var(--line);
+  }
+
+  .plans tbody td:last-child {
+    border-inline-end: 1px solid var(--line);
+    text-align: end;
+  }
+}
+
+.note {
+  margin: 1rem 0 0;
+  color: var(--text);
+  font-size: 0.98rem;
+}
+
+/* Who it is for, and delivery steps. */
+.ticks,
+.steps {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ticks li {
+  position: relative;
+  padding: 1rem 1.1rem 1rem 3rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.ticks li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 1.1rem;
+  top: 1.35rem;
+  width: 14px;
+  height: 8px;
+  border-left: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+  transform: rotate(-45deg);
+}
+
+[dir="rtl"] .ticks li {
+  padding: 1rem 3rem 1rem 1.1rem;
+}
+
+.steps {
+  counter-reset: step;
+}
+
+.steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: 0.9rem;
+  align-items: start;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.steps li::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: rgba(245, 197, 66, 0.14);
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.steps b {
+  display: block;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.steps span {
+  color: var(--muted);
+}
+
+@media (min-width: 760px) {
+  .ticks {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* The store: one small, plain link under the plan table. Our page is
+   where the product lives; the store is only where you pay. */
+.store {
+  margin: 1rem 0 0;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.store a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-inline-start: 0.25rem;
+  padding: 0 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.store a::after {
+  content: "\2197";
+  margin-inline-start: 0.4rem;
+  color: var(--muted);
+}
+
+.store a:hover {
+  background: var(--card-2);
+  border-color: var(--line-2);
+}
+
+/* What it is: the lead paragraphs, then four small facts. */
+.section__body {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.section__body .section__lead {
+  margin: 0;
+}
+
+@media (min-width: 960px) {
+  .grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 640px) and (max-width: 959px) {
+  .grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* FAQ: native details/summary, so it works with no script. */
+.faq {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.faq details {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 52px;
+  padding: 0.8rem 1.1rem;
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  flex: none;
+  color: var(--muted);
+  font-size: 1.4rem;
+  line-height: 1;
+  transition: transform 0.25s var(--ease);
+}
+
+.faq details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq details p {
+  margin: 0;
+  padding: 0 1.1rem 1.1rem;
+  color: var(--muted);
+}
+
+.risk {
+  margin: 0;
+  max-width: 46rem;
+  color: var(--text);
+}
+
+/* ── footer ──────────────────────────────────────────────────────────── */
+.footer {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 2.5rem var(--gutter) 3rem;
+  border-top: 1px solid var(--on-bg-line);
+  color: var(--text);
+  font-size: 0.95rem;
   text-align: center;
 }
 
 .footer p {
-  font-family: var(--font-serif);
-  font-size: 1.125rem;
-  font-style: italic;
-  color: var(--text-muted);
-  letter-spacing: 0.04em;
+  margin: 0.5rem 0;
 }
 
 .footer a {
-  color: var(--text-muted);
+  color: var(--text);
   text-decoration: underline;
-  text-decoration-color: var(--accent-dim);
-  text-underline-offset: 3px;
-  transition: color var(--transition), text-decoration-color var(--transition);
+  text-decoration-color: rgba(255, 255, 255, 0.45);
 }
 
-.footer a:hover,
-.footer a:focus-visible {
-  color: var(--accent);
-  text-decoration-color: var(--accent);
+.footer a:hover {
+  text-decoration-color: var(--text);
 }
 
-/* Phones: a door's name sits above its line instead of squeezing beside it. */
-@media (max-width: 440px) {
-  .door {
-    grid-template-columns: 1fr;
-    gap: 0.25rem;
-  }
+.footer__nav a {
+  display: inline-block;
+  padding: 0.35rem 0.25rem;
+}
 
-  main {
-    padding-inline: var(--space-sm);
+.lic-badges {
+  margin: 0.75rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+.lic-badges > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  margin: 0.2rem 0.15rem;
+  padding: 0 0.6rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+/* ── language details ────────────────────────────────────────────────── */
+/* Chinese has no spaces between words; keep runs whole. */
+html[lang|="zh"] .hero__title,
+html[lang|="zh"] .section__title,
+html[lang|="zh"] .card__title {
+  word-break: keep-all;
+  line-break: strict;
+}
+
+/* Arabic letters join, and tracking pulls them apart. */
+html[lang|="ar"] .kicker,
+html[lang|="ar"] .hero__title,
+html[lang|="ar"] .section__title,
+html[lang|="ar"] .btn {
+  letter-spacing: 0;
+}
+
+/* ── motion ──────────────────────────────────────────────────────────── */
+@keyframes drift {
+  from {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.1) translate3d(-1.5%, 1%, 0);
   }
 }
 
-.door:focus-visible,
-.contact__list a:focus-visible,
-.socials__list a:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-@media (min-width: 768px) {
-  .hero {
-    padding-top: var(--space-xl);
-  }
+.rise {
+  animation: rise 0.8s var(--ease) both;
+}
 
-  main {
-    gap: var(--space-xl);
-  }
+.rise--2 {
+  animation-delay: 0.08s;
+}
+
+.rise--3 {
+  animation-delay: 0.16s;
+}
+
+.rise--4 {
+  animation-delay: 0.24s;
+}
+
+/* Cards fade up as they scroll in. Only when the script has run (it adds
+   .js to <html>), so with no script nothing is ever hidden. */
+.js .reveal {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease), border-color 0.4s, box-shadow 0.4s;
+}
+
+.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.js a.card.reveal.is-in:hover {
+  transform: translateY(-3px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1024,85 +1620,29 @@ main {
   *,
   *::before,
   *::after {
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  a.card:hover,
+  .btn:hover,
+  .js a.card.reveal.is-in:hover {
+    transform: none;
+  }
+
+  a.card:hover .card__media img {
+    transform: none;
   }
 }
-
-/* Event register button (overrides Luma embed default look) */
-.event__cta { margin-top: var(--space-sm); }
-.event a.event__btn {
-  display: inline-block;
-  padding: 0.7rem 1.5rem;
-  border: 1px solid var(--accent-dim);
-  border-radius: 12px;
-  background: var(--ink-soft);
-  color: var(--accent-warm);
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 500;
-  text-decoration: none;
-  box-shadow: none;
-  transition: border-color var(--transition), background var(--transition);
-}
-.event a.event__btn:hover,
-.event a.event__btn:focus-visible {
-  border-color: var(--accent);
-  background: var(--ink-muted);
-  color: var(--accent);
-  box-shadow: none;
-}
-  .footer__biz{margin-top:.4rem;font-size:.85rem}
-
-/* Solana (the default theme), as on solana.com: black, dark-grey cards,
-   white titles, grey text. The base rules above stay for the other themes
-   the switcher offers. */
-html[data-theme="solana"] body {
-  /* Purple and green as a dim glow at the foot of the page, the way
-     solana.com lights its globe, never as text or button colour. */
-  background-image:
-    radial-gradient(ellipse 140% 22% at 50% 100%, rgba(67, 10, 123, 0.55), transparent 72%),
-    radial-gradient(ellipse 55% 14% at 0% 97%, rgba(41, 85, 52, 0.38), transparent 75%),
-    radial-gradient(ellipse 55% 14% at 100% 97%, rgba(41, 85, 52, 0.3), transparent 75%);
-}
-html[data-theme="solana"] .hero__brand {
-  background: linear-gradient(90deg, #a463ff, #14f195);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-html[data-theme="solana"] .hero__tagline {
-  color: var(--text-muted);
-}
-html[data-theme="solana"] .section__label {
-  color: var(--accent-warm);
-}
-/* Cards as on solana.com: dark grey, rounded, white title, grey text. */
-html[data-theme="solana"] .door {
-  border-color: rgba(255, 255, 255, 0.06);
-  border-radius: 20px;
-}
-html[data-theme="solana"] .door:hover,
-html[data-theme="solana"] .door:focus-visible {
-  border-color: rgba(255, 255, 255, 0.18);
-}
-html[data-theme="solana"] .door__name,
-html[data-theme="solana"] .door__row b {
-  color: var(--text);
-}
-html[data-theme="solana"] .door__row span {
-  color: var(--text-muted);
-}
-html[data-theme="solana"] .event a.event__btn {
-  border-radius: 999px;
-  color: var(--text);
-}
-</style>
-  <!-- /inline:css/style.css -->
-  <link rel="preload" href="/fonts/cormorant-garamond-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/outfit-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/cinzel-500-wordmark.woff2" as="font" type="font/woff2" crossorigin>
+  </style>
+  <!-- /inline:css/glass.css -->
   <script type="application/ld+json">
-{
+  {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "elghaly",
@@ -1112,13 +1652,9 @@ html[data-theme="solana"] .event a.event__btn {
       "name": "Wyndham Heaven"
     },
     "email": "support@elghaly.dev",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Dubai",
-      "addressCountry": "AE"
-    },
     "url": "https://elghaly.dev/",
-    "logo": "https://elghaly.dev/apple-touch-icon.png",
+    "logo": "https://elghaly.dev/icon-512.png",
+    "image": "https://elghaly.dev/assets/art/og-home-1200x630.jpg",
     "description": "We set up Linux servers, build Telegram bots, and make tools for Solana.",
     "sameAs": [
       "https://www.linkedin.com/in/wyndhamheaven",
@@ -1128,68 +1664,227 @@ html[data-theme="solana"] .event a.event__btn {
     ]
   }
   </script>
-  <script src="themes.js?v=8" defer></script>
-<style id="lic-badges-css">.lic-badges{margin:.75rem 0 0;font-size:.75rem;line-height:1.2}.lic-badges>a,.lic-badges>span{display:inline-flex;align-items:center;min-height:24px;margin:.2rem .15rem;padding:0 .6rem;border:1px solid currentColor;border-radius:999px;color:inherit;vertical-align:middle}.lic-badges>a{text-decoration:underline;text-underline-offset:2px}.lic-badges>span{text-decoration:none}</style>
 </head>
 <body>
-  <div class="topbar" id="topbar">
-    <div class="lang-switch" id="langs" role="group" aria-label="Language" data-md-skip>
-      <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="true">EN</button>
-      <button type="button" class="lang-btn" data-lang="ar" lang="ar" aria-pressed="false">AR</button>
-      <button type="button" class="lang-btn" data-lang="ru" lang="ru" aria-pressed="false">RU</button>
-      <button type="button" class="lang-btn" data-lang="zh" lang="zh-Hans" aria-pressed="false">中文</button>
-      <button type="button" class="lang-btn" data-lang="de" lang="de" aria-pressed="false">DE</button>
-      <button type="button" class="lang-btn" data-lang="es" lang="es" aria-pressed="false">ES</button>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="nav__in">
+      <a class="brand" href="/" aria-label="elghaly home">elghaly</a>
+      <nav class="nav__links" aria-label="Main">
+        <a href="#products" data-i18n="prod_h">Products</a>
+        <a href="/plumb">Plumb</a>
+        <a href="/quay">QUAY</a>
+        <a href="/contact.html" data-i18n="contact_h">Contact</a>
+      </nav>
+      <div class="lang-switch" id="langs" role="group" aria-label="Language" data-md-skip>
+        <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-btn" data-lang="ar" lang="ar" aria-pressed="false">AR</button>
+        <button type="button" class="lang-btn" data-lang="ru" lang="ru" aria-pressed="false">RU</button>
+        <button type="button" class="lang-btn" data-lang="zh" lang="zh-Hans" aria-pressed="false">中文</button>
+        <button type="button" class="lang-btn" data-lang="de" lang="de" aria-pressed="false">DE</button>
+        <button type="button" class="lang-btn" data-lang="es" lang="es" aria-pressed="false">ES</button>
+      </div>
     </div>
-  </div>
-
-  <div class="signs signs--top" aria-hidden="true">✝️ 🧿 🪬</div>
-
-  <header class="hero">
-    <p class="hero__brand">elghaly</p>
-    <img class="hero__art" src="/assets/elghaly-hero-640.webp"
-         srcset="/assets/elghaly-hero-640.webp 640w, /assets/elghaly-hero-1168.webp 1168w"
-         sizes="(max-width: 704px) calc(100vw - 4rem), 40rem"
-         width="1168" height="784" alt="elghaly — tools that refuse to guess and show why"
-         fetchpriority="high" decoding="async">
-    <div class="page-menu" data-page-menu style="display:flex;justify-content:center;min-height:46px;margin:0 0 .75rem"></div>
-    <h1 class="hero__title hero__title--lead" data-i18n="hero_h1">We set up Linux servers, build Telegram bots, and make tools for Solana</h1>
-    <p class="hero__tagline" data-i18n="hero_tagline">we build what you dream</p>
-    <p class="hero__tag" data-i18n="hero_tag">Wyndham Heaven · Software · Business</p>
-    <p class="hero__cta">
-      <a class="btn btn--primary" href="/contact.html"><span data-i18n="cta_work">Work with us</span><span class="btn__arrow" aria-hidden="true">→</span></a>
-      <a class="btn btn--ghost" href="mailto:support@elghaly.dev"><span data-i18n="cta_email">Email us</span></a>
-    </p>
   </header>
 
-  <main>
-    <section class="section links-card" id="links" aria-labelledby="links-heading">
-      <h2 id="links-heading" class="section__label" data-i18n="links_h">Links</h2>
-      <ul class="links-card__grid">
-        <li><a class="links-card__item" href="https://35.elghaly.dev" rel="noopener noreferrer"><img class="links-card__thumb" src="/assets/35-card-192.webp" width="192" height="192" loading="lazy" decoding="async" alt=""><span class="links-card__text"><span class="links-card__name">35</span><span class="links-card__url">35.elghaly.dev</span></span></a></li>
-        <li><a class="links-card__item" href="https://iris-35.elghaly.dev" rel="noopener noreferrer"><span class="links-card__thumb links-card__thumb--letter" aria-hidden="true">I</span><span class="links-card__text"><span class="links-card__name">Iris</span><span class="links-card__url">iris-35.elghaly.dev</span></span></a></li>
-        <li><a class="links-card__item" href="https://plumb-shop.elghaly.dev/" rel="noopener noreferrer"><img class="links-card__thumb" src="/assets/plumb-card-192.webp" width="192" height="192" loading="lazy" decoding="async" alt=""><span class="links-card__text"><span class="links-card__name" data-i18n="lk_plumb">Plumb shop</span><span class="links-card__url">plumb-shop.elghaly.dev</span></span></a></li>
-        <li><a class="links-card__item" href="https://quay-shop.elghaly.dev/" rel="noopener noreferrer"><img class="links-card__thumb" src="/assets/quay-card-192.webp" width="192" height="192" loading="lazy" decoding="async" alt=""><span class="links-card__text"><span class="links-card__name" data-i18n="lk_quay">Quay shop</span><span class="links-card__url">quay-shop.elghaly.dev</span></span></a></li>
-        <li><a class="links-card__item" href="https://stale.elghaly.dev" rel="noopener noreferrer"><span class="links-card__thumb links-card__thumb--letter" aria-hidden="true">S</span><span class="links-card__text"><span class="links-card__name">Stale</span><span class="links-card__url">stale.elghaly.dev</span></span></a></li>
-        <li><a class="links-card__item" href="https://glance.elghaly.dev" rel="noopener noreferrer"><span class="links-card__thumb links-card__thumb--letter" aria-hidden="true">G</span><span class="links-card__text"><span class="links-card__name">Glance</span><span class="links-card__url">glance.elghaly.dev</span></span></a></li>
-        <li><a class="links-card__item" href="https://elghaly.pro" rel="noopener noreferrer"><img class="links-card__thumb" src="/assets/elghaly-lock-192.webp" width="192" height="192" loading="lazy" decoding="async" alt=""><span class="links-card__text"><span class="links-card__name">Wyndham Heaven</span><span class="links-card__url">elghaly.pro</span></span></a></li>
-      </ul>
-    </section>
-    <section class="section who" aria-labelledby="who-heading">
-      <h2 id="who-heading" class="section__label" data-i18n="who_h">Who</h2>
-      <p class="who__line" data-i18n="who_1">elghaly builds Linux server setups, Telegram bots and Solana developer tools.</p>
-      <p class="who__line who__line--accent" data-i18n="who_2">Founded 2022 by Wyndham Heaven, based in Dubai.</p>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__bg" aria-hidden="true">
+        <!-- ART PLACEHOLDER: hero-wide + hero-tall. Swap with tools/art/build_art.py; prompts in tools/art/PROMPTS.md -->
+        <picture>
+          <source media="(min-width: 700px)" type="image/avif" srcset="/assets/art/hero-wide-1280.avif 1280w, /assets/art/hero-wide-1920.avif 1920w" sizes="100vw">
+          <source media="(min-width: 700px)" type="image/webp" srcset="/assets/art/hero-wide-1280.webp 1280w, /assets/art/hero-wide-1920.webp 1920w" sizes="100vw">
+          <source type="image/avif" srcset="/assets/art/hero-tall-600.avif 600w, /assets/art/hero-tall-900.avif 900w" sizes="100vw">
+          <img src="/assets/art/hero-tall-600.webp" srcset="/assets/art/hero-tall-600.webp 600w, /assets/art/hero-tall-900.webp 900w" sizes="100vw" width="900" height="1200" alt="" fetchpriority="high">
+        </picture>
+      </div>
+      <div class="hero__in">
+        <p class="signs rise" aria-hidden="true">✝️ 🧿 🪬</p>
+        <p class="eyebrow rise" data-i18n="eyebrow">elghaly</p>
+        <h1 id="hero-title" class="hero__title rise rise--2" data-i18n="hero_h1">We set up Linux servers, build Telegram bots, and make tools for Solana</h1>
+        <p class="hero__sub rise rise--3" data-i18n="hero_sub">Tools that refuse to guess, and show why.</p>
+        <div class="hero__cta rise rise--4">
+          <a class="btn btn--primary" href="/contact.html"><span data-i18n="cta_work">Work with us</span><span class="btn__arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn--dark" href="#products" data-i18n="cta_products">See products</a>
+        </div>
+        <figure class="hero__shot rise rise--4">
+          <img src="/assets/elghaly-hero-640.webp?v=5b" srcset="/assets/elghaly-hero-640.webp?v=5b 640w, /assets/elghaly-hero-1168.webp?v=5b 1168w" sizes="(min-width: 780px) 724px, calc(100vw - 46px)" width="1168" height="784" alt="elghaly — tools that refuse to guess and show why" decoding="async">
+        </figure>
+        <div class="hero__ask page-menu" data-page-menu></div>
+      </div>
     </section>
 
-    <section class="section build" aria-labelledby="build-heading">
-      <h2 id="build-heading" class="section__label" data-i18n="build_h">Build</h2>
-      <p class="build__text" data-i18n="build_t">We turn ideas into living systems — software that works, businesses that scale.</p>
+    <section class="section" aria-labelledby="what-heading">
+      <div class="section__head">
+        <h2 id="what-heading" class="section__title" data-i18n="what_h">What we do</h2>
+      </div>
+      <div class="grid grid--3">
+        <article class="card reveal">
+          <div class="card__media">
+            <!-- ART PLACEHOLDER: svc-servers -->
+            <picture>
+              <source type="image/avif" srcset="/assets/art/svc-servers-400.avif 400w, /assets/art/svc-servers-800.avif 800w" sizes="(min-width: 960px) 368px, (min-width: 640px) calc(50vw - 24px), calc(100vw - 32px)">
+              <img src="/assets/art/svc-servers-400.webp" srcset="/assets/art/svc-servers-400.webp 400w, /assets/art/svc-servers-800.webp 800w" sizes="(min-width: 960px) 368px, (min-width: 640px) calc(50vw - 24px), calc(100vw - 32px)" width="800" height="500" alt="" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title" data-i18n="svc_srv_t">Linux servers</h3>
+            <p class="card__text" data-i18n="svc_srv_d">We set up Linux servers that you own and control.</p>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__media">
+            <!-- ART PLACEHOLDER: svc-bots -->
+            <picture>
+              <source type="image/avif" srcset="/assets/art/svc-bots-400.avif 400w, /assets/art/svc-bots-800.avif 800w" sizes="(min-width: 960px) 368px, (min-width: 640px) calc(50vw - 24px), calc(100vw - 32px)">
+              <img src="/assets/art/svc-bots-400.webp" srcset="/assets/art/svc-bots-400.webp 400w, /assets/art/svc-bots-800.webp 800w" sizes="(min-width: 960px) 368px, (min-width: 640px) calc(50vw - 24px), calc(100vw - 32px)" width="800" height="500" alt="" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title" data-i18n="svc_bot_t">Telegram bots</h3>
+            <p class="card__text" data-i18n="svc_bot_d">We build Telegram bots that run on your own server.</p>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__media">
+            <!-- ART PLACEHOLDER: svc-tools -->
+            <picture>
+              <source type="image/avif" srcset="/assets/art/svc-tools-400.avif 400w, /assets/art/svc-tools-800.avif 800w" sizes="(min-width: 960px) 368px, (min-width: 640px) calc(50vw - 24px), calc(100vw - 32px)">
+              <img src="/assets/art/svc-tools-400.webp" srcset="/assets/art/svc-tools-400.webp 400w, /assets/art/svc-tools-800.webp 800w" sizes="(min-width: 960px) 368px, (min-width: 640px) calc(50vw - 24px), calc(100vw - 32px)" width="800" height="500" alt="" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title" data-i18n="svc_tool_t">Solana tools</h3>
+            <p class="card__text" data-i18n="svc_tool_d">We make tools that read Solana data and show how they got each answer.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="products" aria-labelledby="products-heading">
+      <div class="section__head">
+        <h2 id="products-heading" class="section__title" data-i18n="prod_h">Products</h2>
+      </div>
+      <div class="grid grid--2">
+        <a class="card card--feature reveal" href="/plumb">
+          <span class="card__media">
+            <!-- ART PLACEHOLDER: plumb -->
+            <picture>
+              <source type="image/avif" srcset="/assets/art/plumb-400.avif 400w, /assets/art/plumb-800.avif 800w, /assets/art/plumb-1200.avif 1200w" sizes="(min-width: 960px) 560px, (min-width: 640px) calc(50vw - 24px), calc(100vw - 32px)">
+              <img src="/assets/art/plumb-400.webp" srcset="/assets/art/plumb-400.webp 400w, /assets/art/plumb-800.webp 800w, /assets/art/plumb-1200.webp 1200w" sizes="(min-width: 960px) 560px, (min-width: 640px) calc(50vw - 24px), calc(100vw - 32px)" width="1200" height="750" alt="" loading="lazy" decoding="async">
+            </picture>
+          </span>
+          <span class="card__body">
+            <span class="card__title">Plumb</span>
+            <span class="card__rows">
+              <span><b data-i18n="l_problem">Problem</b> <span data-i18n="plumb_p">You want Solana bot software on your own server, controlled from Telegram.</span></span>
+              <span><b data-i18n="l_for">For</b> <span data-i18n="plumb_f">People who run their own Linux server.</span></span>
+              <span><b data-i18n="l_price">Price</b> <span data-i18n="plumb_price">Paid, one-time seats from $350. It ships in dry run: it sends nothing until you change that.</span></span>
+            </span>
+            <span class="card__more"><span data-i18n="see_plans">See plans</span> <span class="btn__arrow" aria-hidden="true">→</span></span>
+          </span>
+        </a>
+        <a class="card card--feature reveal" href="/quay">
+          <span class="card__media">
+            <!-- ART PLACEHOLDER: quay -->
+            <picture>
+              <source type="image/avif" srcset="/assets/art/quay-400.avif 400w, /assets/art/quay-800.avif 800w, /assets/art/quay-1200.avif 1200w" sizes="(min-width: 960px) 560px, (min-width: 640px) calc(50vw - 24px), calc(100vw - 32px)">
+              <img src="/assets/art/quay-400.webp" srcset="/assets/art/quay-400.webp 400w, /assets/art/quay-800.webp 800w, /assets/art/quay-1200.webp 1200w" sizes="(min-width: 960px) 560px, (min-width: 640px) calc(50vw - 24px), calc(100vw - 32px)" width="1200" height="750" alt="" loading="lazy" decoding="async">
+            </picture>
+          </span>
+          <span class="card__body">
+            <span class="card__title">QUAY</span>
+            <span class="card__rows">
+              <span><b data-i18n="l_problem">Problem</b> <span data-i18n="quay_p">You want a second pair of eyes on your Solana bot's fees, tips and setup.</span></span>
+              <span><b data-i18n="l_for">For</b> <span data-i18n="bots_f">People who run Solana bots.</span></span>
+              <span><b data-i18n="l_price">Price</b> <span data-i18n="quay_price">Paid. One-time: a written fee review is $199; other options from $29. Monthly: QUAY Land $149, Node Watch $79.</span></span>
+            </span>
+            <span class="card__more"><span data-i18n="see_plans">See plans</span> <span class="btn__arrow" aria-hidden="true">→</span></span>
+          </span>
+        </a>
+      </div>
+      <div class="grid grid--2 grid--more">
+        <a class="card reveal" href="https://iris-35.elghaly.dev/" rel="noopener noreferrer">
+          <span class="card__body">
+            <span class="card__title">Iris</span>
+            <span class="card__rows">
+              <span><b data-i18n="l_problem">Problem</b> <span data-i18n="iris_p">A message asks for your seed phrase, or something left your wallet and you do not know what you signed.</span></span>
+              <span><b data-i18n="l_for">For</b> <span data-i18n="iris_f">Anyone with a crypto wallet on a phone.</span></span>
+              <span><b data-i18n="l_price">Price</b> <span data-i18n="iris_price">Free. It runs in your browser and sends nothing to us.</span></span>
+            </span>
+          </span>
+        </a>
+        <a class="card reveal" href="https://glance.elghaly.dev/" rel="noopener noreferrer">
+          <span class="card__body">
+            <span class="card__title">Glance</span>
+            <span class="card__rows">
+              <span><b data-i18n="l_problem">Problem</b> <span data-i18n="glance_p">Your bot's status page says everything is fine when it is not.</span></span>
+              <span><b data-i18n="l_for">For</b> <span data-i18n="bots_f">People who run Solana bots.</span></span>
+              <span><b data-i18n="l_price">Price</b> <span data-i18n="oss_price">Free and open source (MIT).</span></span>
+            </span>
+          </span>
+        </a>
+        <a class="card reveal" href="https://stale.elghaly.dev/" rel="noopener noreferrer">
+          <span class="card__body">
+            <span class="card__title">Stale</span>
+            <span class="card__rows">
+              <span><b data-i18n="l_problem">Problem</b> <span data-i18n="stale_p">Your Solana RPC falls behind and nothing tells you by how much.</span></span>
+              <span><b data-i18n="l_for">For</b> <span data-i18n="stale_f">Developers and bot operators who use a Solana RPC.</span></span>
+              <span><b data-i18n="l_price">Price</b> <span data-i18n="oss_price">Free and open source (MIT).</span></span>
+            </span>
+          </span>
+        </a>
+        <a class="card reveal" href="https://35.elghaly.dev/" rel="noopener noreferrer">
+          <span class="card__body">
+            <span class="card__title">35</span>
+            <span class="card__rows">
+              <span><b data-i18n="l_problem">Problem</b> <span data-i18n="d35_p">None for you to buy. This is our own desk, with a public record.</span></span>
+              <span><b data-i18n="l_for">For</b> <span data-i18n="d35_f">Our team.</span></span>
+              <span><b data-i18n="l_price">Price</b> <span data-i18n="d35_price">Nothing for sale.</span></span>
+            </span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="links" aria-labelledby="links-heading">
+      <div class="section__head">
+        <h2 id="links-heading" class="section__title" data-i18n="links_h">Links</h2>
+      </div>
+      <ul class="links grid grid--2">
+        <li><a class="card link reveal" href="https://35.elghaly.dev" rel="noopener noreferrer"><img class="link__thumb" src="/assets/35-card-192.webp?v=5b" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name">35</span><span class="link__url">35.elghaly.dev</span></span></a></li>
+        <li><a class="card link reveal" href="https://iris-35.elghaly.dev" rel="noopener noreferrer"><span class="link__thumb link__thumb--letter" aria-hidden="true">I</span><span class="link__text"><span class="link__name">Iris</span><span class="link__url">iris-35.elghaly.dev</span></span></a></li>
+        <li><a class="card link reveal" href="https://plumb.elghaly.dev" rel="noopener noreferrer"><img class="link__thumb" src="/assets/plumb-card-192.webp?v=5b" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name">Plumb</span><span class="link__url">plumb.elghaly.dev</span></span></a></li>
+        <li><a class="card link reveal" href="https://quay.elghaly.dev" rel="noopener noreferrer"><img class="link__thumb" src="/assets/quay-card-192.webp?v=5b" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name">QUAY</span><span class="link__url">quay.elghaly.dev</span></span></a></li>
+        <li><a class="card link reveal" href="https://stale.elghaly.dev" rel="noopener noreferrer"><span class="link__thumb link__thumb--letter" aria-hidden="true">S</span><span class="link__text"><span class="link__name">Stale</span><span class="link__url">stale.elghaly.dev</span></span></a></li>
+        <li><a class="card link reveal" href="https://glance.elghaly.dev" rel="noopener noreferrer"><span class="link__thumb link__thumb--letter" aria-hidden="true">G</span><span class="link__text"><span class="link__name">Glance</span><span class="link__url">glance.elghaly.dev</span></span></a></li>
+        <li><a class="card link reveal" href="https://elghaly.pro" rel="noopener noreferrer"><img class="link__thumb" src="/assets/elghaly-lock-192.webp?v=5b" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="link__text"><span class="link__name">Wyndham Heaven</span><span class="link__url">elghaly.pro</span></span></a></li>
+      </ul>
+      <div class="shops">
+        <h3 class="shops__title" data-i18n="shop_h">Ready to buy? Checkout here</h3>
+        <ul class="shop-tiles">
+          <li class="shop">
+            <a class="shop-tile" href="https://plumb-shop.elghaly.dev/" rel="noopener noreferrer" aria-describedby="shop-plumb-note"><img src="/assets/plumb-card-192.webp?v=5b" width="40" height="40" alt="" loading="lazy" decoding="async"><span data-i18n="shop_plumb">Plumb shop</span></a>
+            <p class="shop__note" id="shop-plumb-note" data-i18n="shop_plumb_note">Secure checkout, digital delivery by email</p>
+          </li>
+          <li class="shop">
+            <a class="shop-tile" href="https://quay-shop.elghaly.dev/" rel="noopener noreferrer" aria-describedby="shop-quay-note"><img src="/assets/quay-card-192.webp?v=5b" width="40" height="40" alt="" loading="lazy" decoding="async"><span data-i18n="shop_quay">Quay shop</span></a>
+            <p class="shop__note" id="shop-quay-note" data-i18n="shop_quay_note">Secure checkout, digital delivery by email</p>
+          </li>
+        </ul>
+      </div>
     </section>
 
     <section class="section event" id="event" aria-labelledby="event-heading" data-hide-after="2026-10-11T00:00:00+03:00">
-      <h2 id="event-heading" class="section__label" data-i18n="ev_h">Online walk-through: Build Safer on Solana</h2>
-      <p class="build__text" data-i18n="ev_t">Sat Oct 10, 2026 · 16:00–17:00 UTC · online · free</p>
-      <p class="event__cta"><a href="https://luma.com/9s4dyiji?utm_source=elghaly.dev" class="luma-checkout--button event__btn" data-luma-action="checkout" data-luma-event-id="evt-HeNTVErAKqa0LUn" data-luma-utm-source="elghaly.dev" rel="noopener noreferrer" data-i18n="ev_btn">Register on Luma</a></p>
+      <div class="card panel reveal">
+        <div>
+          <p class="kicker" data-i18n="ev_k">Online · free</p>
+          <h2 id="event-heading" class="section__title" data-i18n="ev_h">Online walk-through: Build Safer on Solana</h2>
+          <p class="section__lead" data-i18n="ev_t">Sat Oct 10, 2026 · 16:00–17:00 UTC · online · free</p>
+        </div>
+        <p class="event__cta"><a href="https://luma.com/9s4dyiji?utm_source=elghaly.dev" class="luma-checkout--button event__btn" data-luma-action="checkout" data-luma-event-id="evt-HeNTVErAKqa0LUn" data-luma-utm-source="elghaly.dev" rel="noopener noreferrer" data-i18n="ev_btn">Register on Luma</a></p>
+      </div>
     </section>
     <script>
       // The walk-through is Sat Oct 10 2026, 16:00-17:00 UTC. From Oct 10 21:00 UTC
@@ -1227,86 +1922,34 @@ html[data-theme="solana"] .event a.event__btn {
       })();
     </script>
 
-    <section class="section doors" aria-labelledby="doors-heading">
-      <h2 id="doors-heading" class="section__label" data-i18n="doors_h">Doors</h2>
-      <div class="doors__map">
-        <a class="door" href="https://35.elghaly.dev/" rel="noopener noreferrer">
-          <span class="door__name">35</span>
-          <span class="door__desc">
-            <span class="door__row"><b data-i18n="l_problem">Problem</b> <span data-i18n="d35_p">None for you to buy. This is our own desk, with a public record.</span></span>
-            <span class="door__row"><b data-i18n="l_for">For</b> <span data-i18n="d35_f">Our team.</span></span>
-            <span class="door__row"><b data-i18n="l_price">Price</b> <span data-i18n="d35_price">Nothing for sale.</span></span>
-          </span>
-        </a>
-        <a class="door" href="https://iris-35.elghaly.dev/" rel="noopener noreferrer">
-          <span class="door__name">Iris</span>
-          <span class="door__desc">
-            <span class="door__row"><b data-i18n="l_problem">Problem</b> <span data-i18n="iris_p">A message asks for your seed phrase, or something left your wallet and you do not know what you signed.</span></span>
-            <span class="door__row"><b data-i18n="l_for">For</b> <span data-i18n="iris_f">Anyone with a crypto wallet on a phone.</span></span>
-            <span class="door__row"><b data-i18n="l_price">Price</b> <span data-i18n="iris_price">Free. It runs in your browser and sends nothing to us.</span></span>
-          </span>
-        </a>
-        <a class="door" href="/plumb">
-          <span class="door__name">Plumb</span>
-          <span class="door__desc">
-            <span class="door__row"><b data-i18n="l_problem">Problem</b> <span data-i18n="plumb_p">You want Solana bot software on your own server, controlled from Telegram.</span></span>
-            <span class="door__row"><b data-i18n="l_for">For</b> <span data-i18n="plumb_f">People who run their own Linux server.</span></span>
-            <span class="door__row"><b data-i18n="l_price">Price</b> <span data-i18n="plumb_price">Paid, one-time seats from $350. It ships in dry run: it sends nothing until you change that.</span></span>
-          </span>
-        </a>
-        <a class="door" href="https://glance.elghaly.dev/" rel="noopener noreferrer">
-          <span class="door__name">Glance</span>
-          <span class="door__desc">
-            <span class="door__row"><b data-i18n="l_problem">Problem</b> <span data-i18n="glance_p">Your bot's status page says everything is fine when it is not.</span></span>
-            <span class="door__row"><b data-i18n="l_for">For</b> <span data-i18n="bots_f">People who run Solana bots.</span></span>
-            <span class="door__row"><b data-i18n="l_price">Price</b> <span data-i18n="oss_price">Free and open source (MIT).</span></span>
-          </span>
-        </a>
-        <a class="door" href="https://stale.elghaly.dev/" rel="noopener noreferrer">
-          <span class="door__name">Stale</span>
-          <span class="door__desc">
-            <span class="door__row"><b data-i18n="l_problem">Problem</b> <span data-i18n="stale_p">Your Solana RPC falls behind and nothing tells you by how much.</span></span>
-            <span class="door__row"><b data-i18n="l_for">For</b> <span data-i18n="stale_f">Developers and bot operators who use a Solana RPC.</span></span>
-            <span class="door__row"><b data-i18n="l_price">Price</b> <span data-i18n="oss_price">Free and open source (MIT).</span></span>
-          </span>
-        </a>
-        <a class="door" href="/quay">
-          <span class="door__name">QUAY</span>
-          <span class="door__desc">
-            <span class="door__row"><b data-i18n="l_problem">Problem</b> <span data-i18n="quay_p">You want a second pair of eyes on your Solana bot's fees, tips and setup.</span></span>
-            <span class="door__row"><b data-i18n="l_for">For</b> <span data-i18n="bots_f">People who run Solana bots.</span></span>
-            <span class="door__row"><b data-i18n="l_price">Price</b> <span data-i18n="quay_price">Paid. One-time: a written fee review is $199; other options from $29. Monthly: QUAY Land $149, Node Watch $79.</span></span>
-          </span>
-        </a>
+    <section class="section" id="about" aria-labelledby="who-heading">
+      <div class="card panel reveal">
+        <div>
+          <h2 id="who-heading" class="section__title" data-i18n="who_h">About us</h2>
+          <p class="panel__lead section__lead" data-i18n="who_1">elghaly builds Linux server setups, Telegram bots and Solana developer tools.</p>
+          <p class="section__lead" data-i18n="who_2">Founded 2022 by Wyndham Heaven.</p>
+        </div>
+        <div>
+          <h3 class="card__title" data-i18n="contact_h">Contact</h3>
+          <p class="section__lead"><a href="mailto:support@elghaly.dev">support@elghaly.dev</a> — <span data-i18n="c_mail">sales, orders and support</span></p>
+          <h3 class="card__title panel__sub" data-i18n="find_h">Find us</h3>
+          <ul class="socials">
+            <li><a class="btn btn--dark btn--sm" href="https://www.linkedin.com/in/wyndhamheaven" rel="noopener noreferrer" target="_blank">LinkedIn</a></li>
+            <li><a class="btn btn--dark btn--sm" href="https://x.com/wyndham350" rel="noopener noreferrer" target="_blank">X</a></li>
+            <li><a class="btn btn--dark btn--sm" href="https://t.me/wyndham35" rel="noopener noreferrer" target="_blank">Telegram</a></li>
+            <li><a class="btn btn--dark btn--sm" href="https://github.com/Alarm2024" rel="noopener noreferrer" target="_blank">GitHub</a></li>
+          </ul>
+        </div>
       </div>
-    </section>
-
-    <section class="section contact" aria-labelledby="contact-heading">
-      <h2 id="contact-heading" class="section__label" data-i18n="contact_h">Contact</h2>
-      <ul class="contact__list">
-        <li><a href="mailto:support@elghaly.dev">support@elghaly.dev</a> — <span data-i18n="c_mail">sales, orders and support</span></li>
-      </ul>
-      <p class="build__text contact__mail">elghaly · Dubai, UAE</p>
-    </section>
-
-    <section class="section socials" aria-labelledby="socials-heading">
-      <h2 id="socials-heading" class="section__label" data-i18n="find_h">Find us</h2>
-      <ul class="socials__list">
-        <li><a href="https://www.linkedin.com/in/wyndhamheaven" rel="noopener noreferrer" target="_blank">LinkedIn</a></li>
-        <li><a href="https://x.com/wyndham350" rel="noopener noreferrer" target="_blank">X</a></li>
-        <li><a href="https://t.me/wyndham35" rel="noopener noreferrer" target="_blank">Telegram</a></li>
-        <li><a href="https://github.com/Alarm2024" rel="noopener noreferrer" target="_blank">GitHub</a></li>
-      </ul>
     </section>
   </main>
 
-  <div class="signs signs--bottom" aria-hidden="true">3️⃣ 🧿 5️⃣</div>
-
   <footer class="footer">
+    <p class="signs" aria-hidden="true">3️⃣ 🧿 5️⃣</p>
     <p><span data-i18n="love">made with love</span> <span role="img" aria-label="love">❤️</span></p>
-    <p><a href="/about.html" data-i18n="f_about">About</a> · <a href="/contact.html" data-i18n="f_contact">Contact</a> · <a href="/refund.html" data-i18n="f_refunds">Refunds</a> · <a href="/delivery.html" data-i18n="f_delivery">Delivery</a> · <a href="/terms.html" data-i18n="f_terms">Terms</a> · <a href="/privacy.html" data-i18n="f_privacy">Privacy</a></p>
-    <p class="footer__biz">elghaly · Dubai, UAE · <a href="mailto:support@elghaly.dev">support@elghaly.dev</a></p>
-  <p class="lic-badges"><a href="https://creativecommons.org/licenses/by/4.0/" rel="license">© elghaly · CC BY 4.0</a> <a href="https://github.com/Alarm2024/elghaly/blob/main/LICENSE">Code: MIT</a> <a href="https://github.com/Alarm2024">Open source</a></p>
+    <p class="footer__nav"><a href="/plumb">Plumb</a> · <a href="/quay">QUAY</a> · <a href="/about.html" data-i18n="f_about">About</a> · <a href="/contact.html" data-i18n="f_contact">Contact</a> · <a href="/refund.html" data-i18n="f_refunds">Refunds</a> · <a href="/delivery.html" data-i18n="f_delivery">Delivery</a> · <a href="/terms.html" data-i18n="f_terms">Terms</a> · <a href="/privacy.html" data-i18n="f_privacy">Privacy</a></p>
+    <p>elghaly · <a href="mailto:support@elghaly.dev">support@elghaly.dev</a></p>
+    <p class="lic-badges"><a href="https://creativecommons.org/licenses/by/4.0/" rel="license">© elghaly · CC BY 4.0</a> <a href="https://github.com/Alarm2024/elghaly/blob/main/LICENSE">Code: MIT</a> <a href="https://github.com/Alarm2024">Open source</a></p>
   </footer>
   <script>
   // Languages for the home page: EN AR RU 中文 DE ES. English is read from
@@ -1319,24 +1962,21 @@ html[data-theme="solana"] .event a.event__btn {
     var LANGS = ["en", "ar", "ru", "zh", "de", "es"];
     var T = {
       ar: {
-        links_h: "روابطنا",
-        lk_plumb: "متجر Plumb",
-        lk_quay: "متجر Quay",
         __title: "elghaly — خوادم لينكس، بوتات تيليجرام، أدوات سولانا",
+        eyebrow: "elghaly",
         hero_h1: "نُعِدّ خوادم لينكس، ونبني بوتات تيليجرام، ونصنع أدوات لسولانا",
-        hero_tagline: "نبني ما تحلم به",
-        hero_tag: "Wyndham Heaven · برمجيات · أعمال",
+        hero_sub: "أدوات لا تخمّن، وتُريك السبب.",
         cta_work: "تعاون معنا",
-        cta_email: "راسلنا",
-        who_h: "من نحن",
-        who_1: "تبني elghaly إعدادات خوادم لينكس وبوتات تيليجرام وأدوات لمطوّري سولانا.",
-        who_2: "تأسست عام 2022 على يد Wyndham Heaven، ومقرّها دبي.",
-        build_h: "نبني",
-        build_t: "نحوّل الأفكار إلى أنظمة حيّة — برمجيات تعمل، وأعمال تنمو.",
-        ev_h: "جولة تعريفية عبر الإنترنت: ابنِ بأمان أكبر على سولانا",
-        ev_t: "السبت 10 أكتوبر 2026 · 16:00–17:00 بتوقيت UTC · عبر الإنترنت · مجاناً",
-        ev_btn: "سجّل على Luma",
-        doors_h: "الأبواب",
+        cta_products: "تصفّح المنتجات",
+        what_h: "ماذا نفعل",
+        svc_srv_t: "خوادم لينكس",
+        svc_srv_d: "نُعِدّ خوادم لينكس تملكها وتتحكم بها.",
+        svc_bot_t: "بوتات تيليجرام",
+        svc_bot_d: "نبني بوتات تيليجرام تعمل على خادمك الخاص.",
+        svc_tool_t: "أدوات سولانا",
+        svc_tool_d: "نصنع أدوات تقرأ بيانات سولانا وتُريك كيف وصلت إلى كل إجابة.",
+        prod_h: "المنتجات",
+        see_plans: "عرض الخطط",
         l_problem: "المشكلة",
         l_for: "لمن",
         l_price: "السعر",
@@ -1356,6 +1996,19 @@ html[data-theme="solana"] .event a.event__btn {
         stale_f: "للمطوّرين ومشغّلي البوتات الذين يستخدمون RPC على سولانا.",
         quay_p: "تريد عيناً ثانية على رسوم بوتك على سولانا وإكرامياته وإعداده.",
         quay_price: "مدفوع. بدفعة واحدة: مراجعة رسوم مكتوبة بـ 199 دولاراً، وخيارات أخرى من 29 دولاراً. شهرياً: QUAY Land بـ 149 دولاراً، وNode Watch بـ 79 دولاراً.",
+        links_h: "روابطنا",
+        shop_plumb: "متجر Plumb",
+        shop_quay: "متجر Quay",
+        shop_h: "جاهز للشراء؟ ادفع من هنا",
+        shop_plumb_note: "دفع آمن وتسليم رقمي عبر البريد الإلكتروني",
+        shop_quay_note: "دفع آمن وتسليم رقمي عبر البريد الإلكتروني",
+        ev_k: "عبر الإنترنت · مجاناً",
+        ev_h: "جولة تعريفية عبر الإنترنت: ابنِ بأمان أكبر على سولانا",
+        ev_t: "السبت 10 أكتوبر 2026 · 16:00–17:00 بتوقيت UTC · عبر الإنترنت · مجاناً",
+        ev_btn: "سجّل على Luma",
+        who_h: "من نحن",
+        who_1: "تبني elghaly إعدادات خوادم لينكس وبوتات تيليجرام وأدوات لمطوّري سولانا.",
+        who_2: "تأسست عام 2022 على يد Wyndham Heaven.",
         contact_h: "تواصل",
         c_mail: "المبيعات والطلبات والدعم",
         find_h: "تجدنا على",
@@ -1368,24 +2021,21 @@ html[data-theme="solana"] .event a.event__btn {
         f_privacy: "الخصوصية"
       },
       ru: {
-        links_h: "Ссылки",
-        lk_plumb: "Магазин Plumb",
-        lk_quay: "Магазин Quay",
         __title: "elghaly — Linux-серверы, Telegram-боты, инструменты для Solana",
+        eyebrow: "elghaly",
         hero_h1: "Настраиваем Linux-серверы, создаём Telegram-ботов и делаем инструменты для Solana",
-        hero_tagline: "строим то, о чём вы мечтаете",
-        hero_tag: "Wyndham Heaven · Софт · Бизнес",
+        hero_sub: "Инструменты, которые не гадают и показывают почему.",
         cta_work: "Работать с нами",
-        cta_email: "Написать нам",
-        who_h: "Кто мы",
-        who_1: "elghaly настраивает Linux-серверы, создаёт Telegram-ботов и инструменты для разработчиков Solana.",
-        who_2: "Основана в 2022 году Wyndham Heaven, находится в Дубае.",
-        build_h: "Создаём",
-        build_t: "Превращаем идеи в живые системы — софт, который работает, и бизнес, который растёт.",
-        ev_h: "Онлайн-разбор: строим безопаснее на Solana",
-        ev_t: "Сб, 10 окт. 2026 · 16:00–17:00 UTC · онлайн · бесплатно",
-        ev_btn: "Регистрация на Luma",
-        doors_h: "Двери",
+        cta_products: "Наши продукты",
+        what_h: "Что мы делаем",
+        svc_srv_t: "Linux-серверы",
+        svc_srv_d: "Настраиваем Linux-серверы, которыми владеете и управляете вы.",
+        svc_bot_t: "Telegram-боты",
+        svc_bot_d: "Создаём Telegram-ботов, которые работают на вашем сервере.",
+        svc_tool_t: "Инструменты для Solana",
+        svc_tool_d: "Делаем инструменты, которые читают данные Solana и показывают, как получен каждый ответ.",
+        prod_h: "Продукты",
+        see_plans: "Смотреть тарифы",
         l_problem: "Задача",
         l_for: "Для кого",
         l_price: "Цена",
@@ -1405,6 +2055,19 @@ html[data-theme="solana"] .event a.event__btn {
         stale_f: "Разработчикам и операторам ботов, использующим RPC Solana.",
         quay_p: "Вам нужен второй взгляд на комиссии, чаевые и настройку вашего бота на Solana.",
         quay_price: "Платно. Разово: письменный разбор комиссий — $199, другие варианты от $29. Ежемесячно: QUAY Land — $149, Node Watch — $79.",
+        links_h: "Ссылки",
+        shop_plumb: "Магазин Plumb",
+        shop_quay: "Магазин Quay",
+        shop_h: "Готовы купить? Оформите заказ здесь",
+        shop_plumb_note: "Безопасная оплата, цифровая доставка по электронной почте",
+        shop_quay_note: "Безопасная оплата, цифровая доставка по электронной почте",
+        ev_k: "Онлайн · бесплатно",
+        ev_h: "Онлайн-разбор: строим безопаснее на Solana",
+        ev_t: "Сб, 10 окт. 2026 · 16:00–17:00 UTC · онлайн · бесплатно",
+        ev_btn: "Регистрация на Luma",
+        who_h: "О нас",
+        who_1: "elghaly настраивает Linux-серверы, создаёт Telegram-ботов и инструменты для разработчиков Solana.",
+        who_2: "Основана в 2022 году Wyndham Heaven.",
         contact_h: "Контакты",
         c_mail: "продажи, заказы и поддержка",
         find_h: "Мы в сети",
@@ -1417,24 +2080,21 @@ html[data-theme="solana"] .event a.event__btn {
         f_privacy: "Конфиденциальность"
       },
       zh: {
-        links_h: "链接",
-        lk_plumb: "Plumb 商店",
-        lk_quay: "Quay 商店",
         __title: "elghaly — Linux 服务器、Telegram 机器人、Solana 工具",
+        eyebrow: "elghaly",
         hero_h1: "我们搭建 Linux 服务器，开发 Telegram 机器人，并为 Solana 打造工具",
-        hero_tagline: "你梦想的，我们来实现",
-        hero_tag: "Wyndham Heaven · 软件 · 商业",
+        hero_sub: "不靠猜测的工具，并告诉你原因。",
         cta_work: "与我们合作",
-        cta_email: "发邮件给我们",
-        who_h: "我们是谁",
-        who_1: "elghaly 提供 Linux 服务器搭建、Telegram 机器人和 Solana 开发者工具。",
-        who_2: "由 Wyndham Heaven 于 2022 年创立，总部位于迪拜。",
-        build_h: "构建",
-        build_t: "我们把想法变成鲜活的系统——能用的软件，能成长的业务。",
-        ev_h: "在线讲解：在 Solana 上更安全地构建",
-        ev_t: "2026 年 10 月 10 日（周六）· 16:00–17:00 UTC · 线上 · 免费",
-        ev_btn: "在 Luma 报名",
-        doors_h: "入口",
+        cta_products: "查看产品",
+        what_h: "我们做什么",
+        svc_srv_t: "Linux 服务器",
+        svc_srv_d: "我们为你搭建由你拥有和掌控的 Linux 服务器。",
+        svc_bot_t: "Telegram 机器人",
+        svc_bot_d: "我们开发在你自己服务器上运行的 Telegram 机器人。",
+        svc_tool_t: "Solana 工具",
+        svc_tool_d: "我们打造读取 Solana 数据、并展示每个结论从何而来的工具。",
+        prod_h: "产品",
+        see_plans: "查看方案",
         l_problem: "问题",
         l_for: "适合",
         l_price: "价格",
@@ -1454,6 +2114,19 @@ html[data-theme="solana"] .event a.event__btn {
         stale_f: "使用 Solana RPC 的开发者和机器人运营者。",
         quay_p: "你想请人再帮你看一遍 Solana 机器人的手续费、小费和配置。",
         quay_price: "付费。一次性：书面手续费审查 $199，其他选项 $29 起。按月：QUAY Land $149，Node Watch $79。",
+        links_h: "链接",
+        shop_plumb: "Plumb 商店",
+        shop_quay: "Quay 商店",
+        shop_h: "准备购买？在这里结账",
+        shop_plumb_note: "安全结账，通过电子邮件进行数字交付",
+        shop_quay_note: "安全结账，通过电子邮件进行数字交付",
+        ev_k: "线上 · 免费",
+        ev_h: "在线讲解：在 Solana 上更安全地构建",
+        ev_t: "2026 年 10 月 10 日（周六）· 16:00–17:00 UTC · 线上 · 免费",
+        ev_btn: "在 Luma 报名",
+        who_h: "关于我们",
+        who_1: "elghaly 提供 Linux 服务器搭建、Telegram 机器人和 Solana 开发者工具。",
+        who_2: "由 Wyndham Heaven 于 2022 年创立。",
         contact_h: "联系",
         c_mail: "销售、订单和支持",
         find_h: "关注我们",
@@ -1466,24 +2139,21 @@ html[data-theme="solana"] .event a.event__btn {
         f_privacy: "隐私"
       },
       de: {
-        links_h: "Links",
-        lk_plumb: "Plumb-Shop",
-        lk_quay: "Quay-Shop",
         __title: "elghaly — Linux-Server, Telegram-Bots, Solana-Tools",
+        eyebrow: "elghaly",
         hero_h1: "Wir richten Linux-Server ein, bauen Telegram-Bots und entwickeln Tools für Solana",
-        hero_tagline: "wir bauen, wovon du träumst",
-        hero_tag: "Wyndham Heaven · Software · Business",
+        hero_sub: "Tools, die nicht raten – und zeigen, warum.",
         cta_work: "Mit uns arbeiten",
-        cta_email: "E-Mail an uns",
-        who_h: "Wer",
-        who_1: "elghaly richtet Linux-Server ein, baut Telegram-Bots und Entwicklertools für Solana.",
-        who_2: "Gegründet 2022 von Wyndham Heaven, mit Sitz in Dubai.",
-        build_h: "Bauen",
-        build_t: "Wir machen aus Ideen lebendige Systeme — Software, die funktioniert, Unternehmen, die wachsen.",
-        ev_h: "Online-Walk-through: Sicherer bauen auf Solana",
-        ev_t: "Sa, 10. Okt. 2026 · 16:00–17:00 UTC · online · kostenlos",
-        ev_btn: "Bei Luma anmelden",
-        doors_h: "Türen",
+        cta_products: "Produkte ansehen",
+        what_h: "Was wir tun",
+        svc_srv_t: "Linux-Server",
+        svc_srv_d: "Wir richten Linux-Server ein, die dir gehören und die du steuerst.",
+        svc_bot_t: "Telegram-Bots",
+        svc_bot_d: "Wir bauen Telegram-Bots, die auf deinem eigenen Server laufen.",
+        svc_tool_t: "Solana-Tools",
+        svc_tool_d: "Wir bauen Tools, die Solana-Daten lesen und zeigen, wie sie zu jeder Antwort kommen.",
+        prod_h: "Produkte",
+        see_plans: "Pläne ansehen",
         l_problem: "Problem",
         l_for: "Für",
         l_price: "Preis",
@@ -1503,6 +2173,19 @@ html[data-theme="solana"] .event a.event__btn {
         stale_f: "Entwickler und Bot-Betreiber, die einen Solana-RPC nutzen.",
         quay_p: "Du willst ein zweites Paar Augen auf die Gebühren, Tips und das Setup deines Solana-Bots.",
         quay_price: "Kostenpflichtig. Einmalig: eine schriftliche Gebührenprüfung kostet 199 $, andere Optionen ab 29 $. Monatlich: QUAY Land 149 $, Node Watch 79 $.",
+        links_h: "Links",
+        shop_plumb: "Plumb-Shop",
+        shop_quay: "Quay-Shop",
+        shop_h: "Bereit zum Kauf? Hier zur Kasse",
+        shop_plumb_note: "Sichere Kasse, digitale Lieferung per E-Mail",
+        shop_quay_note: "Sichere Kasse, digitale Lieferung per E-Mail",
+        ev_k: "Online · kostenlos",
+        ev_h: "Online-Walk-through: Sicherer bauen auf Solana",
+        ev_t: "Sa, 10. Okt. 2026 · 16:00–17:00 UTC · online · kostenlos",
+        ev_btn: "Bei Luma anmelden",
+        who_h: "Über uns",
+        who_1: "elghaly richtet Linux-Server ein, baut Telegram-Bots und Entwicklertools für Solana.",
+        who_2: "Gegründet 2022 von Wyndham Heaven.",
         contact_h: "Kontakt",
         c_mail: "Vertrieb, Bestellungen und Support",
         find_h: "Finde uns",
@@ -1515,24 +2198,21 @@ html[data-theme="solana"] .event a.event__btn {
         f_privacy: "Datenschutz"
       },
       es: {
-        links_h: "Enlaces",
-        lk_plumb: "Tienda Plumb",
-        lk_quay: "Tienda Quay",
         __title: "elghaly — servidores Linux, bots de Telegram, herramientas para Solana",
+        eyebrow: "elghaly",
         hero_h1: "Configuramos servidores Linux, creamos bots de Telegram y hacemos herramientas para Solana",
-        hero_tagline: "construimos lo que sueñas",
-        hero_tag: "Wyndham Heaven · Software · Negocios",
+        hero_sub: "Herramientas que no adivinan y te muestran por qué.",
         cta_work: "Trabaja con nosotros",
-        cta_email: "Escríbenos",
-        who_h: "Quiénes",
-        who_1: "elghaly configura servidores Linux, crea bots de Telegram y herramientas para desarrolladores de Solana.",
-        who_2: "Fundada en 2022 por Wyndham Heaven, con sede en Dubái.",
-        build_h: "Construir",
-        build_t: "Convertimos ideas en sistemas vivos: software que funciona, negocios que crecen.",
-        ev_h: "Recorrido en línea: construye con más seguridad en Solana",
-        ev_t: "Sáb 10 oct 2026 · 16:00–17:00 UTC · en línea · gratis",
-        ev_btn: "Regístrate en Luma",
-        doors_h: "Puertas",
+        cta_products: "Ver productos",
+        what_h: "Qué hacemos",
+        svc_srv_t: "Servidores Linux",
+        svc_srv_d: "Configuramos servidores Linux que son tuyos y que tú controlas.",
+        svc_bot_t: "Bots de Telegram",
+        svc_bot_d: "Creamos bots de Telegram que funcionan en tu propio servidor.",
+        svc_tool_t: "Herramientas para Solana",
+        svc_tool_d: "Hacemos herramientas que leen datos de Solana y muestran cómo llegan a cada respuesta.",
+        prod_h: "Productos",
+        see_plans: "Ver planes",
         l_problem: "Problema",
         l_for: "Para",
         l_price: "Precio",
@@ -1552,6 +2232,19 @@ html[data-theme="solana"] .event a.event__btn {
         stale_f: "Desarrolladores y operadores de bots que usan un RPC de Solana.",
         quay_p: "Quieres una segunda mirada a las comisiones, propinas y configuración de tu bot de Solana.",
         quay_price: "De pago. Pago único: una revisión de comisiones por escrito cuesta 199 $; otras opciones desde 29 $. Mensual: QUAY Land 149 $, Node Watch 79 $.",
+        links_h: "Enlaces",
+        shop_plumb: "Tienda Plumb",
+        shop_quay: "Tienda Quay",
+        shop_h: "¿Listo para comprar? Paga aquí",
+        shop_plumb_note: "Pago seguro, entrega digital por correo electrónico",
+        shop_quay_note: "Pago seguro, entrega digital por correo electrónico",
+        ev_k: "En línea · gratis",
+        ev_h: "Recorrido en línea: construye con más seguridad en Solana",
+        ev_t: "Sáb 10 oct 2026 · 16:00–17:00 UTC · en línea · gratis",
+        ev_btn: "Regístrate en Luma",
+        who_h: "Quiénes somos",
+        who_1: "elghaly configura servidores Linux, crea bots de Telegram y herramientas para desarrolladores de Solana.",
+        who_2: "Fundada en 2022 por Wyndham Heaven.",
         contact_h: "Contacto",
         c_mail: "ventas, pedidos y soporte",
         find_h: "Encuéntranos",
@@ -1603,7 +2296,23 @@ html[data-theme="solana"] .event a.event__btn {
     }
     set(first(), false);
   })();
+
+  // Cards fade up once as they scroll into view (see .reveal in the CSS;
+  // the CSS shows them at once when reduced motion is asked for).
+  (function () {
+    if (!("IntersectionObserver" in window)) return;
+    var els = document.querySelectorAll(".reveal");
+    var io = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+          entries[i].target.classList.add("is-in");
+          io.unobserve(entries[i].target);
+        }
+      }
+    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.06 });
+    for (var i = 0; i < els.length; i++) io.observe(els[i]);
+  })();
   </script>
-<script src="/page-menu.js?v=2" defer></script>
+  <script src="/page-menu.js?v=2" defer></script>
 </body>
 </html>
